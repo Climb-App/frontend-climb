@@ -1,0 +1,57 @@
+.lateral{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $blue-900;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    width: 155px;
+    height: 75px;
+}
+
+.lateral:hover{
+    background-color: $blue-900-hover;
+}
+
+.filled{
+    background-color: $blue-900;
+    width: 155px;
+    height: 100vh;
+}
+
+.box{
+    width: 155px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    width: 28px;
+    height: 25px;
+}
+
+.heading{
+    background-color: #D4E4FF;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    .head{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        
+        }
+
+        .fill{
+            background-color: #98BCFF;
+        }
+}
+
+
