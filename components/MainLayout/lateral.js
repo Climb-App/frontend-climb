@@ -3,26 +3,26 @@ import React from 'react';
 
 export default function Lateral() {
     return (
-      <div className="nav flex-column filled">
+      <div className="nav filled">
         <div className="lateral">
             <img className="icon" src="/assets/dashboard.svg" alt="dashboard"/>
-            <a>Dashboard</a>
+            <a href="./" >Dashboard</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Workspace.svg" alt="workspace"/>
-            <a>Workspace</a>
+            <a href="./workspace/">Workspace</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Rewards.svg" alt="rewards"/>
-            <a>Recompensas</a>
+            <a href="./rewards/">Recompensas</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Productivity.svg" alt="productivity"/>
-            <a>Productividad</a>
+            <a href="./productivity/">Productividad</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Motivation.svg" alt="motivation"/>
-            <a>Motivacion</a>
+            <a href="./motivation/">Motivacion</a>
         </div>
       </div>
     )

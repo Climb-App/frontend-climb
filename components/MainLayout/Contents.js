@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Contents(props) {
     return (
-      <div className="d-block col-10 ms-2">
+      <div className="content">
           {props.children}
       </div>
     )

@@ -1,0 +1,11 @@
+@import 'navbar';
+@import 'lateral';
+@import 'contents';
+
+
+.main{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 100vh;
+}

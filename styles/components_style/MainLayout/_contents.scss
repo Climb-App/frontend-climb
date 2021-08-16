@@ -1,0 +1,23 @@
+.content{
+    display: flex;
+    width: 75vw;
+    height: 80vh;
+}
+
+@media (max-width:425px){
+    .content{
+        width: 90vw;
+        height: 90vh;
+    }
+
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px){
+    .content{
+        width: 92vw;
+        height: 90vh;
+    }
+
+
+}
+

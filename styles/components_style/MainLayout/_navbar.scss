@@ -1,29 +1,6 @@
-.lateral{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: $blue-900;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 155px;
-    height: 75px;
-}
-
-.lateral:hover{
-    background-color: $blue-900-hover;
-}
-
-.filled{
-    background-color: $blue-900;
-    width: 155px;
-    height: 100vh;
-}
-
-.box{
-    width: 155px;
-    height: 70px;
+.box-logo{
+    width: 15vw;
+    height: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,6 +17,9 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    width: 85vw;
+    height: 85px;
+    border-radius: 5px;
 
     .head{
         display: flex;
@@ -51,7 +31,25 @@
 
         .fill{
             background-color: #98BCFF;
+            margin: 6px;
         }
+
 }
 
+
+@media (max-width:425px){
+
+    .box-logo{
+        display: none;
+    }
+    .heading{
+        width: 100vw;
+    }
+
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px){
+
+
+}
 

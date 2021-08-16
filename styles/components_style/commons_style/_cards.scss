@@ -1,0 +1,18 @@
+
+.cards{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+@media (max-width:375px){
+    .cards{
+        background-color: red;
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px){
+    .cards{
+        background-color: green;
+    }
+}

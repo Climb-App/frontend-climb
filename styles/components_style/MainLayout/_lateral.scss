@@ -1,0 +1,51 @@
+.lateral{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $blue-900;
+    text-align: center;
+    width: 15vw;
+    height: 105px;
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.lateral:hover{
+    background-color: $blue-900-hover;
+}
+
+.filled{
+    display: flex;
+    flex-direction: column;
+    background-color: $blue-900;
+    width: 15vw;
+    height: 100vh;
+}
+
+.icon{
+    width: 28px;
+    height: 25px;
+}
+
+
+
+
+@media (max-width:425px){
+
+    .filled{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px){
+
+    .filled{
+        display: none;
+    }
+
+}
+

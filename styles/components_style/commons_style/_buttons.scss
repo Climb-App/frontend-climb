@@ -1,0 +1,9 @@
+.buttons{
+    background-color: red;
+}
+
+@media (max-width: 375px){
+    .buttons{
+        background-color: blue;
+    }
+}
