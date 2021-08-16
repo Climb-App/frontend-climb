@@ -21,6 +21,7 @@
 .filled{
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     background-color: $blue-900;
     width: 15vw;
     height: 100vh;
@@ -34,17 +35,34 @@
 
 
 
-@media (max-width:425px){
+@media (max-width:720px){
 
     .filled{
-        display: none;
+        position: absolute;
+        top: 100%;
+        flex-direction: row;
+        width: 100vw;
+        height: 15%;
+    }
+    .lateral{
+        height: 100%;
+        a{
+            display: none;
+        }
     }
 }
 
-@media screen and (min-width: 426px) and (max-width: 768px){
+@media screen and (min-width: 720px) and (max-width: 768px){
 
     .filled{
-        display: none;
+        position: absolute;
+        top: 100%;
+        flex-direction: row;
+        width: 100vw;
+        height: 15%;
+    }
+    .lateral{
+        height: 100%;
     }
 
 }

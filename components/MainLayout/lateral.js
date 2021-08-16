@@ -13,6 +13,10 @@ export default function Lateral() {
             <a href="./workspace/">Workspace</a>
         </div>
         <div className="lateral">
+            <img className="icon" src="/assets/users.svg" alt="workspace"/>
+            <a href="./usuarios/">Usuarios</a>
+        </div>
+        <div className="lateral">
             <img className="icon" src="/assets/Rewards.svg" alt="rewards"/>
             <a href="./recompensas/">Recompensas</a>
         </div>
