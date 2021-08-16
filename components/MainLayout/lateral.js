@@ -14,15 +14,15 @@ export default function Lateral() {
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Rewards.svg" alt="rewards"/>
-            <a href="./rewards/">Recompensas</a>
+            <a href="./recompensas/">Recompensas</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Productivity.svg" alt="productivity"/>
-            <a href="./productivity/">Productividad</a>
+            <a href="./productividad/">Productividad</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Motivation.svg" alt="motivation"/>
-            <a href="./motivation/">Motivacion</a>
+            <a href="./motivacion/">Motivacion</a>
         </div>
       </div>
     )

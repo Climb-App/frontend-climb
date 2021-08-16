@@ -15,7 +15,7 @@ export default function Navbar() {
                     </div>
                     <div className="head">
                         <div className="shadow fill">
-                            <img className="icon m-2" src="/assets/settings.svg" alt="settings"/>
+                            <a href="./profile/"><img className="icon m-2" src="/assets/settings.svg" alt="settings"/></a>
                         </div>
                         <img className="icon m-2" src="/assets/notifications.svg" alt="notifications"/>
                         <img className="icon m-2" src="/assets/logout.svg" alt="logout"/>

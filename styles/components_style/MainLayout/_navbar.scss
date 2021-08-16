@@ -6,6 +6,7 @@
     align-items: center;
 }
 
+
 .icon{
     width: 28px;
     height: 25px;
@@ -31,7 +32,15 @@
 
         .fill{
             background-color: #98BCFF;
+            border-radius: 5px;
             margin: 6px;
+        }
+
+        .fill:hover{
+            background-color: #bad0f9;
+            transition-property: opacity, left;
+            transition-delay: 2s;
+            transition-duration: 1s, 1s;
         }
 
 }

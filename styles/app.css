@@ -29,7 +29,14 @@
 }
 .heading .fill {
   background-color: #98BCFF;
+  border-radius: 5px;
   margin: 6px;
+}
+.heading .fill:hover {
+  background-color: #bad0f9;
+  transition-property: opacity, left;
+  transition-delay: 2s;
+  transition-duration: 1s, 1s;
 }
 
 @media (max-width: 425px) {
