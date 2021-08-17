@@ -11,7 +11,9 @@ export default function MainLayoutComponent(props) {
         <main className="container-fluid">
             <div className="row main">
                 <Lateral/>
-                <Contents>{props.children}</Contents>
+                <Contents>
+                  {props.children}
+                </Contents>
             </div>
         </main>
       </>
