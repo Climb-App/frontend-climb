@@ -8,7 +8,7 @@ export default function Lateral({role }) {
       <div className="nav filled">
         <div className="lateral">
             <img className="icon" src="/assets/dashboard.svg" alt="dashboard"/>
-            <a href="./" >Dashboard</a>
+            <a href="./dashboard/" >Dashboard</a>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Workspace.svg" alt="workspace"/>

@@ -1,3 +1,8 @@
+.title{
+    @include font-title;
+    padding-top: 8px;
+}
+
 .box-logo{
     width: 15vw;
     height: 85px;
@@ -13,7 +18,7 @@
 }
 
 .heading{
-    background-color: #D4E4FF;
+    background-color: $blue-100;
     display: flex;
     justify-content: space-between;
     flex-direction: row;

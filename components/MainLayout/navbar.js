@@ -11,7 +11,7 @@ export default function Navbar() {
                 <nav className="heading shadow">
                     <div className="head">
                         <img className="icon me-2" src="/assets/dashboard-black.svg" alt="dashboard"/>
-                        <a>Dashboard</a>
+                        <h3 className="title">Dashboard</h3>
                     </div>
                     <div className="head">
                         <div className="shadow fill">

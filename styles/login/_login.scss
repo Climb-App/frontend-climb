@@ -1,0 +1,41 @@
+.body{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    width:100vw;
+    height: 100vh;
+    background-color: $blue-100;
+
+    .box-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60vw;
+        height: 30%;
+
+        form{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 80%;
+            height: 100%;
+
+            a{
+                display: block;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .aside{
+        display: flex;
+        width: 35vw;
+        height: 100vh;
+        background-color: white;
+
+    }
+}
