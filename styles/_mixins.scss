@@ -2,3 +2,8 @@
     font-family: $font-title;
     font-size: 14px;
 }
+
+@mixin font-text{
+    font-family: $font-text;
+    font-size: 12px;
+}

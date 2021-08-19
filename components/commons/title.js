@@ -1,9 +1,8 @@
 import React from 'react';
 
 
-export default function Title(props) {
+export default function Title({children, classStyle }) {
 
-    const {children, classStyle } = props
   return (
     <>
       <h2 className={`title ${classStyle}`}>
