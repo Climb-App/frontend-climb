@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Buttons(props) {
+export default function Buttons({children, classStyle}) {
   return (
     <>
-      <button className="buttons">
-        {props.children}
+      <button className={`buttons ${classStyle}`}>
+        {children}
       </button>
     </>
   )

@@ -1,0 +1,28 @@
+.links{
+    display: flex;
+    justify-content: space-between;
+
+    .izq{
+        text-align: center;
+        font-size: 10px;
+        margin-left: -15%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        a{
+            text-decoration: none;
+            color: $blue-800;
+        }
+    }
+    .der{
+        text-align: center;
+        font-size: 10px;
+        margin-right: -15%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        a{
+            text-decoration: none;
+            color: $green-800;
+        }
+    }
+    
+}

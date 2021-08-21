@@ -1,9 +1,13 @@
 .buttons{
-    background-color: red;
+    background-color: $green-800;
+    border-radius: 10px;
+    width: 150px;
+    color: white;
+    @include font-text;
 }
 
-@media (max-width: 375px){
-    .buttons{
-        background-color: blue;
-    }
-}
+// @media (max-width: 375px){
+//     .buttons{
+        
+//     }
+// }
