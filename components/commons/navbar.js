@@ -27,7 +27,7 @@ export default function Navbar({classStyle }) {
               </li>
             </ul>
             <a href="./login/" className="btn btn-outline-success me-2" >Login</a>
-            <a href="./login/" className="btn btn-outline-primary" >Cuenta Empresarial</a>
+            <a href="./signup/" className="btn btn-outline-primary" >Cuenta Empresarial</a>
           </div>
         </div>
       </nav>

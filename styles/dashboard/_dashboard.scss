@@ -10,3 +10,14 @@
 .table-rewards{
     padding: 15px;
 }
+
+.contents-cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .size{
+        width: 100%;
+        margin: 50px;
+    }
+}

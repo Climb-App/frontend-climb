@@ -1,6 +1,0 @@
-applications:
-- name: Climb-App
-  memory: 64M
-  random-route: true
-  instances: 1
-  buildpack: nginx_buildpack
