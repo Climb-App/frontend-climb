@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 
 export default function Navbar() {
     return (
@@ -15,7 +15,9 @@ export default function Navbar() {
                     </div>
                     <div className="head">
                         <div className="shadow fill">
-                            <a href="./profile/"><img className="icon m-2" src="/assets/settings.svg" alt="settings"/></a>
+                            <Link href="./profile">
+                                <a><img className="icon m-2" src="/assets/settings.svg" alt="settings"/></a>
+                            </Link>
                         </div>
                         <img className="icon m-2" src="/assets/notifications.svg" alt="notifications"/>
                         <img className="icon m-2" src="/assets/logout.svg" alt="logout"/>

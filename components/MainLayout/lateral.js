@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 
 export default function Lateral({role }) {
@@ -8,32 +9,44 @@ export default function Lateral({role }) {
       <div className="nav filled">
         <div className="lateral">
             <img className="icon" src="/assets/dashboard.svg" alt="dashboard"/>
-            <a href="./dashboard/" >Dashboard</a>
+            <Link href="/dashboard">
+                <a>Dashboard</a>
+            </Link>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Workspace.svg" alt="workspace"/>
-            <a href="./workspace/">Workspace</a>
+            <Link href="/workspace">
+                <a>Workspace</a>
+            </Link>
         </div>
         {
             role === "team_user" ? null : (
             <div className="lateral">
                 <img className="icon" src="/assets/users.svg" alt="workspace"/>
-            <a href="./usuarios/">Usuarios</a>
+            <Link href="./usuarios">
+                <a>Usuarios</a>
+            </Link>
             </div>
             )
         }
         
         <div className="lateral">
             <img className="icon" src="/assets/Rewards.svg" alt="rewards"/>
-            <a href="./recompensas/">Recompensas</a>
+            <Link href="/recompensas">
+                <a>Recompensas</a>
+            </Link>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Productivity.svg" alt="productivity"/>
-            <a href="./productividad/">Productividad</a>
+            <Link href="/productividad">
+                <a>Productividad</a>
+            </Link>
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Motivation.svg" alt="motivation"/>
-            <a href="./motivacion/">Motivacion</a>
+            <Link href="s/motivacion">
+                <a>Motivacion</a>
+            </Link>
         </div>
       </div>
     )
