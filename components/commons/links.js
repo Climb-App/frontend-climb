@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 
 export default function Links() {
 
@@ -7,10 +7,14 @@ export default function Links() {
     <>
         <div className="links">
             <div className="izq">
-                <a className="" href="./recovery-pass/">Recuperar Contrasena</a>
+                <Link href="/recovery-pass">
+                  <a className="">Recuperar Contrasena</a>
+                </Link>
             </div>
             <div className="der">
-                <a className="" href="./signup/">Obtener Cuenta Empresarial <br/> GRATIS</a>
+              <Link href="/signup">
+                <a className="">Obtener Cuenta Empresarial <br/> GRATIS</a>
+              </Link>
             </div>
         </div>
     </>
