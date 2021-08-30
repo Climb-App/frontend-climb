@@ -8,7 +8,7 @@ import axios from 'axios'
 
 export default function Workspace() {
 
-  const baseUrlConnect="http://127.0.0.1:8000/api/v1/";
+  const baseUrlConnect="https://api.climbapp.tech/api/v1/";
   
   const client = axios.create({
     baseURL: `${baseUrlConnect}workspaces/` 
@@ -35,12 +35,8 @@ export default function Workspace() {
 
          <Title> {/*Aqui va el contenido de workspace*/ } 
           {post?.[0]?.name ?? "Vacio" }
-
-
-      
-
+         <p> {post?.[0]?.description ?? "Vacio" }</p>
         </Title>
-          
         <Cards>{/*Contenido de los workspaces */}</Cards>
 
       </MainLayoutComponent>
