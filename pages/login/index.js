@@ -8,7 +8,7 @@ import Links from '../../components/commons/links'
 import axios from 'axios'
 import {useRouter} from 'next/router'
 import {setToken,getToken,deleteToken} from '../../services/operationsTokens' 
-
+import {  toast } from 'react-toastify';
 export default function Login() {
 
   const baseUrlConnect="https://api.climbapp.tech/api/v1/login/";
@@ -30,17 +30,22 @@ const SetValues = ()=>{
     const router=useRouter()
     async function  Login(e) {
       e.preventDefault()
-      //Jalar Valores
+      //Set Values inputs
      const {userValue,passValue} = SetValues()
-      //Conexion con Post
+      //Connection
       try{
       const response = await axios.post(baseUrlConnect,{email:userValue,
-      password:passValue});
+      password:passValue});  
+      if(response)
+      toast.success("Accesos correctos", {
+        theme: "colored"
+      })
       setPost(response.data);
-      // console.log(response.data)
-      // console.log(response.data.token)
+      // console.log(response.data)// console.log(response.data.token)
+      //Token save storage
       setToken(response.data.token)
       router.push('/dashboard')
+      //Handling Errors
       }catch(error){
           console.error(error)
           if(error.response.status >= 402 && error.response.status <= 500 )
@@ -48,15 +53,11 @@ const SetValues = ()=>{
               console.log("Error")
           }
         if(error.response.status == 401) 
-          alert("Valores de Autenficacion email o password incorrectos")
+      
+        toast.error("Valores de Autenficacion email o password incorrectos")
       }  
 
     }
-
-    
-   
-
-
 
   return (
     <>
