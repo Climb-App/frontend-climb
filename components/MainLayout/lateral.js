@@ -23,7 +23,7 @@ export default function Lateral({role }) {
             role === "team_user" ? null : (
             <div className="lateral">
                 <img className="icon" src="/assets/users.svg" alt="workspace"/>
-            <Link href="./usuarios">
+            <Link href="/usuarios">
                 <a>Usuarios</a>
             </Link>
             </div>
@@ -44,7 +44,7 @@ export default function Lateral({role }) {
         </div>
         <div className="lateral">
             <img className="icon" src="/assets/Motivation.svg" alt="motivation"/>
-            <Link href="s/motivacion">
+            <Link href="/motivacion">
                 <a>Motivacion</a>
             </Link>
         </div>

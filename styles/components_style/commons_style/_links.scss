@@ -13,6 +13,7 @@
             color: $blue-800;
         }
     }
+
     .der{
         text-align: center;
         font-size: 10px;
@@ -25,4 +26,26 @@
         }
     }
     
+}
+
+@media (max-width:425px){
+
+    .links{
+
+        .izq{
+            margin-left: 3%;
+        }
+
+        .der{
+            margin-right: 3%;
+        }
+
+    }
+
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px){
+
+
+
 }

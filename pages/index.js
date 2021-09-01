@@ -1,8 +1,19 @@
 import React from 'react';
 import Title from '../components/commons/title'
 import Navbar from '../components/commons/navbar'
+import Swal from 'sweetalert2'
 
 export default function LandingPage() {
+
+  // const alert = () =>{
+  //   return Swal.fire({
+  //     title: 'Error!',
+  //     text: 'Soy un error de inicio de sesion',
+  //     icon: 'error',
+  //     confirmButtonText: 'Cerrar'
+  //   })
+  // }
+
 
   return (
     <>

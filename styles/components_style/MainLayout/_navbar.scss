@@ -3,6 +3,7 @@
     padding-top: 8px;
 }
 
+
 .box-logo{
     width: 15vw;
     height: 85px;
@@ -32,6 +33,20 @@
         justify-content: space-between;
         flex-direction: row;
         align-items: center;
+
+        .button-box{
+            background-color: $blue-100;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .button-box:hover{
+            background-color: #aac7fa;
+            border-radius: 5px;
+        }
         
         }
 
@@ -49,6 +64,7 @@
         }
 
 }
+
 
 
 @media (max-width:425px){

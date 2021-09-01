@@ -30,3 +30,31 @@
         }
     }
 }
+
+
+@media (max-width:425px){
+
+    .aside{
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px){
+
+    .aside{
+    
+        .boxing{
+    
+            img{
+                margin-left: 20px;
+               
+            }
+    
+            h2{
+                margin-right: 20px;
+            }
+        }
+    }
+
+}

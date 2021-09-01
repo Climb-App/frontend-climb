@@ -9,4 +9,5 @@ function getToken(){
 function deleteToken(){
     sessionStorage.removeItem('authToken')
 }
+
 export {setToken,getToken,deleteToken}
