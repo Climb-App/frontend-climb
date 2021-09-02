@@ -12,11 +12,8 @@
     "@popperjs/core": "^2.9.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
-<<<<<<< HEAD
     "jquery": "^3.6.0",
-=======
     "form-data": "^4.0.0",
->>>>>>> 560cdc62562a10e07dd36dcd37bacd5d320530a5
     "next": "11.0.1",
     "popper.js": "^1.16.1",
     "react": "17.0.2",
