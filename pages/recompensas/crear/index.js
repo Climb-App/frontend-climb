@@ -28,7 +28,7 @@ const Rewards = () => {
         company_user: 1,
       });
       if (response)
-        toast.success("Accesos correctos", {
+        toast.success("Datos enviados", {
           theme: "colored",
         });
       setPost(response.data);
