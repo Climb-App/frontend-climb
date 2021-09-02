@@ -6,10 +6,16 @@ import Cards from '../../components/commons/cards'
 import Aside from '../../components/commons/aside'
 import Links from '../../components/commons/links'
 import axios from 'axios'
+<<<<<<< HEAD
 import { useRouter } from 'next/router'
 import { setToken } from '../../services/operationsTokens' 
 import { toast } from 'react-toastify';
 
+=======
+import {useRouter} from 'next/router'
+import {setToken,getToken,deleteToken} from '../../services/operationsTokens' 
+import {  toast } from 'react-toastify';
+>>>>>>> 560cdc62562a10e07dd36dcd37bacd5d320530a5
 
 export default function Login() {
 
