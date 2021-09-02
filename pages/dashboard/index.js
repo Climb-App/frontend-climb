@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainLayoutComponent from '../../components/MainLayout/index'
 import Cards from '../../components/commons/cards'
 import Title from '../../components/commons/title'
@@ -12,11 +12,11 @@ export default function Dashboard() {
   
 
 
-  const token = getToken()
-  const router= useRouter()
+  // const token = getToken()
+  // const router= useRouter()
 
-  if (token){ 
-  console.log(token)
+  // if (token){ 
+  // console.log(token)
 
     return (
       <>
@@ -30,7 +30,7 @@ export default function Dashboard() {
         </MainLayoutComponent>
       </>
     )
-  }else{
-    router.push('/login/')
-  }
+  // }else{
+  //   router.push('/login/')
+  // }
 }

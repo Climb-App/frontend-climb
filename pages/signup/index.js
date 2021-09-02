@@ -59,7 +59,7 @@ export default function SignUp() {
       <div className="body">
         <div className="aside-lef">
           <Cards classStyle="card-color-size">
-            <Form action="" method="POST" onSubmit={}>
+            <Form action="" method="POST">
               <label className="title label" htmlFor='company' >Company</label>
               <input 
                 id='name' 

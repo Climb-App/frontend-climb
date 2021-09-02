@@ -3,40 +3,31 @@ import MainLayoutComponent from "../../../components/MainLayout";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
+import {useRouter} from "next/router";
 
-const baseUrlConnect = "http://127.0.0.1:8000/api/v1/badges_test/";
+const baseUrlConnect = "http://127.0.0.1:8000/api/v1/rewards_test/";
 
-const Insignias = () => {
+const Rewards = () => {
+
+  const router = useRouter()
   //   // Conexion
   const [post, setPost] = React.useState(null);
   // const router=useRouter()
-  async function PostBadges(e) {
+  async function PostRewards(e) {
     const form = e.target;
     e.preventDefault();
-    //     //Set Values inputs
+    //Set Values inputs
     console.log(form.elements);
-    const {
-      PuntosMinimos,
-      PuntosMaximos,
-      UrlImage,
-      descriptionValue,
-      nameValue,
-    } = form.elements;
-    console.log(
-      PuntosMinimos,
-      PuntosMaximos,
-      UrlImage,
-      descriptionValue,
-      nameValue
-    );
+    const { nameValue, descriptionValue, PointsValue, FileValue } =
+      form.elements;
+    console.log(nameValue, descriptionValue, PointsValue, FileValue);
     //Connection
     try {
       const response = await axios.post(baseUrlConnect, {
         name: nameValue.value,
         description: descriptionValue.value,
         icon: UrlImage.value,
-        points_needed_min: PuntosMinimos.value,
-        points_needed_max: PuntosMaximos.value,
+        points_needed: PointsValue.value,
         company_user: 1,
       });
       if (response)
@@ -45,10 +36,10 @@ const Insignias = () => {
         });
       setPost(response.data);
       console.log(response.data);
-      //router.push('/')
+      router.push('/recompensas')
       //Handling Errors
     } catch (error) {
-      toast.error("Error al enviar los datos");
+      toast.error("Error al enviar los Datos");
       console.error(error);
       if (error.response.status >= 402 && error.response.status <= 500) {
         console.log("Error");
@@ -56,44 +47,43 @@ const Insignias = () => {
     }
   }
 
+  const cancel = ()=>{
+    router.push('/recompensas')
+  }
+
   return (
     <MainLayoutComponent>
-      <Form action="" method="POST" onSubmit={PostBadges}>
-        <h2>Nueva Insignia</h2>
+      <Form action="" method="POST" onSubmit={PostRewards}>
+        <h2>Nueva Recompensa</h2>
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap ">
           <div className="First Column " style={{ width: "40%" }}>
             <Form.Group className="mb-3 " controlId="nameValue">
-              <Form.Label>Nombre de Insignia</Form.Label>
-              <Form.Control type="text" placeholder="Crecimiento Kodeado" />
+              <Form.Label>Nombre de Recompensa</Form.Label>
+              <Form.Control type="text" placeholder="Viaje Todo pagado" />
             </Form.Group>
             <Form.Group className="mb-3 " controlId="descriptionValue">
-              <Form.Label>Descripcion de Insignia</Form.Label>
+              <Form.Label>Descripcion de Recompensa</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Developer Jr en proceso de ser"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3 " controlId="UrlImage">
-              <Form.Label>Url de Insignia</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="https://pixabay.com/es/vectors/vinculado-conectado-red-equipo-152575/"
+                placeholder="Viaje a Cancun..."
               />
             </Form.Group>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Group className="mb-3 " controlId="PuntosMaximos">
-              <Form.Label>Puntos maximos</Form.Label>
+            <Form.Group className="mb-3 " controlId="PointsValue">
+              <Form.Label>Puntos necesitados para Recompensa</Form.Label>
               <Form.Control type="text" placeholder="1000" />
             </Form.Group>
             <br />
             {/* Imagen Reward */}
-            <Form.Group className="mb-3 " controlId="PuntosMinimos">
-              <Form.Label>Puntos minimos</Form.Label>
-              <Form.Control type="text" placeholder="1500" />
+            <Form.Group className="mb-3 " controlId="UrlImage">
+              <Form.Label>Url Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="https://play-lh.googleusercontent.com/Jr7S7fP1nFTHF1GI5vxtRTSFD99EiYQWSB0FxZbEOMgMfzzlHCYU2d6M4iGFLIFLYFE"
+              />
             </Form.Group>
           </div>
           <div className="Botones d-flex  justify-content-center mt-3 w-100">
@@ -104,7 +94,7 @@ const Insignias = () => {
             >
               Crear
             </Button>
-            <Button variant="danger" style={{ marginLeft: "50px" }}>
+            <Button variant="danger" style={{ marginLeft: "50px" }} onClick={cancel}>
               Cancelar
             </Button>
           </div>
@@ -114,4 +104,4 @@ const Insignias = () => {
   );
 };
 
-export default Insignias;
+export default Rewards;
