@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-export default function Input({id, type, label, place }) {
+export default function Input({name, type, label, place, onChange }) {
 
   return (
     <>
-      <label className="title label" htmlFor={`${id}`} >{`${label}`}</label>
-      <input className="input" type={`${type}`} id={`${id}`} placeholder={`${place}`}/>
+      <label className="title label" htmlFor={`${name}`} >{`${label}`}</label>
+      <input className="input" type={`${type}`} name={`${name}`} placeholder={`${place}`} onChange={`${onChange}`}/>
     </>
   )
 }

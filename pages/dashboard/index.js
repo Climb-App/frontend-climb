@@ -2,31 +2,35 @@ import React from 'react';
 import MainLayoutComponent from '../../components/MainLayout/index'
 import Cards from '../../components/commons/cards'
 import Title from '../../components/commons/title'
+import { getToken } from '../../services/operationsTokens' 
+import { useRouter } from 'next/router'
 
 
 export default function Dashboard() {
 
+  const {usuario, setUsuario} = useState(null)
+  
 
-  
-  
-  return (
-    <>
-      <MainLayoutComponent>
-        <div className="contents-cards">
-          <div>
-            <Title classStyle= "headTitle">Productividad</Title>
-            <Cards classStyle="size"></Cards>
+
+  const token = getToken()
+  const router= useRouter()
+
+  if (token){ 
+  console.log(token)
+
+    return (
+      <>
+        <MainLayoutComponent>
+          <div className="contents-cards">
+            <div>
+              <Title classStyle= "headTitle">Productividad</Title>
+              <Cards classStyle="size"></Cards>
+            </div>
           </div>
-          {/* <div>
-            <Title classStyle= "headTitle">Tareas</Title>
-            <Cards classStyle="size"></Cards>
-          </div>
-          <div>
-            <Title classStyle= "headTitle">Motivacion</Title>
-            <Cards classStyle="size"></Cards>
-          </div> */}
-        </div>
-      </MainLayoutComponent>
-    </>
-  )
+        </MainLayoutComponent>
+      </>
+    )
+  }else{
+    router.push('/login/')
+  }
 }

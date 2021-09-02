@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getToken } from '../../services/operationsTokens'
+import { readWorkspace } from '../../services/request'
+import axios from 'axios';
 
+export default function Lateral({ role }) {
 
-export default function Lateral({role }) {
+    const {usuario, setUsuario} = useState(null)
+    const {cargandoUsuario, SetCargandoUsuario} = useState(true)
 
+    useEffect(() => {
+
+        async function cargarUsuario(){
+            const token = getToken()
+            if (!token){
+                setCargandoUsuario(false)
+                return
+            }
+            try{
+                const {data : usuario } = await axios.get('https://api.climbapp.tech/api/v1/user/', token)
+                setUsuario(usuario)
+                setCargandoUsuario(false)
+            }catch(error){
+                console.error(error)
+            }
+        }
+        cargarUsuario()
+        
+    }, [])
+    
 
     return (
       <div className="nav filled">

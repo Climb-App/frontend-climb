@@ -6,14 +6,14 @@ import Cards from '../../components/commons/cards'
 import Aside from '../../components/commons/aside'
 import Links from '../../components/commons/links'
 import axios from 'axios'
-import {useRouter} from 'next/router'
-import {setToken,getToken,deleteToken} from '../../services/operationsTokens' 
+import { useRouter } from 'next/router'
+import { setToken } from '../../services/operationsTokens' 
 import { toast } from 'react-toastify';
 
 
 export default function Login() {
 
-  const baseUrlConnect = "https://api.climbapp.tech/api/v1/login/";
+  const baseUrlConnect = "http://127.0.0.1:8000/api/v1/login/";
 
   // const client = axios.create({
   //   baseURL: `${baseUrlConnect}login/` 
@@ -35,12 +35,13 @@ export default function Login() {
       try{
       const response = await axios.post(baseUrlConnect,{email:userValue,
       password:passValue});
+
       if(response)
       toast.success("Accesos correctos", {
         theme: "colored"
       })
       setPost(response.data);
-      // console.log(response.data)// console.log(response.data.token)
+      
       //Token save storage
       setToken(response.data.token)
       router.push('/dashboard')
