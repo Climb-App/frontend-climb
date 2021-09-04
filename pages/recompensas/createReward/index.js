@@ -56,13 +56,17 @@ const Rewards = () => {
       <Form action="" method="POST" onSubmit={PostRewards}>
         <h2>Nueva Recompensa</h2>
         {/* Inputs */}
-        <div className="Formulario d-flex justify-content-between flex-wrap ">
+        <div className="Formulario d-flex justify-content-between flex-wrap mt-5 ">
           <div className="First Column " style={{ width: "40%" }}>
-            <Form.Group className="mb-3 " controlId="nameValue">
-              <Form.Label>Nombre de Recompensa</Form.Label>
-              <Form.Control type="text" placeholder="Viaje Todo pagado" />
-            </Form.Group>
-            <Form.Group className="mb-3 " controlId="descriptionValue">
+            <Form.Floating className="mb-3 input">
+              <Form.Control
+                id="nameValue"
+                type="text"
+                placeholder="Viaje Todo pagado"
+              />
+              <label htmlFor="floatingInputCustom">Nombre de Recompensa</label>
+            </Form.Floating>
+            <Form.Group className="mb-3 input " controlId="descriptionValue">
               <Form.Label>Descripcion de Recompensa</Form.Label>
               <Form.Control
                 as="textarea"
@@ -72,21 +76,22 @@ const Rewards = () => {
             </Form.Group>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Group className="mb-3 " controlId="PointsValue">
-              <Form.Label>Puntos necesitados para Recompensa</Form.Label>
-              <Form.Control type="text" placeholder="1000" />
-            </Form.Group>
+            <Form.Floating className=" input">
+              <Form.Control id="PointsValue" type="text" placeholder="1000" />
+              <label htmlFor="floatingInputCustom">Puntos necesitados</label>
+            </Form.Floating>
             <br />
             {/* Imagen Reward */}
-            <Form.Group className="mb-3 " controlId="UrlImage">
+            <Form.Group className=" input " controlId="UrlImage">
               <Form.Label>Url Image</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 placeholder="https://play-lh.googleusercontent.com/Jr7S7fP1nFTHF1GI5vxtRTSFD99EiYQWSB0FxZbEOMgMfzzlHCYU2d6M4iGFLIFLYFE"
               />
             </Form.Group>
           </div>
-          <div className="Botones d-flex  justify-content-center mt-3 w-100">
+          <div className="Botones d-flex  justify-content-center mt-5 w-100">
             <Button
               variant="success"
               type="submit"

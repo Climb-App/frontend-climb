@@ -26,11 +26,11 @@ const Insignias = () => {
       nameValue,
     } = form.elements;
     console.log(
-      PuntosMinimos,
-      PuntosMaximos,
-      UrlImage,
-      descriptionValue,
-      nameValue
+      PuntosMinimos.value,
+      PuntosMaximos.value,
+      UrlImage.value,
+      descriptionValue.value,
+      nameValue.value
     );
     //Connection
     try {
@@ -70,11 +70,15 @@ const Insignias = () => {
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap ">
           <div className="First Column " style={{ width: "40%" }}>
-            <Form.Group className="mb-3 " controlId="nameValue">
-              <Form.Label>Nombre de Insignia</Form.Label>
-              <Form.Control type="text" placeholder="Crecimiento Kodeado" />
-            </Form.Group>
-            <Form.Group className="mb-3 " controlId="descriptionValue">
+            <Form.Floating className="mb-3 input">
+              <Form.Control
+                id="nameValue"
+                type="text"
+                placeholder="Crecimiento Kodeado"
+              />
+              <label htmlFor="floatingInputCustom">Nombre de Insignia</label>
+            </Form.Floating>
+            <Form.Group className="mb-3 input" controlId="descriptionValue">
               <Form.Label>Descripcion de Insignia</Form.Label>
               <Form.Control
                 as="textarea"
@@ -82,7 +86,7 @@ const Insignias = () => {
                 placeholder="Developer Jr en proceso de ser"
               />
             </Form.Group>
-            <Form.Group className="mb-3 " controlId="UrlImage">
+            <Form.Group className="mb-3 input" controlId="UrlImage">
               <Form.Label>Url de Insignia</Form.Label>
               <Form.Control
                 as="textarea"
@@ -92,16 +96,15 @@ const Insignias = () => {
             </Form.Group>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Group className="mb-3 " controlId="PuntosMaximos">
-              <Form.Label>Puntos maximos</Form.Label>
-              <Form.Control type="text" placeholder="1000" />
-            </Form.Group>
-            <br />
-            {/* Imagen Reward */}
-            <Form.Group className="mb-3 " controlId="PuntosMinimos">
-              <Form.Label>Puntos minimos</Form.Label>
-              <Form.Control type="text" placeholder="1500" />
-            </Form.Group>
+            <Form.Floating className="mb-3 input">
+              <Form.Control id="PuntosMaximos" type="text" placeholder="1000" />
+              <label htmlFor="floatingInputCustom">Puntos maximos</label>
+            </Form.Floating>
+
+            <Form.Floating className="mb-3 input">
+              <Form.Control id="PuntosMinimos" type="text" placeholder="1500" />
+              <label htmlFor="floatingInputCustom">Puntos minimos</label>
+            </Form.Floating>
           </div>
           <div className="Botones d-flex  justify-content-center mt-3 w-100">
             <Button
