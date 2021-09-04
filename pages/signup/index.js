@@ -13,24 +13,21 @@ import { useRouter } from 'next/router'
 export default function SignUp() {
 
   const {post, setPost} = useState(null)
-  const baseUrlConnect = "https://api.climbapp.tech/api/v1/register/";
+  const baseUrlConnect = "http://127.0.0.1:8000/api/v1/register/admin";
   const router=useRouter()
 
   const usuario = {
     name: '',
-    // rfc: '',
+    rfc: '',
     email: '',
-    // address: '',
+    address: '',
     password: '',
-    // passConfirm: '',
-    is_superuser: "True",
-    is_staff: "True",
     role: 1
   }
 
   function handleInputChange (e){
     usuario[e.target.name] = e.target.value
-    console.log('ultima data' + usuario)
+    console.log(usuario)
   }
 
   async function register(){
@@ -41,6 +38,7 @@ export default function SignUp() {
         theme: "colored",
       });
       console.log(response.data)
+      router.push('/login/')
     }catch(error){
       toast.error("Error al enviar los Datos");
       console.error(error);
@@ -117,7 +115,6 @@ export default function SignUp() {
                 className = "input"
                 type="password"
                 required
-                onChange={handleInputChange}
                 name='passConfirm'
               />
               <div>

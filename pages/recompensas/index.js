@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import MainLayoutComponent from "../../components/MainLayout/index";
 import Badge from '../../components/RenderDinamic/badge'
+import Reward from '../../components/RenderDinamic/reward'
 import { Title, Cards, Buttons } from '../../components/commons'
 import axios from "axios";
 import Link from 'next/link';
@@ -11,23 +12,6 @@ export default function Recompensas() {
 
   const [reward, setReward] = useState(null);
   const [badge, setBadge] = useState([]);
-
-  // useEffect(() => {
-
-  //   const client = axios.create({
-  //     baseURL: `${baseUrlConnect}rewards_test/`,
-  //   });
-
-  //   async function getReward() {
-  //     try{
-  //       const { data } = await client.get();
-  //       setReward(data);
-  //     }catch(error){
-  //       console.error(error)
-  //     }
-  //   }
-  //   getReward();
-  // }, []);
   
   useEffect(()=>{
     const badge = axios.create({
@@ -51,23 +35,6 @@ export default function Recompensas() {
   }, [])
 
   console.log(badge)
-  console.log(reward)
-
-
-  // if (badge !== null){
-  //   var render = ''
-  //   badge.forEach(element => {
-  //     render =+ 
-  //     `<tr ${element.id}>
-  //       <td>${element.name}</td>
-  //       <td>${element.description}</td>
-  //       <td>${element.points_needed_max} - ${element.points_needed_min}</td>
-  //     </tr>`
-  //     return render 
-  //   });
-  //   document.getElementById("body").innerHTML = render
-  // }
-
 
   return (
     <>
@@ -86,7 +53,10 @@ export default function Recompensas() {
               </tr>
             </thead>
             <tbody>
-              
+            {reward ?
+                reward.map(reward=>(<Reward key={reward.id} rewards={reward}/>)) :
+                null
+            }
             </tbody>
           </table>
           
@@ -105,10 +75,9 @@ export default function Recompensas() {
               </tr>
             </thead>
             <tbody>
-              {
-                badge.map(badge=>{
-                  <Badge key={badge.id} badges={badge}/>
-                })
+              {badge ?
+                badge.map(badge=>(<Badge key={badge.id} badges={badge}/>)) :
+                null
               }
             </tbody>
           </table>
