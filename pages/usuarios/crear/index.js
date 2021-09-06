@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const baseUrlConnect = "http://127.0.0.1:8000/api/v1/";
+const baseUrlConnect = "https://api.climbapp.tech/api/v1/register/member";
 
 const Usuarios = () => {
   //   //   // Conexion
@@ -15,17 +15,31 @@ const Usuarios = () => {
     e.preventDefault();
     //     //Set Values inputs
     console.log(form.elements);
-    const { nameValue, emailValue, Password, Apellido, ConfirmPassword, Role } =
-      form.elements;
-    console.log(
+    const {
       nameValue,
+      LastNameValue,
       emailValue,
       Password,
-      Apellido,
       ConfirmPassword,
-      Role
+      RoleEmpleado,
+    } = form.elements;
+    console.log(
+      nameValue,
+      LastNameValue,
+      emailValue,
+      Password,
+      ConfirmPassword,
+      RoleEmpleado
     );
-    if (Password !== ConfirmPassword) {
+    console.log(
+      nameValue.value,
+      LastNameValue.value,
+      emailValue.value,
+      Password.value,
+      ConfirmPassword.value,
+      RoleEmpleado.value
+    );
+    if (Password.value !== ConfirmPassword.value) {
       toast.error("Error en la confirmacion de Password");
       return;
     }
@@ -33,10 +47,11 @@ const Usuarios = () => {
     try {
       const response = await axios.post(baseUrlConnect, {
         name: nameValue.value,
+        last_name: LastNameValue.value,
         email: emailValue.value,
         password: Password.value,
-        last_name: Apellido.value,
-        role: Role.value,
+        company: 1,
+        role: RoleEmpleado.value,
       });
       if (response)
         toast.success("Datos enviados", {
@@ -92,21 +107,21 @@ const Usuarios = () => {
               />
               <label htmlFor="floatingInputCustom">Apellido</label>
             </Form.Floating>
+
             <Form.Floating className="mb-3 input">
               <Form.Control
                 id="ConfirmPassword"
                 type="password"
-                placeholder="Password"
+                placeholder="****"
               />
-              <label htmlFor="floatingPasswordCustom">Password</label>
+              <label htmlFor="floatingPasswordCustom"> Confirm Password</label>
             </Form.Floating>
           </div>
           <div className="select justify justify-content-center mt-3 w-100">
-            <Form.Select className="mb-3 input" id="Role " size="sm">
+            <Form.Select className="mb-3 input" id="RoleEmpleado" size="sm">
               <option selected>Elige el role que tendra el usuario...</option>
-              <option>Administrador</option>
-              <option>Lider</option>
-              <option>Miembro</option>
+              <option value="2">Lider</option>
+              <option value="3">Miembro</option>
             </Form.Select>
           </div>
           <div className="Botones d-flex  justify-content-center mr-4 mt-3 w-100">
