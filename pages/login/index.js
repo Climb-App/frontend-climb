@@ -9,8 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { setToken } from "../../services/operationsTokens";
 import { toast } from "react-toastify";
-
-const baseUrlConnect = "https://api.climbapp.tech/api/v1/login";
+import { BASE_URL } from "../../services/api"
 
 export default function Login() {
   const [post, setPost] = React.useState(null);
@@ -26,19 +25,27 @@ export default function Login() {
 
     console.log(user, pass);
     console.log(user.value, pass.value);
+    console.log(BASE_URL)
     //Connection
     try {
-      const response = await axios.post(baseUrlConnect, {
-        email: user.value,
-        password: pass.value,
-      });
-
+      const config = {
+        url: `${BASE_URL}api/v1/login/`,
+        method: 'POST',
+        headers: {
+           'Content-Type': 'application/json',
+        },
+        data: JSON.stringify({
+          email: user.value,
+          password: pass.value,
+        }),
+      };
+      const response = await axios(config);
+      console.log(response)
       if (response)
         toast.success("Accesos correctos", {
           theme: "colored",
         });
       setPost(response.data);
-
       //Token save storage
       setToken(response.data.token);
       router.push("/dashboard");
