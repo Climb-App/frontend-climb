@@ -10,30 +10,27 @@ import { useRouter } from "next/router";
 import { setToken } from "../../services/operationsTokens";
 import { toast } from "react-toastify";
 
+const baseUrlConnect = "https://api.climbapp.tech/api/v1/login";
+
 export default function Login() {
-  const baseUrlConnect = "http://127.0.0.1:8000/api/v1/login/";
-
-  // const client = axios.create({
-  //   baseURL: `${baseUrlConnect}login/`
-  // });
-
-  const SetValues = () => {
-    let userValue = document.getElementById("user").value;
-    let passValue = document.getElementById("pass").value;
-    return { userValue, passValue };
-  };
-
   const [post, setPost] = React.useState(null);
   const router = useRouter();
+
   async function Login(e) {
+    const form = e.target;
     e.preventDefault();
+    //     //Set Values inputs
+    console.log(form.elements);
     //Set Values inputs
-    const { userValue, passValue } = SetValues();
+    const { user, pass } = form.elements;
+
+    console.log(user, pass);
+    console.log(user.value, pass.value);
     //Connection
     try {
       const response = await axios.post(baseUrlConnect, {
-        email: userValue,
-        password: passValue,
+        email: user.value,
+        password: pass.value,
       });
 
       if (response)

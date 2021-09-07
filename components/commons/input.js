@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Input({ name, type, label, place }) {
+export default function Input({ name, type, label, place, id }) {
   return (
     <>
       <label className="title label" htmlFor={`${name}`} >{`${label}`}</label>
