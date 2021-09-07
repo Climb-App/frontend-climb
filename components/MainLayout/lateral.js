@@ -65,7 +65,7 @@ export default function Lateral({ role }) {
           <a>Workspace</a>
         </Link>
       </div>
-      {role === "team_user" ? null : (
+      {role === 1 ? null : (
         <div className="lateral">
           <img className="icon" src="/assets/users.svg" alt="workspace" />
           <Link href="/usuarios">
