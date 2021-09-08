@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import {useRouter} from "next/router";
 
-const baseUrlConnect = "http://127.0.0.1:8000/api/v1/rewards/";
+const baseUrlConnect = "http://127.0.0.1:8000/api/v1/reward/";
 
 const Rewards = () => {
 
