@@ -6,6 +6,8 @@ import axios from "axios";
 import { right } from "@popperjs/core";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { BASE_URL } from "../../services/api";
+import { getToken } from "../../services/operationsTokens";
 
 export default function PerfilUsuario() {
   const router = useRouter();
@@ -16,37 +18,66 @@ export default function PerfilUsuario() {
   const [User, setUser] = useState({});
   const [UserData, setUserData] = useState({});
 
-  const baseUrlConnect = "http://127.0.0.1:8000/api/user/";
+  // const baseUrlConnect = "http://127.0.0.1:8000/api/user/";
 
   useEffect(() => {
-    const client = axios.create({
-      baseURL: `${baseUrlConnect}`,
-    });
-
     async function getUser() {
       try {
-        const response = await client.get();
+        const response = await axios.get(`${BASE_URL}api/v1/user/`, {
+          headers: {
+            Authorization: getToken(),
+          },
+        });
         setUser(response.data);
+        console.log(response.data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
+        // setError(error)
+        if (error.response.status >= 402 && error.response.status <= 500) {
+          toast.error("Error Cliente o Servidor ");
+          console.log("Error");
+          router.push("/");
+        }
+        if (error.response.status == 401) toast.error("Unauthorized");
       }
     }
     getUser();
+    console.log("La informacion traida y guarda en User es: " + User[0].role);
 
-    const UserRole = User.Role == 1 ? "admin/" : "member/";
+    const UserRole = User[0].role == 1 ? "admin/" : "member/";
 
-    const clientData = axios.create({
-      baseURL: `${baseUrlConnect}${UserRole}/${User.id}/`,
-    });
+    console.log("El role es:" + UserRole);
 
-    async function getData() {
-      try {
-        const response = await clientData.get();
-        setUserData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    // const clientData = axios.create({
+    //   baseURL: `${baseUrlConnect}${UserRole}/${User.id}/`,
+    // });
+
+    // async function getData() {
+    //   try {
+    //     const response = axios.get(
+    //       `${BASE_URL}api/v1/user/${UserRole}/${User[0].id}/`,
+    //       {
+    //         headers: {
+    //           Authorization: getToken(),
+    //         },
+    //       }
+    //     );
+    //     setUserData(response.data);
+    //     console.log(response.data);
+    //     toast.success("Acceso a Informacion de Usuario" + `response.data.name`);
+    //   } catch (error) {
+    //     console.log(error);
+    //     // setError(error)
+    //     if (error.response.status >= 402 && error.response.status <= 500) {
+    //       toast.error("Error Cliente o Servidor ");
+    //       console.log("Error");
+    //       router.push("/");
+    //     }
+    //     if (error.response.status == 401) toast.error("Unauthorized");
+    //   }
+    // }
+    // getData();
+    // console.log("La informacion traida y guarda en Data es: " + UserData[0]);
   }, []);
 
   return (
