@@ -24,7 +24,7 @@ export default function Users() {
   
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Usuarios">
         
         <h1>Administracion de Usuarios, solo para usuarios admin</h1>
        

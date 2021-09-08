@@ -6,7 +6,7 @@ export default function Motivacion() {
 
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Motivacion">
         
         <h1>Motivacion</h1>
        

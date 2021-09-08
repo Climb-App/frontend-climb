@@ -20,7 +20,7 @@ export default function Dashboard() {
 
     return (
       <>
-        <MainLayoutComponent>
+        <MainLayoutComponent page="Dashboard">
           <div className="contents-cards">
             <div>
               <Title classStyle= "headTitle">Productividad</Title>

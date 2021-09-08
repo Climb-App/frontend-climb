@@ -1,36 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import axios from 'axios'
 import { toast } from 'react-toastify';
+import { deleteToken, getToken } from '../../services/operationsTokens';
 
-export default function Navbar() {
+export default function Navbar({page}) {
 
-    const url = "https://api.climbapp.tech/api/v1/logout/";
     const router=useRouter()
 
-    const Logout = async ()=> {
-      //Connection
-      try{
-      const response = await axios.post(url);  
-    //   console.log(response)
-      if(response.data.message === 'success')
-      toast.success("Sesion Finalizada", {
-        theme: "colored"
-      })
-      router.push('/')
-      //Handling Errors
-      }catch(error){
-          console.error(error)
-          if(error.response.status >= 402 && error.response.status <= 500 )
-          {
-              console.log("Error")
-          }
-          if(error.response.status == 401)
-          toast.error("Error al Cerrar la Sesion, Intente mas Tarde")
-      }  
-
-    }
+    const Logout = ()=>{
+        deleteToken();
+        if(getToken()==null){
+            toast.success("Sesion Finalizada", {
+            theme: "colored"
+            });
+            router.push('/');
+        };
+    };
 
     return (
         <div className="container-fluid">
@@ -40,8 +26,8 @@ export default function Navbar() {
                 </div>
                 <nav className="heading shadow">
                     <div className="head">
-                        <img className="icon me-2" src="/assets/dashboard-black.svg" alt="dashboard"/>
-                        <h3 className="title">Dashboard</h3>
+                        <img className="icon me-2" src= {`/assets/${page}-black.svg`} alt="*"/>
+                        <h3 className="title">{page}</h3>
                     </div>
                     <div className="head">
                         <div className="shadow fill">

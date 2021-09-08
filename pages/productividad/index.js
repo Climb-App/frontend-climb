@@ -6,7 +6,7 @@ export default function Productividad() {
 
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Productividad">
         
         <h1>Productividad</h1>
        

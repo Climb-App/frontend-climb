@@ -1,55 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { getToken } from "../../services/operationsTokens";
-import { readWorkspace } from "../../services/request";
+import { BASE_URL } from "../../services/api";
+import { useRouter } from "next/router";
 import axios from "axios";
 
 export default function Lateral({ role }) {
-  // const {usuario, setUsuario} = useState(null)
-  // const {cargandoUsuario, SetCargandoUsuario} = useState(true)
 
-    // const {usuario, setUsuario} = useState(null)
-    // const {cargandoUsuario, SetCargandoUsuario} = useState(true)
+  // const [post, setPost] = useState(null);
+  // const router = useRouter();
 
-    // useEffect(() => {
-
-    //     async function cargarUsuario(){
-    //         const token = getToken()
-    //         if (!token){
-    //             setCargandoUsuario(false)
-    //             return
-    //         }
-    //         try{
-    //             const {data : usuario } = await axios.get('https://api.climbapp.tech/api/v1/user/', token)
-    //             setUsuario(usuario)
-    //             setCargandoUsuario(false)
-    //         }catch(error){
-    //             console.error(error)
-    //         }
-    //     }
-    //     cargarUsuario()
-        
-    // }, [])
-    
   // useEffect(() => {
+  //   getWorkspace();
+  // }, []);
 
-  //     async function cargarUsuario(){
-  //         const token = getToken()
-  //         if (!token){
-  //             setCargandoUsuario(false)
-  //             return
-  //         }
-  //         try{
-  //             const {data : usuario } = await axios.get('https://api.climbapp.tech/api/v1/user/', token)
-  //             setUsuario(usuario)
-  //             setCargandoUsuario(false)
-  //         }catch(error){
-  //             console.error(error)
-  //         }
-  //     }
-  //     cargarUsuario()
 
-  // }, [])
 
   return (
     <div className="nav filled">
@@ -60,9 +25,8 @@ export default function Lateral({ role }) {
         </Link>
       </div>
       <div className="lateral">
-        <img className="icon" src="/assets/Workspace.svg" alt="workspace" />
         <Link href="/workspace">
-          <a>Workspace</a>
+          <a><img className="icon" src="/assets/Workspace.svg" alt="workspace" /><br/>Workspace</a>
         </Link>
       </div>
       {role === "team_user" ? null : (

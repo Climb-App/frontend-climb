@@ -38,7 +38,7 @@ export default function Recompensas() {
 
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Recompensas">
         <div>
           <Title>Recompensas</Title>
           <Link href="/recompensas/createReward">Crear Recompensa</Link> 

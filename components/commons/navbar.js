@@ -1,36 +1,48 @@
 import React from 'react';
+import { Navbar, Nav, NavDropdown, Container, Button } from  "react-bootstrap";
+import Link from 'next/link';
+import { toast } from "react-toastify";
+import axios from "axios";
 
 
-export default function Navbar({classStyle }) {
+export default function NavbarTop({classStyle }) {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#"><img className="me-5" src="/logo.png" alt="logo" width="50px" height="60px"/></a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Planes</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Conocenos</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Soporte</a>
-              </li>
-            </ul>
-            <a href="./login/" className="btn btn-outline-success me-2" >Login</a>
-            <a href="./signup/" className="btn btn-outline-primary" >Cuenta Empresarial</a>
-          </div>
-        </div>
-      </nav>
+      <Navbar collapseOnSelect bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="/"><img className="me-5" src="/logo.png" alt="logo" width="50px" height="60px"/></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav d-flex justify-content-between">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/">Planes</Nav.Link>
+              <Nav.Link href="/">Conocenos</Nav.Link>
+              <Nav.Link href="/">Soporte</Nav.Link> 
+            </Nav>
+            <div className="d-flex">
+              <img className="me-5" src="https://rciminternet.com/wp-content/uploads/2019/04/usuario.png" alt="logo" width="30px" height="40px" />
+              <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+                <NavDropdown.Item>
+                  <p>Victor</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link href="/profile"><a className="">Perfil de Usuario</a></Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link href="/dashboard"><a className="">Entrar en la App</a></Link>
+                </NavDropdown.Item>
+                <div>
+                  <Link href="/login"><a className="btn btn-outline-success me-2" >Login</a></Link>
+                  <Link href="/signup"><a className="btn btn-outline-primary me-2" >SigUp</a></Link>
+                </div>
+                <NavDropdown.Divider/>
+                <Button variant="outline-danger">LogOut</Button>
+              </NavDropdown>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   )
 }
