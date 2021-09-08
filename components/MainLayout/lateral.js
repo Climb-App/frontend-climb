@@ -4,17 +4,26 @@ import { getToken } from "../../services/operationsTokens";
 import { BASE_URL } from "../../services/api";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { Accordion, Card, CustomToggle } from 'react-bootstrap';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
 export default function Lateral({ role }) {
-
-  // const [post, setPost] = useState(null);
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   getWorkspace();
-  // }, []);
-
-
+  
+  function CustomToggle({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+      console.log('totally custom!')
+    );
+  
+    return (
+      <button
+        type="button"
+        className="custom"
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
 
   return (
     <div className="nav filled">
@@ -24,12 +33,24 @@ export default function Lateral({ role }) {
           <a>Dashboard</a>
         </Link>
       </div>
-      <div className="lateral">
-        <Link href="/workspace">
-          <a><img className="icon" src="/assets/Workspace.svg" alt="workspace" /><br/>Workspace</a>
-        </Link>
-      </div>
-      {role === "team_user" ? null : (
+      {/* Boton para los workspace de Usuarios */}
+      <Accordion bsPrefix="lateral" defaultActiveKey="0">
+        <Card>
+          <Card.Header bsPrefix="lateral">
+            <CustomToggle eventKey="1"><img className="icon" src="/assets/Workspace.svg" alt="workspace" /><br/>Workspace</CustomToggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="1">
+            <Card.Body bsPrefix="body-workspace">
+              <button className="button-workspace">uno</button>
+              <button className="button-workspace">uno</button>
+              <button className="button-workspace">uno</button>
+              <button className="button-workspace">Crear</button>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+
+      {role != 1 ? null : (
         <div className="lateral">
           <img className="icon" src="/assets/users.svg" alt="workspace" />
           <Link href="/usuarios">

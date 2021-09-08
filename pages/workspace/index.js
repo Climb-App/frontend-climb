@@ -50,7 +50,7 @@ export default function Workspace() {
         <Title>
           Objetivos
         </Title>
-        <Cards></Cards>
+        <Cards> <i className="fas fa-spinner fa-spin"></i> </Cards>
       </MainLayoutComponent>
     </>
   );
