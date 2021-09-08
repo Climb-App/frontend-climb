@@ -15,8 +15,8 @@ export default function PerfilUsuario() {
     router.push("/recovery-pass/");
   };
 
-  const [User, setUser] = useState({});
-  const [UserData, setUserData] = useState({});
+  const [User, setUser] = useState(null);
+  const [UserData, setUserData] = useState(null);
 
   // const baseUrlConnect = "http://127.0.0.1:8000/api/user/";
 
@@ -42,43 +42,50 @@ export default function PerfilUsuario() {
       }
     }
     getUser();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!User) {
+      return;
+    }
+    console.log(User);
     console.log("La informacion traida y guarda en User es: " + User[0].role);
 
-    const UserRole = User[0].role == 1 ? "admin/" : "member/";
+    const UserRole = User?.[0]?.role == 1 ? "admin/" : "member/";
 
     console.log("El role es:" + UserRole);
 
-    // const clientData = axios.create({
-    //   baseURL: `${baseUrlConnect}${UserRole}/${User.id}/`,
-    // });
-
-    // async function getData() {
-    //   try {
-    //     const response = axios.get(
-    //       `${BASE_URL}api/v1/user/${UserRole}/${User[0].id}/`,
-    //       {
-    //         headers: {
-    //           Authorization: getToken(),
-    //         },
-    //       }
-    //     );
-    //     setUserData(response.data);
-    //     console.log(response.data);
-    //     toast.success("Acceso a Informacion de Usuario" + `response.data.name`);
-    //   } catch (error) {
-    //     console.log(error);
-    //     // setError(error)
-    //     if (error.response.status >= 402 && error.response.status <= 500) {
-    //       toast.error("Error Cliente o Servidor ");
-    //       console.log("Error");
-    //       router.push("/");
-    //     }
-    //     if (error.response.status == 401) toast.error("Unauthorized");
-    //   }
-    // }
-    // getData();
-    // console.log("La informacion traida y guarda en Data es: " + UserData[0]);
-  }, []);
+    async function getData() {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}api/v1/user/${UserRole}${User[0].id}`,
+          {
+            headers: {
+              Authorization: getToken(),
+            },
+          }
+        );
+        setUserData(response.data);
+        console.log(response.data);
+        toast.success(
+          "Acceso a Informacion del Usuario: " + `${response.data.name}`
+        );
+      } catch (error) {
+        console.log(error);
+        // setError(error)
+        if (error.response.status >= 402 && error.response.status <= 500) {
+          toast.error("Error Cliente o Servidor ");
+          console.log("Error");
+          router.push("/");
+        }
+        if (error.response.status == 401) toast.error("Unauthorized");
+      }
+    }
+    getData();
+    console.log("La informacion traida y guarda en Data es: " + UserData?.[0]);
+  }, [User]);
 
   return (
     <>
@@ -92,7 +99,7 @@ export default function PerfilUsuario() {
                 width="60px"
                 height="60px"
               />
-              {UserData.name}
+
               <h3>Pablito, Perez Developer Jr.</h3>
               {/* llenado dinamico */}
             </div>
@@ -123,6 +130,7 @@ export default function PerfilUsuario() {
                 id="nameValue"
                 type="text"
                 placeholder="Crecimiento Kodeado"
+                defaultValue={UserData?.name}
               />
               <label htmlFor="floatingInputCustom">Nombre</label>
             </Form.Floating>
@@ -135,7 +143,12 @@ export default function PerfilUsuario() {
               <label htmlFor="floatingInputCustom">Apellido</label>
             </Form.Floating>
             <Form.Floating className="mb-3 input">
-              <Form.Control id="user" type="email" placeholder="Email" />
+              <Form.Control
+                id="user"
+                type="email"
+                placeholder="Email"
+                defaultValue={UserData?.email}
+              />
               <label htmlFor="floatingInputCustom">Email</label>
             </Form.Floating>
             <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-5">
