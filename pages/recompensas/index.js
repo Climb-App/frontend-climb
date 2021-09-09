@@ -15,10 +15,10 @@ export default function Recompensas() {
   
   useEffect(()=>{
     const badge = axios.create({
-        baseURL: `${baseUrlConnect}badges_test/`,
+        baseURL: `${baseUrlConnect}badges/user/`,
     });
     const reward = axios.create({
-      baseURL: `${baseUrlConnect}rewards_test/`,
+      baseURL: `${baseUrlConnect}reward/user/`,
     });
 
     async function getData (){

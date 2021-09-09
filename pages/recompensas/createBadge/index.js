@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 import {useRouter} from "next/router";
+import { getToken } from "../../../services/operationsTokens";
 
 const baseUrlConnect = "http://127.0.0.1:8000/api/v1/badges/";
 
@@ -35,12 +36,19 @@ const Insignias = () => {
     //Connection
     try {
       const response = await axios.post(baseUrlConnect, {
+        body:{
         name: nameValue.value,
         description: descriptionValue.value,
         icon: UrlImage.value,
         points_needed_min: PuntosMinimos.value,
         points_needed_max: PuntosMaximos.value,
         company_user: 1,
+        },
+        headers: {
+            Authorization: getToken(),
+            'Content-Type' : 'text/plain'
+          },
+        timeout: 1000,
       });
       if (response)
         toast.success("Datos enviados", {

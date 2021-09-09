@@ -6,9 +6,14 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { Accordion, Card, CustomToggle } from 'react-bootstrap';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import useWorkspaces from '../../hooks/useWorkspaces'
 
 export default function Lateral({ role }) {
   
+  const UserWorkspaces = useWorkspaces();
+
+  console.log(UserWorkspaces)
+
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log('totally custom!')
@@ -41,10 +46,13 @@ export default function Lateral({ role }) {
           </Card.Header>
           <Accordion.Collapse eventKey="1">
             <Card.Body bsPrefix="body-workspace">
-              <button className="button-workspace">uno</button>
-              <button className="button-workspace">uno</button>
-              <button className="button-workspace">uno</button>
-              <button className="button-workspace">Crear</button>
+            {UserWorkspaces ?
+                UserWorkspaces.map(workspaces=>(<div className="button-workspace" key={workspaces.id}><Link href= {`workspace/?id=${workspaces.id}`} key={workspaces.id} id="{workspaces.id}" className="button-workspace">{workspaces.name}</Link></div> )) :
+                null
+            }
+              <div className="button-workspace">
+                <Link href="workspace/crear" className="button-workspace">Crear</Link>
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
