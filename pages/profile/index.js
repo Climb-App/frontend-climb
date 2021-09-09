@@ -17,7 +17,7 @@ export default function PerfilUsuario() {
 
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Configuracion">
         <div className=" mt-4">
           <div className="TwoDivContent d-flex" style={{ width: "100%" }}>
             <div className="NombreDeUsuario d-flex" style={{ height: "50%" }}>

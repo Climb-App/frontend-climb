@@ -5,9 +5,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../services/api";
 
-const useUser = () => {
-  const [User, setUser] = useState(null);
-  const router = useRouter();
+const useUserLanding = () => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function getUser() {
@@ -17,22 +16,21 @@ const useUser = () => {
             Authorization: getToken(),
           },
         });
-        setUser(response.data);
-        console.log(response.data);
+        setUser(response.data)
+        console.log(response.data)
       } catch (error) {
         console.log(error);
         if (error.response.status >= 402 && error.response.status <= 500) {
-          toast.error("Error Cliente o Servidor ");
-          console.log("Error");
-          router.push("/");
+          // toast.error("Error Cliente o Servidor ");
+          console.log(error);
         }
         if (error.response.status == 401) toast.error("Unauthorized");
       }
     }
     getUser();
-  }, [router]);
+  }, []);
 
-  return User;
+  return user;
 };
 
-export default useUser;
+export default useUserLanding;

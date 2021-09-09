@@ -3,9 +3,15 @@ import { Navbar, Nav, NavDropdown, Container, Button } from  "react-bootstrap";
 import Link from 'next/link';
 import { toast } from "react-toastify";
 import axios from "axios";
+import useUserLanding from '../../hooks/useUserLanding'
+import useUserDataLanding from '../../hooks/useUserDataLanding'
 
 
 export default function NavbarTop({classStyle }) {
+
+  const User = useUserLanding()
+  const UserData = useUserDataLanding(User)
+  console.log(UserData)
 
   return (
     <>

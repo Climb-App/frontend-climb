@@ -10,6 +10,7 @@ import { getToken } from "../../services/operationsTokens";
 
 export default function Workspace() {
   
+  // const { id } = 
 
   return (
     <>

@@ -7,12 +7,12 @@ import axios from "axios";
 import { Accordion, Card, CustomToggle } from 'react-bootstrap';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import useWorkspaces from '../../hooks/useWorkspaces'
+import useUser from '../../hooks/useUser'
 
-export default function Lateral({ role }) {
+export default function Lateral() {
   
   const UserWorkspaces = useWorkspaces();
-
-  console.log(UserWorkspaces)
+  const User = useUser();
 
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
@@ -47,25 +47,29 @@ export default function Lateral({ role }) {
           <Accordion.Collapse eventKey="1">
             <Card.Body bsPrefix="body-workspace">
             {UserWorkspaces ?
-                UserWorkspaces.map(workspaces=>(<div className="button-workspace" key={workspaces.id}><Link href= {`workspace/?id=${workspaces.id}`} key={workspaces.id} id="{workspaces.id}" className="button-workspace">{workspaces.name}</Link></div> )) :
+                UserWorkspaces.map(workspaces=>(<div className="button-workspace" key={workspaces.id}><Link href= {`/workspace/?id=${workspaces.id}`} key={workspaces.id} id="{workspaces.id}" className="button-workspace">{workspaces.name}</Link></div> )) :
                 null
             }
+            {User? User[0].role === 1?(
               <div className="button-workspace">
-                <Link href="workspace/crear" className="button-workspace">Crear</Link>
-              </div>
+                <Link href="/workspace/crear" className="button-workspace">Crear</Link>
+              </div>)
+              : <div className="button-workspace"></div>
+            : null
+            }
             </Card.Body>
           </Accordion.Collapse>
         </Card>
       </Accordion>
 
-      {role != 1 ? null : (
+      {User? User[0].role === 1 ?  (
         <div className="lateral">
           <img className="icon" src="/assets/users.svg" alt="workspace" />
           <Link href="/usuarios">
             <a>Usuarios</a>
           </Link>
         </div>
-      )}
+      ): null : null}
 
       <div className="lateral">
         <img className="icon" src="/assets/Rewards.svg" alt="rewards" />

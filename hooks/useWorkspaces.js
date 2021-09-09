@@ -18,13 +18,13 @@ const useWorkspaces = () => {
               },
             });
             setWorkspaces(response.data);
-            console.log(response.data);
+            // console.log(response.data);
           } catch (error) {
             console.log(error);
             // setError(error)
             if (error.response.status >= 402 && error.response.status <= 500) {
               toast.error("Error de Autentificacion");
-              console.log("Error");
+              // console.log("Error");
               router.push("/");
             }
             if (error.response.status == 401) toast.error("Unauthorized");
@@ -33,7 +33,7 @@ const useWorkspaces = () => {
         getWorkspace();
       }, [router]);
     
-      console.log(workspaces);
+      // console.log(workspaces);
 
   return workspaces;
 };
