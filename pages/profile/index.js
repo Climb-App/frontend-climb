@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayoutComponent from "../../components/MainLayout/index";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -9,6 +9,17 @@ import useUser from "../../hooks/useUser";
 export default function PerfilUsuario() {
   const User = useUser();
   const UserData = useUserData(User);
+  // const [UserData, setUserData] = useState({
+  //   id: 9,
+  //   first_name: "Pedro",
+  //   last_name: "Lopez",
+  //   email: "pedro@climb.com",
+  //   role: 2,
+  //   company: 2,
+  //   avatar: "",
+  //   available_points: 1200,
+  //   accumulated_points: 700,
+  // });
 
   const RenderMember = () => (
     <>
@@ -204,7 +215,7 @@ export default function PerfilUsuario() {
         {/* Ternario que renderiza segun tipo de role*/}
         {User?.[0]?.role === 1 ? (
           <RenderAdmin></RenderAdmin>
-        ) : User?.[0]?.role === 3 ? (
+        ) : User?.[0]?.role === 3 || User?.[0]?.role === 2 ? (
           <RenderMember></RenderMember>
         ) : null}
       </MainLayoutComponent>
