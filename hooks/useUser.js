@@ -30,7 +30,7 @@ const useUser = () => {
       }
     }
     getUser();
-  }, [router]);
+  }, []);
 
   return User;
 };
