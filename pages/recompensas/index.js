@@ -6,6 +6,7 @@ import Badge from '../../components/RenderDinamic/badge'
 import Reward from '../../components/RenderDinamic/reward'
 import { Title, Cards } from '../../components/commons'
 import Link from 'next/link';
+import { Card, Table } from "react-bootstrap";
 
 export default function Recompensas() {
   
@@ -15,48 +16,84 @@ export default function Recompensas() {
   return (
     <>
       <MainLayoutComponent page="Recompensas">
-        <div>
-          <Title>Recompensas</Title>
-          <Link href="/recompensas/createReward">Crear Recompensa</Link> 
+
+      <div className="">
+          <Title>
+            Recompensas
+          </Title>
+          <Link href="/recompensas/createReward" className="btn btn-primary">Crear Recompensa</Link> 
+          <Card>
+            <Card.Body>
+    
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Puntos Necesarios</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+    
+              {
+              rewards? 
+              rewards.map(reward=>(
+                  <tr key={reward.id}>
+                    <td>{reward.name}</td>
+                    <td>{reward.description}</td>
+                    <td>{reward.points_needed}</td>
+                    <td></td>
+                  </tr>
+                )) : null 
+              } 
+
+              </tbody>
+            </Table>
+            
+            </Card.Body>
+          </Card>
         </div>
-        <Cards>
-          <table>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Puntos <br/> Necesarios</th>
-              </tr>
-            </thead>
-            <tbody>
-            {rewards ?
-                rewards.map(reward=>(<Reward key={reward.id} rewards={reward}/>)) :
-                null
-            }
-            </tbody>
-          </table>
-        </Cards>
-        <div>
-          <Title>Insignias</Title>
-          <Link href="/recompensas/createBadge">Crear Insignia</Link> 
+
+
+        <div className="">
+          <Title>
+          Insignias
+          </Title>
+          <Link href="/recompensas/createBadge">Crear Insignia</Link>
+          <Card>
+            <Card.Body>
+    
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Rango</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+    
+              {/* {
+              badges? 
+              badges.map(badge=>(
+                  <tr key={badge.id}>
+                    <td>{badge.name}</td>
+                    <td>{badge.description}</td>
+                    <td>{}</td>
+                    <td></td>
+                  </tr>
+                )) : null 
+              }  */}
+
+              </tbody>
+            </Table>
+            
+            </Card.Body>
+          </Card>
         </div>
-        <Cards>
-          <table >
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Rango</th>
-              </tr>
-            </thead>
-            <tbody>
-              {badges ?
-                badges.map(badge=>(<Badge key={badge.id} badges={badge}/>)) :
-                null
-              }
-            </tbody>
-          </table>
-        </Cards>
+
       </MainLayoutComponent>
     </>
   );
