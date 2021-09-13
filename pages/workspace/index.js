@@ -42,7 +42,7 @@ export default function Workspace() {
                 </tr>
               </thead>
               <tbody>
-    
+                
               {
               data? 
                 data.goals.map(goal=>(
@@ -50,8 +50,8 @@ export default function Workspace() {
                     <td>{goal.name}</td>
                     <td>{goal.description}</td>
                     <td>{goal.deadline}</td>
-                    <td></td>
-                    <td></td>
+                    <td>Barra de Progreso</td>
+                    <td>Boton</td>
                   </tr>
                 )) : null 
               } 
