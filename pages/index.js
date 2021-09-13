@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../components/commons/title";
 import Navbar from "../components/commons/navbar";
 import Link from "next/link";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 export default function LandingPage() {
   // const alert = () =>{

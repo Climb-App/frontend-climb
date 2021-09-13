@@ -1,24 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MainLayoutComponent from "../../components/MainLayout/index";
-import Cards from "../../components/commons/cards";
 import Title from "../../components/commons/title";
-import axios from "axios";
-import { BASE_URL } from "../../services/api";
-import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { getToken } from "../../services/operationsTokens";
+import useWorkspacesDetail from "../../hooks/useWorkspaceDetail";
+import { Card } from "react-bootstrap";
 
 export default function Workspace() {
   
-  // const { id } = 
+  const router = useRouter();
+  const { id }= router.query
+
+  const data = useWorkspacesDetail(id)
+  console.log(data)
+  // console.log(data.goals[0].name)
 
   return (
     <>
       <MainLayoutComponent page="Workspace">
         <Title>
-          Objetivos
+          {data?data.name:null}
         </Title>
-        <Cards> <i className="fas fa-spinner fa-spin"></i> </Cards>
+        <Card>
+          <Card.Body>
+            <Card.Title>Goals</Card.Title>
+            <Card.Text>
+            {data? 
+              data.goals.map(goal=>(<h1 key={goal.id}>{goal.name}</h1>)) : null 
+            } 
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </MainLayoutComponent>
     </>
   );
