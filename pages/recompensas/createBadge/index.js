@@ -3,13 +3,18 @@ import MainLayoutComponent from "../../../components/MainLayout";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import { BASE_URL } from "../../../services/api";
+import { getToken } from "../../../services/operationsTokens";
+import useUser from "../../../hooks/useUser";
 
-const baseUrlConnect = "http://127.0.0.1:8000/api/v1/badges_test/";
+const Url = "api/v1/badges/";
 
 const Insignias = () => {
+  const User = useUser();
 
-  const router = useRouter()
+  // console.log(`El id del usuario es: ${User?.[0]?.id}`);
+  const router = useRouter();
   //   // Conexion
   const [post, setPost] = React.useState(null);
   // const router=useRouter()
@@ -34,21 +39,29 @@ const Insignias = () => {
     );
     //Connection
     try {
-      const response = await axios.post(baseUrlConnect, {
-        name: nameValue.value,
-        description: descriptionValue.value,
-        icon: UrlImage.value,
-        points_needed_min: PuntosMinimos.value,
-        points_needed_max: PuntosMaximos.value,
-        company_user: 1,
-      });
+      const response = await axios.post(
+        `${BASE_URL}${Url}`,
+        {
+          name: nameValue.value,
+          description: descriptionValue.value,
+          icon: UrlImage.value,
+          points_needed_min: PuntosMinimos.value,
+          points_needed_max: PuntosMaximos.value,
+          user: [`${User?.[0]?.id}`], //Por?XD
+        },
+        {
+          headers: {
+            Authorization: getToken(),
+          },
+        }
+      );
       if (response)
         toast.success("Datos enviados", {
           theme: "colored",
         });
       setPost(response.data);
       console.log(response.data);
-      router.push('/recompensas')
+      router.push("/recompensas");
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");
@@ -59,9 +72,9 @@ const Insignias = () => {
     }
   }
 
-  const cancel = ()=>{
-    router.push('/recompensas')
-  }
+  const cancel = () => {
+    router.push("/recompensas");
+  };
 
   return (
     <MainLayoutComponent>
@@ -114,7 +127,11 @@ const Insignias = () => {
             >
               Crear
             </Button>
-            <Button variant="danger" style={{ marginLeft: "50px" }} onClick={cancel}>
+            <Button
+              variant="danger"
+              style={{ marginLeft: "50px" }}
+              onClick={cancel}
+            >
               Cancelar
             </Button>
           </div>
