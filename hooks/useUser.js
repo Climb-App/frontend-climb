@@ -21,7 +21,6 @@ const useUser = () => {
         console.log(response.data);
       } catch (error) {
         console.log(error);
-        // setError(error)
         if (error.response.status >= 402 && error.response.status <= 500) {
           toast.error("Error Cliente o Servidor ");
           console.log("Error");

@@ -1,40 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import useRewards from "../../hooks/useRewards";
+import useBadges from "../../hooks/useBadges";
 import MainLayoutComponent from "../../components/MainLayout/index";
 import Badge from '../../components/RenderDinamic/badge'
 import Reward from '../../components/RenderDinamic/reward'
-import { Title, Cards, Buttons } from '../../components/commons'
-import axios from "axios";
+import { Title, Cards } from '../../components/commons'
 import Link from 'next/link';
 
-
 export default function Recompensas() {
-  const baseUrlConnect = "http://127.0.0.1:8000/api/v1/";
-
-  const [reward, setReward] = useState(null);
-  const [badge, setBadge] = useState([]);
   
-  useEffect(()=>{
-    const badge = axios.create({
-        baseURL: `${baseUrlConnect}badges_test/`,
-    });
-    const reward = axios.create({
-      baseURL: `${baseUrlConnect}rewards_test/`,
-    });
-
-    async function getData (){
-        try{
-            const response = await badge.get();
-            const { data } = await reward.get();
-            setBadge( response.data );
-            setReward( data );
-        }catch(error){
-            console.error(error)
-        }
-    }
-    getData()
-  }, [])
-
-  console.log(badge)
+  const rewards = useRewards();
+  const badges = useBadges();
 
   return (
     <>
@@ -53,13 +29,12 @@ export default function Recompensas() {
               </tr>
             </thead>
             <tbody>
-            {reward ?
-                reward.map(reward=>(<Reward key={reward.id} rewards={reward}/>)) :
+            {rewards ?
+                rewards.map(reward=>(<Reward key={reward.id} rewards={reward}/>)) :
                 null
             }
             </tbody>
           </table>
-          
         </Cards>
         <div>
           <Title>Insignias</Title>
@@ -75,8 +50,8 @@ export default function Recompensas() {
               </tr>
             </thead>
             <tbody>
-              {badge ?
-                badge.map(badge=>(<Badge key={badge.id} badges={badge}/>)) :
+              {badges ?
+                badges.map(badge=>(<Badge key={badge.id} badges={badge}/>)) :
                 null
               }
             </tbody>

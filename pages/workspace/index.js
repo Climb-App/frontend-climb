@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MainLayoutComponent from "../../components/MainLayout/index";
-import Cards from "../../components/commons/cards";
 import Title from "../../components/commons/title";
-import axios from "axios";
-import { BASE_URL } from "../../services/api";
-import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { getToken } from "../../services/operationsTokens";
+import useWorkspacesDetail from "../../hooks/useWorkspaceDetail";
+import { Card } from "react-bootstrap";
 
 export default function Workspace() {
-  const [post, setPost] = useState(null);
+  
   const router = useRouter();
+  const { id }= router.query
 
-  useEffect(() => {
-    const getWorkspace = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}api/v1/workspaces/`, {
-          headers: {
-            Authorization: getToken(),
-          },
-        });
-        setPost(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-        // setError(error)
-        if (error.response.status >= 402 && error.response.status <= 500) {
-          toast.error("Error de Autentificacion");
-          console.log("Error");
-          router.push("/");
-        }
-        if (error.response.status == 401) toast.error("Unauthorized");
-      }
-    };
-    getWorkspace();
-  }, []);
-
-  console.log(post);
+  const data = useWorkspacesDetail(id)
+  console.log(data)
+  // console.log(data.goals[0].name)
 
   return (
     <>
       <MainLayoutComponent page="Workspace">
-        <Title>Objetivos</Title>
-        <Cards></Cards>
+        <Title>
+          {data?data.name:null}
+        </Title>
+        <Card>
+          <Card.Body>
+            <Card.Title>Goals</Card.Title>
+            <Card.Text>
+            {data? 
+              data.goals.map(goal=>(<h1 key={goal.id}>{goal.name}</h1>)) : null 
+            } 
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </MainLayoutComponent>
     </>
   );

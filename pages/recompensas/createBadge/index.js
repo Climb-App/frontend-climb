@@ -3,12 +3,19 @@ import MainLayoutComponent from "../../../components/MainLayout";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
+<<<<<<< HEAD
 import { useRouter } from "next/router";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
 import useUser from "../../../hooks/useUser";
 
 const Url = "api/v1/badges/";
+=======
+import {useRouter} from "next/router";
+import { getToken } from "../../../services/operationsTokens";
+
+const baseUrlConnect = "http://127.0.0.1:8000/api/v1/badges/";
+>>>>>>> 690ca63d6fad570a65609e44ad6bf5643d05a06e
 
 const Insignias = () => {
   const User = useUser();
@@ -39,6 +46,7 @@ const Insignias = () => {
     );
     //Connection
     try {
+<<<<<<< HEAD
       const response = await axios.post(
         `${BASE_URL}${Url}`,
         {
@@ -55,6 +63,23 @@ const Insignias = () => {
           },
         }
       );
+=======
+      const response = await axios.post(baseUrlConnect, {
+        body:{
+        name: nameValue.value,
+        description: descriptionValue.value,
+        icon: UrlImage.value,
+        points_needed_min: PuntosMinimos.value,
+        points_needed_max: PuntosMaximos.value,
+        company_user: 1,
+        },
+        headers: {
+            Authorization: getToken(),
+            'Content-Type' : 'text/plain'
+          },
+        timeout: 1000,
+      });
+>>>>>>> 690ca63d6fad570a65609e44ad6bf5643d05a06e
       if (response)
         toast.success("Datos enviados", {
           theme: "colored",

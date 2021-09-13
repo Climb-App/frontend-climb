@@ -119,6 +119,7 @@ export default function PerfilUsuario() {
         <div className="TwoDivContent d-flex" style={{ width: "100%" }}>
           <div className="NombreDeUsuario d-flex" style={{ height: "50%" }}>
             <img
+              alt=""
               className="me-4"
               src={UserData?.avatar != "" ? UserData?.avatar : "/user.svg"}
               width="60px"
@@ -134,7 +135,7 @@ export default function PerfilUsuario() {
             className="InsigniaInfoUsuario d-flex  "
             style={{ height: "50%", marginLeft: "170px" }}
           >
-            <img src="/medalla1.svg" width="60px" height="60px" />
+            <img alt="" src="/medalla1.svg" width="60px" height="60px" />
             <div className="PuntosAcumulados ms-4">
               <p style={{ color: "020813" }}>Acumulados</p>
               <p>{UserData?.accumulated_points}</p>
@@ -223,6 +224,7 @@ export default function PerfilUsuario() {
         <div className="TwoDivContent d-flex" style={{ width: "100%" }}>
           <div className="NombreDeUsuario d-flex" style={{ height: "50%" }}>
             <img
+              alt=""
               className="me-4"
               src={UserData?.avatar != "" ? UserData?.avatar : "/user.svg"}
               width="60px"

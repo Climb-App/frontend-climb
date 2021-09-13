@@ -3,9 +3,20 @@ import { Navbar, Nav, NavDropdown, Container, Button } from  "react-bootstrap";
 import Link from 'next/link';
 import { toast } from "react-toastify";
 import axios from "axios";
+import useUserLanding from '../../hooks/useUserLanding'
+import useUserDataLanding from '../../hooks/useUserDataLanding'
+// import library fortawesome
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import your icons
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function NavbarTop({classStyle }) {
+
+  const User = useUserLanding()
+  // const UserData = useUserDataLanding(User)
+  console.log(User)
 
   return (
     <>
@@ -21,7 +32,8 @@ export default function NavbarTop({classStyle }) {
               <Nav.Link href="/">Soporte</Nav.Link> 
             </Nav>
             <div className="d-flex">
-              <img className="me-5" src="https://rciminternet.com/wp-content/uploads/2019/04/usuario.png" alt="logo" width="30px" height="40px" />
+              <FontAwesomeIcon icon={faUserCircle} style={{width:'40px', height: '40px', color: '#7FB0F6'}}/>
+              {/* <img className="me-5" src="https://rciminternet.com/wp-content/uploads/2019/04/usuario.png" alt="logo" width="30px" height="40px" /> */}
               <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
                 <NavDropdown.Item>
                   <p>Victor</p>

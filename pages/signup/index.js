@@ -7,7 +7,7 @@ import Aside from '../../components/commons/aside'
 import Links from '../../components/commons/links'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-
+import { toast } from "react-toastify";
 
 
 export default function SignUp() {

@@ -3,6 +3,7 @@ import Title from "../components/commons/title";
 import Navbar from "../components/commons/navbar";
 import Link from "next/link";
 
+
 export default function LandingPage() {
   // const alert = () =>{
   //   return Swal.fire({
