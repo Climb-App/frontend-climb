@@ -17,11 +17,18 @@ export default function Workspace() {
   return (
     <>
       <MainLayoutComponent page="Workspace">
-        <div className="">
-          <Title>
-            Objetivos {data?data.name:null}
-          </Title>
-          <Card>
+        <div className="context-workspace">
+          <Title classStyle="headTitle">{data?data.name:null}</Title>
+          <div className="header-workspace">
+            <div>
+              <h4 className="headSubtitle">Objetivos</h4>
+            </div>
+            <div>
+              <button className="btn btn-primary me-3">Crear Obj</button>
+              <button className="btn btn-danger">Eliminar</button>
+            </div>
+          </div>
+            <Card bsPrefix="card-workspace">
             <Card.Body>
     
             <Table striped bordered hover size="sm">
@@ -31,6 +38,7 @@ export default function Workspace() {
                   <th>Descripcion</th>
                   <th>Fecha Limite</th>
                   <th>Progreso</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,6 +51,7 @@ export default function Workspace() {
                     <td>{goal.description}</td>
                     <td>{goal.deadline}</td>
                     <td></td>
+                    <td></td>
                   </tr>
                 )) : null 
               } 
@@ -51,8 +60,8 @@ export default function Workspace() {
             </Table>
             
             </Card.Body>
-          </Card>
-        </div>
+            </Card>
+            </div>
       </MainLayoutComponent>
     </>
   );

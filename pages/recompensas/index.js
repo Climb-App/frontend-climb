@@ -21,7 +21,7 @@ export default function Recompensas() {
           <Title>
             Recompensas
           </Title>
-          <Link href="/recompensas/createReward">Crear Recompensa</Link> 
+          <Link href="/recompensas/createReward" className="btn btn-primary">Crear Recompensa</Link> 
           <Card>
             <Card.Body>
     
@@ -54,6 +54,7 @@ export default function Recompensas() {
             </Card.Body>
           </Card>
         </div>
+
 
         <div className="">
           <Title>
