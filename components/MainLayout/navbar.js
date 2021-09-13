@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import { toast } from 'react-toastify';
 import { deleteToken, getToken } from '../../services/operationsTokens';
 
-export default function Navbar({page}) {
+export default function Navbar({page, title}) {
 
     const router=useRouter()
 

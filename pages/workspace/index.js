@@ -3,7 +3,7 @@ import MainLayoutComponent from "../../components/MainLayout/index";
 import Title from "../../components/commons/title";
 import { useRouter } from "next/router";
 import useWorkspacesDetail from "../../hooks/useWorkspaceDetail";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 
 export default function Workspace() {
   
@@ -17,19 +17,42 @@ export default function Workspace() {
   return (
     <>
       <MainLayoutComponent page="Workspace">
-        <Title>
-          {data?data.name:null}
-        </Title>
-        <Card>
-          <Card.Body>
-            <Card.Title>Goals</Card.Title>
-            <Card.Text>
-            {data? 
-              data.goals.map(goal=>(<h1 key={goal.id}>{goal.name}</h1>)) : null 
-            } 
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <div className="">
+          <Title>
+            Objetivos {data?data.name:null}
+          </Title>
+          <Card>
+            <Card.Body>
+    
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Fecha Limite</th>
+                  <th>Progreso</th>
+                </tr>
+              </thead>
+              <tbody>
+    
+              {
+              data? 
+                data.goals.map(goal=>(
+                  <tr key={goal.id}>
+                    <td>{goal.name}</td>
+                    <td>{goal.description}</td>
+                    <td>{goal.deadline}</td>
+                    <td></td>
+                  </tr>
+                )) : null 
+              } 
+
+              </tbody>
+            </Table>
+            
+            </Card.Body>
+          </Card>
+        </div>
       </MainLayoutComponent>
     </>
   );

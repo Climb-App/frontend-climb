@@ -11,7 +11,7 @@ const useBadges = () => {
     useEffect(() => {
         const getBadges = async () => {
           try {
-            const response = await axios.get(`${BASE_URL}api/v1/reward/user/`, {
+            const response = await axios.get(`${BASE_URL}api/v1/badges/user/`, {
               headers: {
                 Authorization: getToken(),
               },
