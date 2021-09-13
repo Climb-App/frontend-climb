@@ -6,80 +6,15 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
-import useUser from "../../../hooks/useUser";
+import Insignias from "../createBadge";
 
-const Url = "api/v1/badges/";
-
-const Insignias = () => {
-  const User = useUser();
-
-  // console.log(`El id del usuario es: ${User?.[0]?.id}`);
-  const router = useRouter();
-  //   // Conexion
-  const [post, setPost] = React.useState(null);
-  // const router=useRouter()
-  async function PostBadges(e) {
-    const form = e.target;
-    e.preventDefault();
-    //     //Set Values inputs
-    console.log(form.elements);
-    const {
-      PuntosMinimos,
-      PuntosMaximos,
-      UrlImage,
-      descriptionValue,
-      nameValue,
-    } = form.elements;
-    console.log(
-      PuntosMinimos.value,
-      PuntosMaximos.value,
-      UrlImage.value,
-      descriptionValue.value,
-      nameValue.value
-    );
-    //Connection
-    try {
-      const response = await axios.post(
-        `${BASE_URL}${Url}`,
-        {
-          name: nameValue.value,
-          description: descriptionValue.value,
-          icon: UrlImage.value,
-          points_needed_min: PuntosMinimos.value,
-          points_needed_max: PuntosMaximos.value,
-          user: [`${User?.[0]?.id}`], //Por?XD
-        },
-        {
-          headers: {
-            Authorization: getToken(),
-          },
-        }
-      );
-      if (response)
-        toast.success("Datos enviados", {
-          theme: "colored",
-        });
-      setPost(response.data);
-      console.log(response.data);
-      router.push("/recompensas");
-      //Handling Errors
-    } catch (error) {
-      toast.error("Error al enviar los datos");
-      console.error(error);
-      if (error.response.status >= 402 && error.response.status <= 500) {
-        console.log("Error");
-      }
-    }
-  }
-
-  const cancel = () => {
-    router.push("/recompensas");
-  };
-
+const EditInsignias = () => {
   return (
     <MainLayoutComponent>
-      <Form action="" method="POST" onSubmit={PostBadges}>
-        <h2>Nueva Insignia</h2>
+      <Form action="" method="POST">
+        {" "}
+        {/* onSubmit={PostBadges} */}
+        <h2>Editar Insignia</h2>
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap ">
           <div className="First Column " style={{ width: "40%" }}>
@@ -125,13 +60,10 @@ const Insignias = () => {
               type="submit"
               style={{ marginRight: "50px" }}
             >
-              Crear
+              Modificar Reward
             </Button>
-            <Button
-              variant="danger"
-              style={{ marginLeft: "50px" }}
-              onClick={cancel}
-            >
+            <Button variant="danger" style={{ marginLeft: "50px" }}>
+              {/* // onClick={cancel} */}
               Cancelar
             </Button>
           </div>
@@ -141,4 +73,4 @@ const Insignias = () => {
   );
 };
 
-export default Insignias;
+export default EditInsignias;

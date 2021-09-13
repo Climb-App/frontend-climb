@@ -16,7 +16,7 @@ const useUserData = (user) => {
     }
 
     console.log(
-      "La informacion traida y guarda en User es: " + user?.[0]?.role
+      "La informacion traida y guarda en User es 'role': " + user?.[0]?.role
     );
 
     const UserRole = user?.[0]?.role == 1 ? "admin/" : "member/";
@@ -48,7 +48,7 @@ const useUserData = (user) => {
       }
     }
     getData();
-    console.log("La informacion traida y guarda en Data es: " + userData?.[0]);
+    console.log("La informacion traida y guarda en Data es: " + userData?.name);
   }, [user]);
 
   return userData;

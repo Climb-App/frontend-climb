@@ -5,21 +5,113 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import useUserData from "../../hooks/useUserData";
 import useUser from "../../hooks/useUser";
+import axios from "axios";
+import { BASE_URL } from "../../services/api";
+import { getToken } from "../../services/operationsTokens";
 
 export default function PerfilUsuario() {
   const User = useUser();
   const UserData = useUserData(User);
-  // const [UserData, setUserData] = useState({
-  //   id: 9,
-  //   first_name: "Pedro",
-  //   last_name: "Lopez",
-  //   email: "pedro@climb.com",
-  //   role: 2,
-  //   company: 2,
-  //   avatar: "",
-  //   available_points: 1200,
-  //   accumulated_points: 700,
-  // });
+  const [UserPatch, setUserPatch] = useState(null);
+
+  // /////////////////////////
+  const UpdateProfile = async function (e) {
+    const form = e.target;
+    e.preventDefault();
+    console.log(form.elements);
+
+    const UserRole = User?.[0]?.role == 1 ? "admin/" : "member/";
+
+    console.log("El role es:" + UserRole);
+
+    if (User?.[0]?.role === 1) {
+      // Admin
+      const { nameValue, RFCValue, addressValue, email, avatarValue } =
+        form.elements;
+      console.log(nameValue, RFCValue, addressValue, email, avatarValue);
+      console.log(
+        nameValue.value,
+        RFCValue.value,
+        addressValue.value,
+        email.value,
+        avatarValue.value
+      );
+      console.log(`liga:${BASE_URL}api/v1/user/${UserRole}${User?.[0]?.id}`);
+      try {
+        const response = await axios.patch(
+          `${BASE_URL}api/v1/user/${UserRole}${User?.[0]?.id}`,
+          {
+            name: nameValue.value,
+            rfc: RFCValue.value,
+            email: email.value,
+            address: addressValue.value,
+            avatar: avatarValue.value,
+          },
+          {
+            headers: {
+              Authorization: getToken(),
+            },
+          }
+        );
+        if (response)
+          toast.success("Datos Modificados", {
+            theme: "colored",
+          });
+        setUserPatch(response.data);
+        console.log(response.data);
+        // location.reload();
+        //router.push('/')
+        //Handling Errors
+      } catch (error) {
+        toast.error("Error al modificar los datos");
+        console.error(error);
+        if (error.response.status >= 402 && error.response.status <= 500) {
+          console.log("Error");
+        }
+      }
+    } else if (User?.[0]?.role === 3 || User?.[0]?.role === 2) {
+      // Member
+      const { FirstnameValue, LastnameValue, emailValue, avatarValue } =
+        form.elements;
+      console.log(FirstnameValue, LastnameValue, emailValue, avatarValue);
+      console.log(
+        FirstnameValue.value,
+        LastnameValue.value,
+        emailValue.value,
+        avatarValue.value
+      );
+      try {
+        const response = await axios.patch(
+          `${BASE_URL}api/v1/user/${UserRole}${User?.[0]?.id}`,
+          {
+            first_name: FirstnameValue.value,
+            last_name: LastnameValue.value,
+            email: emailValue.value,
+            avatar: avatarValue.value,
+          },
+          {
+            headers: {
+              Authorization: getToken(),
+            },
+          }
+        );
+        if (response)
+          toast.success("Datos Modificados", {
+            theme: "colored",
+          });
+        setUserPatch(response.data);
+        console.log(response.data);
+        //router.push('/')
+        //Handling Errors
+      } catch (error) {
+        toast.error("Error al modificar los datos");
+        console.error(error);
+        if (error.response.status >= 402 && error.response.status <= 500) {
+          console.log("Error");
+        }
+      }
+    }
+  };
 
   const RenderMember = () => (
     <>
@@ -57,9 +149,9 @@ export default function PerfilUsuario() {
         <Form
           action=""
           className=" mt-5 "
-          method="POST"
+          method=""
           style={{ width: "100%" }}
-          // onSubmit={PostResetPass}
+          onSubmit={UpdateProfile}
         >
           <Form.Floating className="mb-3 input">
             <Form.Control
@@ -81,12 +173,21 @@ export default function PerfilUsuario() {
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
-              id="user"
+              id="emailValue"
               type="email"
               placeholder="Email"
               defaultValue={UserData?.email}
             />
             <label htmlFor="floatingInputCustom">Email</label>
+          </Form.Floating>
+          <Form.Floating className="mb-3 input">
+            <Form.Control
+              id="avatarValue"
+              type="text"
+              placeholder="avatar"
+              defaultValue={UserData?.avatar}
+            />
+            <label htmlFor="floatingInputCustom">Avatar</label>
           </Form.Floating>
           <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-5">
             <Button
@@ -94,7 +195,7 @@ export default function PerfilUsuario() {
               type="submit"
               style={{ marginRight: "50px" }}
             >
-              Guardar
+              Editar Campos
             </Button>
             <Button
               className="me-5"
@@ -137,7 +238,8 @@ export default function PerfilUsuario() {
         <Form
           action=""
           className=" mt-5 "
-          method="POST"
+          method=""
+          onSubmit={UpdateProfile}
           style={{ width: "100%" }}
           // onSubmit={PostResetPass}
         >
@@ -145,7 +247,7 @@ export default function PerfilUsuario() {
             <Form.Control
               id="nameValue"
               type="text"
-              placeholder="Crecimiento Kodeado"
+              placeholder="Nombre"
               defaultValue={UserData?.name}
             />
             <label htmlFor="floatingInputCustom">Nombre</label>
@@ -154,16 +256,16 @@ export default function PerfilUsuario() {
             <Form.Control
               id="RFCValue"
               type="text"
-              placeholder="Crecimiento Kodeado"
+              placeholder="RFC"
               defaultValue={UserData?.rfc}
             />
             <label htmlFor="floatingInputCustom">RFC</label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
-              id="nameValue"
+              id="addressValue"
               type="text"
-              placeholder="Crecimiento Kodeado"
+              placeholder="Direccion"
               defaultValue={UserData?.address}
             />
             <label htmlFor="floatingInputCustom">Address</label>
@@ -178,13 +280,22 @@ export default function PerfilUsuario() {
             />
             <label htmlFor="floatingInputCustom">Email</label>
           </Form.Floating>
-          <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-5">
+          <Form.Floating className="mb-3 input">
+            <Form.Control
+              id="avatarValue"
+              type="text"
+              placeholder="avatar"
+              defaultValue={UserData?.avatar}
+            />
+            <label htmlFor="floatingInputCustom">Avatar</label>
+          </Form.Floating>
+          <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-4">
             <Button
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
             >
-              Guardar
+              Editar Campos
             </Button>
             <Button
               className="me-5"

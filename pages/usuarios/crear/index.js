@@ -3,8 +3,10 @@ import MainLayoutComponent from "../../../components/MainLayout";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../../../services/api";
+import { getToken } from "../../../services/operationsTokens";
 
-const baseUrlConnect = "https://api.climbapp.tech/api/v1/register/member";
+const Url = "api/v1/register/member";
 
 const Usuarios = () => {
   //   //   // Conexion
@@ -22,6 +24,7 @@ const Usuarios = () => {
       Password,
       ConfirmPassword,
       RoleEmpleado,
+      avatarValue,
     } = form.elements;
     console.log(
       nameValue,
@@ -29,7 +32,8 @@ const Usuarios = () => {
       emailValue,
       Password,
       ConfirmPassword,
-      RoleEmpleado
+      RoleEmpleado,
+      avatarValue
     );
     console.log(
       nameValue.value,
@@ -37,29 +41,40 @@ const Usuarios = () => {
       emailValue.value,
       Password.value,
       ConfirmPassword.value,
-      RoleEmpleado.value
+      RoleEmpleado.value,
+      avatarValue.value
     );
     if (Password.value !== ConfirmPassword.value) {
       toast.error("Error en la confirmacion de Password");
       return;
     }
+
     //Connection
     try {
-      const response = await axios.post(baseUrlConnect, {
-        name: nameValue.value,
-        last_name: LastNameValue.value,
-        email: emailValue.value,
-        password: Password.value,
-        company: 1,
-        role: RoleEmpleado.value,
-      });
+      const response = await axios.post(
+        `${BASE_URL}${Url}`,
+        {
+          first_name: nameValue.value,
+          last_name: LastNameValue.value,
+          email: emailValue.value,
+          password: Password.value,
+          avatar: avatarValue.value,
+          company: 1,
+          role: RoleEmpleado.value,
+        },
+        {
+          headers: {
+            Authorization: getToken(),
+          },
+        }
+      );
       if (response)
         toast.success("Datos enviados", {
           theme: "colored",
         });
       setPost(response.data);
       console.log(response.data);
-      //router.push('/')
+      router.push("/dashboard");
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");
@@ -115,6 +130,15 @@ const Usuarios = () => {
                 placeholder="****"
               />
               <label htmlFor="floatingPasswordCustom"> Confirm Password</label>
+            </Form.Floating>
+            <Form.Floating className="mb-3 input">
+              <Form.Control
+                id="avatarValue"
+                type="text"
+                placeholder="avatar"
+                defaultValue="Url Imagen"
+              />
+              <label htmlFor="floatingInputCustom">Avatar</label>
             </Form.Floating>
           </div>
           <div className="select justify justify-content-center mt-3 w-100">
