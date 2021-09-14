@@ -16,16 +16,16 @@ export default function Recompensas() {
   return (
     <>
       <MainLayoutComponent page="Recompensas">
+<div className="context-recompensas">
+
 
       <div className="">
-          <Title>
-            Recompensas
-          </Title>
-          <Link href="/recompensas/createReward" className="btn btn-primary">Crear Recompensa</Link> 
+          <Title classStyle="headTitle">Recompensas</Title>
+          <Link href="/recompensas/createReward" ><a className="btn btn-primary">Crear Recompensa</a></Link> 
           <Card>
             <Card.Body>
     
-            <Table striped bordered hover size="sm">
+            <Table className="table-workspace"  size="sm">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -57,14 +57,14 @@ export default function Recompensas() {
 
 
         <div className="">
-          <Title>
+          <Title classStyle="headTitle">
           Insignias
           </Title>
-          <Link href="/recompensas/createBadge">Crear Insignia</Link>
+          <Link href="/recompensas/createBadge"><a className="btn btn-primary">Crear Insignia</a></Link>
           <Card>
             <Card.Body>
     
-            <Table striped bordered hover size="sm">
+            <Table className="table-workspace" size="sm">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -93,7 +93,7 @@ export default function Recompensas() {
             </Card.Body>
           </Card>
         </div>
-
+        </div>
       </MainLayoutComponent>
     </>
   );

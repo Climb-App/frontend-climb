@@ -31,7 +31,7 @@ export default function Workspace() {
             <Card bsPrefix="card-workspace">
             <Card.Body>
     
-            <Table striped bordered hover size="sm">
+            <Table className="table-workspace" size="sm">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -58,7 +58,6 @@ export default function Workspace() {
 
               </tbody>
             </Table>
-            
             </Card.Body>
             </Card>
             </div>

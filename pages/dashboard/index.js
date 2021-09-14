@@ -118,7 +118,7 @@ export default function Dashboard() {
           </div>
 
           <div className="mt-5">
-            <Table className="table-rewards" style={{ borderRadius: '5px' }} responsive>
+            <Table className="table-rewards" style={{ borderRadius: '10px' }} responsive>
               <thead>
                 <tr>
                   <th></th>
