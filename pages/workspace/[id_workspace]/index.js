@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import MainLayoutComponent from "../../../components/MainLayout/index";
 import Title from "../../../components/commons/title";
 import { useRouter } from "next/router";
 import useWorkspacesDetail from "../../../hooks/useWorkspaceDetail";
 import { Card, Table } from "react-bootstrap";
 import Link from 'next/link';
-// import library fortawesome
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import your icons
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import useUser from "../../../hooks/useUser";
+import Loading from '../../../components/commons/loading'
+
 
 export default function Workspace() {
   
@@ -17,8 +17,23 @@ export default function Workspace() {
   const { id_workspace }= router.query
 
   const data = useWorkspacesDetail(id_workspace)
-  console.log(data)
-  // console.log(data.goals[0].name)
+
+  const [loading, setLoading] = useState(true);
+  const User = useUser();
+
+  useEffect(() => {
+    if (!User | User | data){
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+    }
+  }, [User, data])
+
+  if(loading){
+    return (
+      <Loading/>
+    )
+  }else{
 
   return (
     <>
@@ -83,4 +98,5 @@ export default function Workspace() {
       </MainLayoutComponent>
     </>
   );
+  }
 }

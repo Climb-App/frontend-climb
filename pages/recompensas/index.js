@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useRewards from "../../hooks/useRewards";
 import useBadges from "../../hooks/useBadges";
 import MainLayoutComponent from "../../components/MainLayout/index";
@@ -7,11 +7,31 @@ import Reward from '../../components/RenderDinamic/reward'
 import { Title, Cards } from '../../components/commons'
 import Link from 'next/link';
 import { Card, Table } from "react-bootstrap";
+import useUser from "../../hooks/useUser";
+import Loading from '../../components/commons/loading'
 
 export default function Recompensas() {
   
   const rewards = useRewards();
   const badges = useBadges();
+
+  const [loading, setLoading] = useState(true);
+  const User = useUser();
+  console.log(User);
+
+  useEffect(() => {
+    if (!User | User){
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+    }
+  }, [User])
+
+  if(loading){
+    return (
+      <Loading/>
+    )
+  }else{
 
   return (
     <>
@@ -94,4 +114,5 @@ export default function Recompensas() {
       </MainLayoutComponent>
     </>
   );
+  }
 }

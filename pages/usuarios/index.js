@@ -1,19 +1,37 @@
-import React from 'react';
-// import library fortawesome
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import your icons
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import MainLayoutComponent from '../../components/MainLayout/index';
 import useUsersMembers from '../../hooks/useUsersMembers';
 import { Card, Table } from "react-bootstrap";
 import Title from "../../components/commons/title";
 import Link from "next/link"
+import useUser from "../../hooks/useUser";
+import Loading from '../../components/commons/loading'
+
+
 
 export default function Users() {
 
   const users = useUsersMembers()
-  
+
+  const [loading, setLoading] = useState(true);
+  const User = useUser();
+
+  useEffect(() => {
+    if (!User | User){
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+    }
+  }, [User])
+
+  if(loading){
+    return (
+      <Loading/>
+    )
+  }else{
+
   return (
     <>
       <MainLayoutComponent page="Usuarios">
@@ -72,4 +90,5 @@ export default function Users() {
       </MainLayoutComponent>
     </>
   );
+  }
 }
