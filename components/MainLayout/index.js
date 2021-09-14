@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './navbar.js';
 import Lateral from './lateral.js';
-import Contents from './contents.js';
+import Contents from './Contents.js';
 
 export default function MainLayoutComponent({children, page}) {
     return (
