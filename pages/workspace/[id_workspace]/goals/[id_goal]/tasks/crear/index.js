@@ -26,7 +26,7 @@ export default function CrearTasks() {
         <h2>Nueva Tarea</h2>
         {/* Inputs */}
         <div className="Formulario mt-4 d-flex justify-content-between flex-wrap ">
-          <div className="First Column " style={{ width: "40%" }}>
+          <div className="First Column ">
             <Form.Floating className="mb-3 input">
               <Form.Control
                 id="nameValue"
@@ -74,7 +74,7 @@ export default function CrearTasks() {
               </div>
             </div>
           </div>
-          <div className="Second Column " style={{ width: "40%" }}>
+          <div className="Second Column ">
             <Form.Floating className="mb-3 input">
               <Form.Control id="PuntosMaximos" type="text" placeholder="1000" />
               <label htmlFor="floatingInputCustom">Puntos asignados</label>
