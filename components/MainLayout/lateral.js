@@ -47,7 +47,7 @@ export default function Lateral() {
           <Accordion.Collapse eventKey="1">
             <Card.Body bsPrefix="body-workspace">
             {UserWorkspaces ?
-                UserWorkspaces.map(workspaces=>(<div className="button-workspace" key={workspaces.id}><Link href= {`/workspace/?id=${workspaces.id}`} key={workspaces.id} id="{workspaces.id}" className="button-workspace">{workspaces.name}</Link></div> )) :
+                UserWorkspaces.map(workspaces=>(<div className="button-workspace" key={workspaces.id}><Link href= {`/workspace/${workspaces.id}`} key={workspaces.id} id="{workspaces.id}" className="button-workspace">{workspaces.name}</Link></div> )) :
                 null
             }
             {User? User[0].role === 1?(

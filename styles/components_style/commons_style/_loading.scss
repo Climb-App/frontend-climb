@@ -1,14 +1,11 @@
 .containerLoad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    position: relative;
 }
 
 .loading{
     color: #7FB0F6;
     margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
 }

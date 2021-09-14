@@ -323,7 +323,7 @@ export default function PerfilUsuario() {
 
   return (
     <>
-      <MainLayoutComponent>
+      <MainLayoutComponent page="Configuracion">
         {/* Ternario que renderiza segun tipo de role*/}
         {User?.[0]?.role === 1 ? (
           <RenderAdmin></RenderAdmin>

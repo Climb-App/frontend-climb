@@ -1,22 +1,26 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import MainLayoutComponent from "../../../../components/MainLayout";
+import MainLayoutComponent from "../../../../../components/MainLayout/index";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
-import useWorkspaces from "../../../../hooks/useWorkspaces";
-import { BASE_URL } from "../../../../services/api";
-import { getToken } from "../../../../services/operationsTokens";
+import useWorkspaces from "../../../../../hooks/useWorkspaces";
+import { BASE_URL } from "../../../../../services/api";
+import { getToken } from "../../../../../services/operationsTokens";
 
 const Url = "api/v1/goals/";
 
 const CrearGoals = () => {
+
+  const router = useRouter()
+  const { id_workspace } = router.query
+
   const cancel = () => {
     router.push("/recompensas");
   };
 
   const Workspace = useWorkspaces();
-  //   console.log("El id del workspace es: + ${Workspace?.[0]?.id}"");
+  console.log(`El id del workspace es: ${id_workspace}`);
   const [post, setPost] = React.useState(null);
 
   async function PostGoals(e) {
@@ -29,14 +33,14 @@ const CrearGoals = () => {
     console.log(nameValue.value, descripcion.value, Fecha.value);
     //Connection
     try {
-      console.log(`${Workspace?.[0]?.id}`);
+      // console.log(`${Workspace?.[0]?.id}`);
       const response = await axios.post(
         `${BASE_URL}${Url}`,
         {
           name: nameValue.value,
           description: descripcion.value,
           deadline: Fecha.value,
-          workspace: `${Workspace?.[0]?.id}`,
+          workspace: id_workspace,
         },
         {
           headers: {
@@ -61,7 +65,7 @@ const CrearGoals = () => {
     }
   }
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Workspace">
       <Form action="" method="POST" onSubmit={PostGoals}>
         <h2>Crear Objetivo</h2>
         {/* Inputs */}
@@ -90,7 +94,7 @@ const CrearGoals = () => {
           <div className="select d-flex flex-column me-4 mt-3 w-100">
             <label
               className="text-center w-80"
-              for="start"
+              htmlFor="start"
               style={{ width: "80%" }}
             >
               <h3>Fecha de Vencimiento: </h3>
@@ -100,7 +104,6 @@ const CrearGoals = () => {
               type="date"
               id="Fecha"
               name="trip-start"
-              value="2021-07-22"
               min="2021-01-01"
               max="2025-12-31"
             ></input>

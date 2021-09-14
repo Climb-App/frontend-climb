@@ -1,9 +1,4 @@
 import React from "react";
-// import library fortawesome
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import your icons
-import { faSpinner, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import Buttons from "../../components/commons/buttons";
 import Input from "../../components/commons/input";
 import Form from "../../components/commons/form";
@@ -79,8 +74,6 @@ export default function Login() {
                 place="Password"
               />
               <Links />
-              <FontAwesomeIcon icon={faSpinner} className="mb-3" spin style={{width:'30px', height: '30px', color: '#7FB0F6'}}/>
-              {/* <FontAwesomeIcon icon={faSyncAlt} spin style={{width:'200px', height: '200px'}}/> */}
               <Buttons classStyle="" type="submit">
                 LOGIN
               </Buttons>

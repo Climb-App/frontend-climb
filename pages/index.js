@@ -5,8 +5,6 @@ import Link from "next/link";
 import Loading from '../components/commons/loading.js'
 import useUser from "../hooks/useUser";
 
-
-
 export default function LandingPage() {
 
   const [loading, setLoading] = useState(true);
@@ -16,7 +14,7 @@ export default function LandingPage() {
     if (!User | User){
       setTimeout(() => {
         setLoading(false)
-      }, 3000)
+      }, 1500)
     }
   }, [User])
 

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import MainLayoutComponent from '../../components/MainLayout/index'
-import { Line, Doughnut, Bar } from 'react-chartjs-2'
-import Title from '../../components/commons/title'
-import { Row, Col, Table, Card } from "react-bootstrap";
-import { getToken } from '../../services/operationsTokens' 
-import { useRouter } from 'next/router'
+import MainLayoutComponent from '../../components/MainLayout/index';
+import { Line, Doughnut, Bar } from 'react-chartjs-2';
+import useUser from "../../hooks/useUser";
+import Title from '../../components/commons/title';
+import { Table, Card } from "react-bootstrap";
+import Loading from '../../components/commons/loading'
+
 
 
 export default function Dashboard() {
-  const {usuario, setUsuario} = useState(null)
+
+  const [loading, setLoading] = useState(true);
+  const User = useUser();
+  console.log(User);
 
   const data = {
     labels: ['1', '2', '3', '4', '5', '6'],
     datasets: [{
-        label: '# of Votes',
+        label: '2021',
         data: [12, 19, 3, 5, 2, 3],
         fill: false,
         backgroundColor: 'rgb(54, 162, 235)',
@@ -23,7 +27,7 @@ export default function Dashboard() {
   };
 
   const data2 = {
-    labels: ['Blue'],
+    labels: ['Terminadas'],
     datasets: [
       {
         label: '# of Votes',
@@ -55,13 +59,13 @@ export default function Dashboard() {
       },
       title: {
         display: true,
-        text: 'Chart.js Horizontal Bar Chart',
+        text: 'Total',
       },
     },
   };
 
   const data1 = {
-    labels: ['Red', 'Blue'],
+    labels: ['Molesto', 'Alegre'],
     datasets: [
       {
         label: '# of Votes',
@@ -92,6 +96,20 @@ export default function Dashboard() {
     },
   };
 
+  useEffect(() => {
+    if (!User | User){
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
+    }
+  }, [User])
+
+  if(loading){
+    return (
+      <Loading/>
+    )
+  }else{
+
   return (
     <>
       <MainLayoutComponent page="Dashboard">
@@ -99,19 +117,19 @@ export default function Dashboard() {
           <div className="cards-container">
            <Card className="card-dashboard">
              <Card.Body>
-               <Card.Title>Productividad</Card.Title>
+               <Title>Productividad</Title>
                <Line data={data} options={options} />
              </Card.Body>
            </Card>
             <Card className="card-dashboard ms-2 me-2">
              <Card.Body>
-               <Card.Title>Tareas</Card.Title>
+               <Title>Tareas</Title>
                <Bar data={data2} options={options2} />
              </Card.Body>
            </Card>
            <Card className="card-dashboard">
              <Card.Body>
-               <Card.Title>Motivación</Card.Title>
+               <Title>Motivación</Title>
                <Doughnut data={data1} />
              </Card.Body>
            </Card>
@@ -139,4 +157,5 @@ export default function Dashboard() {
       </MainLayoutComponent>
     </>
   )
+  }
 }

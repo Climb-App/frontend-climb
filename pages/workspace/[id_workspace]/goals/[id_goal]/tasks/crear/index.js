@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import MainLayoutComponent from "../../../../../components/MainLayout";
+import MainLayoutComponent from "../../../../../../../components/MainLayout";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import UserMembers from "../../../../../hooks/useUsersMembers";
+import UserMembers from "../../../../../../../hooks/useUsersMembers";
 // import { toast } from "react-toastify";
 // import axios from "axios";
 // import { useRouter } from "next/router";
@@ -20,7 +20,7 @@ export default function CrearTasks() {
     console.log(x);
   }
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Workspace">
       <Form action="" method="POST">
         {/*onSubmit={PostBadges} */}
         <h2>Nueva Tarea</h2>
@@ -44,7 +44,7 @@ export default function CrearTasks() {
               />
             </Form.Group>
             <div className="select justify justify-content-center mt-3 w-100">
-              <label for="">
+              <label htmlFor="">
                 <p className="text-center">Estado de progreso </p>
               </label>
               <Form.Select className="mb-3 input" id="RoleEmpleado" size="sm">
@@ -57,7 +57,7 @@ export default function CrearTasks() {
               <div className="select d-flex flex-column me-4 mt-3 w-100">
                 <label
                   className="text-center w-80"
-                  for="start"
+                  htmlFor="start"
                   style={{ width: "40%" }}
                 >
                   <p>Fecha de Vencimiento: </p>

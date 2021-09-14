@@ -6,10 +6,13 @@ import axios from "axios";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
 import useUser from "../../../hooks/useUser";
+import {useRouter} from "next/router";
 
 const Url = "api/v1/register/member";
 
 const Usuarios = () => {
+
+  const router = useRouter()
   const User = useUser();
   //   //   // Conexion
   const [post, setPost] = React.useState(null);
@@ -17,7 +20,7 @@ const Usuarios = () => {
   async function PostUser(e) {
     const form = e.target;
     e.preventDefault();
-    //     //Set Values inputs
+    //Set Values inputs
     console.log(form.elements);
     const {
       nameValue,
@@ -76,7 +79,7 @@ const Usuarios = () => {
         });
       setPost(response.data);
       console.log(response.data);
-      // router.push("/dashboard");
+      router.push("/usuarios/");
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");
@@ -87,8 +90,12 @@ const Usuarios = () => {
     }
   }
 
+  const cancel=()=>{
+    router.push('/usuarios/')
+  }
+
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Usuarios">
       <Form action="" method="POST" onSubmit={PostUser}>
         <h2>Nuevo Usuario</h2>
         {/* Inputs */}
@@ -161,6 +168,7 @@ const Usuarios = () => {
             <Button
               className=""
               variant="danger"
+              onClick={cancel}
               style={{ marginLeft: "50px" }}
             >
               Cancelar
