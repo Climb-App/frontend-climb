@@ -64,7 +64,7 @@ const Rewards = () => {
   };
 
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Recompensas">
       <Form action="" method="POST" onSubmit={PostRewards}>
         <h2>Nueva Recompensa</h2>
         {/* Inputs */}

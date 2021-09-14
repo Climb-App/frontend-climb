@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { Card, Table } from "react-bootstrap";
 import useUser from "../../hooks/useUser";
 import Loading from '../../components/commons/loading'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Recompensas() {
   
@@ -17,7 +19,7 @@ export default function Recompensas() {
 
   const [loading, setLoading] = useState(true);
   const User = useUser();
-  console.log(User);
+
 
   useEffect(() => {
     if (!User | User){
@@ -65,7 +67,16 @@ export default function Recompensas() {
                           <td>{reward.name}</td>
                           <td>{reward.description}</td>
                           <td>{reward.points_needed}</td>
-                          <td></td>
+                          <td>
+                            <div className="buttonCrud">
+                              <Link href={`/recompensas/createReward/?id=${reward.id}`}>
+                                <a><FontAwesomeIcon icon={faEdit} style={{width:'25px', height: '25px', color: 'blue'}}/></a>
+                              </Link>
+                              <Link href="/">
+                                <a><FontAwesomeIcon icon={faTrash} style={{width:'20px', height: '20px', color: 'red'}}/></a>
+                              </Link>
+                            </div>
+                          </td>
                         </tr>
                       ))
                     : null}
@@ -102,7 +113,16 @@ export default function Recompensas() {
                           <td>{badge.name}</td>
                           <td>{badge.description}</td>
                           <td>{`${badge.points_needed_min} - ${badge.points_needed_max}`}</td>
-                          <td></td>
+                          <td>
+                            <div className="buttonCrud">
+                              <Link href={`/recompensas/editReward/?id=${badge.id}`}>
+                                <a><FontAwesomeIcon icon={faEdit} style={{width:'25px', height: '25px', color: 'blue'}}/></a>
+                              </Link>
+                              <Link href="/">
+                                <a><FontAwesomeIcon icon={faTrash} style={{width:'20px', height: '20px', color: 'red'}}/></a>
+                              </Link>
+                            </div>
+                          </td>
                         </tr>
                       ))
                     : null}

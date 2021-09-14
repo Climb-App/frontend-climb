@@ -10,7 +10,7 @@ import Insignias from "../createBadge";
 
 const EditInsignias = () => {
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Recompensas">
       <Form action="" method="POST">
         {" "}
         {/* onSubmit={PostBadges} */}

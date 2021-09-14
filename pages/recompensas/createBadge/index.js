@@ -77,7 +77,7 @@ const Insignias = () => {
   };
 
   return (
-    <MainLayoutComponent>
+    <MainLayoutComponent page="Recompensas">
       <Form action="" method="POST" onSubmit={PostBadges}>
         <h2>Nueva Insignia</h2>
         {/* Inputs */}
