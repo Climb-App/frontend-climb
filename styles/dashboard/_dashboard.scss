@@ -7,9 +7,32 @@
     line-height: 1.6;
 }
 
-.table-rewards{
-    padding: 15px;
+.divPadre{
+    display: flex;
+    flex-direction: column;
 }
+
+
+.cards-container{
+    display:flex;
+    justify-content: space-around;
+}
+
+
+.card-dashboard {
+    border-radius: 15px;
+    border-color: #ffffff;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px 5px #e3e3e3;
+}
+
+
+
+
+
+
+
+
 
 .contents-cards{
     display: flex;
@@ -22,12 +45,7 @@
     }
 }
 
-.card-dashboard {
-    border-radius: 15px;
-    border-color: #ffffff;
-    background-color: #ffffff;
-    box-shadow: 5px 5px 5px 5px #e3e3e3;
-}
+
 
 .card-title {
     color: #76A608;

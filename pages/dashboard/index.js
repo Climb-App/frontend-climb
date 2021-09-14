@@ -95,58 +95,46 @@ export default function Dashboard() {
   return (
     <>
       <MainLayoutComponent page="Dashboard">
-        <div className="contents-cards">
-          <Row xs={1} className="g-4">
-            <Col md={ 4 }>
-              <div style={{ position: "relative", width: "350px", height: "350px" }}>
-                <Card className="card-dashboard">
-                  <Card.Body>
-                    <Card.Title>Productividad</Card.Title>
-                    <Line data={data} options={options} />
-                  </Card.Body>
-                </Card>
-              </div>
-            </Col>
+        <div className="divPadre">
+          <div className="cards-container">
+           <Card className="card-dashboard">
+             <Card.Body>
+               <Card.Title>Productividad</Card.Title>
+               <Line data={data} options={options} />
+             </Card.Body>
+           </Card>
+            <Card className="card-dashboard ms-2 me-2">
+             <Card.Body>
+               <Card.Title>Tareas</Card.Title>
+               <Bar data={data2} options={options2} />
+             </Card.Body>
+           </Card>
+           <Card className="card-dashboard">
+             <Card.Body>
+               <Card.Title>Motivación</Card.Title>
+               <Doughnut data={data1} />
+             </Card.Body>
+           </Card>
+          </div>
 
-            <Col md={ 4 }>
-              <div style={{ position: "relative", width: "350px", height: "350px" }}>
-                <Card className="card-dashboard">
-                  <Card.Body>
-                    <Card.Title>Tareas</Card.Title>
-                    <Bar data={data2} options={options2} />
-                  </Card.Body>
-                </Card>
-              </div>
-            </Col>
-
-            <Col md={ 4 }>
-              <div style={{ position: "relative", width: "350px", height: "350px" }}>
-                <Card className="card-dashboard">
-                  <Card.Body>
-                    <Card.Title>Motivación</Card.Title>
-                    <Doughnut data={data1} />
-                  </Card.Body>
-                </Card>
-              </div>
-            </Col>
-          </Row>
-
-          <Table className="table-rewards" style={{ borderRadius: '5px' }} responsive>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Basic</td>
-                <td>Contiene Audifonos inalambricos</td>
-              </tr>
-            </tbody>
-          </Table>
+          <div className="mt-5">
+            <Table className="table-rewards" style={{ borderRadius: '5px' }} responsive>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Basic</td>
+                  <td>Contiene Audifonos inalambricos</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </div>
       </MainLayoutComponent>
     </>
