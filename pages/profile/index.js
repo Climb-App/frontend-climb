@@ -11,8 +11,7 @@ import { getToken } from "../../services/operationsTokens";
 
 export default function PerfilUsuario() {
   const User = useUser();
-  const UserData = useUserData(User);
-  const [UserPatch, setUserPatch] = useState(null);
+  const { UserData, mutate } = useUserData(User);
 
   // /////////////////////////
   const UpdateProfile = async function (e) {
@@ -57,7 +56,8 @@ export default function PerfilUsuario() {
           toast.success("Datos Modificados", {
             theme: "colored",
           });
-        setUserPatch(response.data);
+        // setUserPatch(response.data)
+        mutate(response.data);
         console.log(response.data);
         // location.reload();
         //router.push('/')
@@ -99,7 +99,8 @@ export default function PerfilUsuario() {
           toast.success("Datos Modificados", {
             theme: "colored",
           });
-        setUserPatch(response.data);
+        // setUserPatch(response.data)
+        mutate({ ...response.data });
         console.log(response.data);
         //router.push('/')
         //Handling Errors
@@ -115,11 +116,10 @@ export default function PerfilUsuario() {
 
   const RenderMember = () => (
     <>
-      <div className=" mt-4">
+      <div className="mt-4 ">
         <div className="TwoDivContent d-flex" style={{ width: "100%" }}>
           <div className="NombreDeUsuario d-flex" style={{ height: "50%" }}>
             <img
-              alt=""
               className="me-4"
               src={UserData?.avatar != "" ? UserData?.avatar : "/user.svg"}
               width="60px"
@@ -132,10 +132,10 @@ export default function PerfilUsuario() {
             {/* llenado dinamico */}
           </div>
           <div
-            className="InsigniaInfoUsuario d-flex  "
+            className="InsigniaInfoUsuario d-flex "
             style={{ height: "50%", marginLeft: "170px" }}
           >
-            <img alt="" src="/medalla1.svg" width="60px" height="60px" />
+            <img src="/medalla1.svg" width="60px" height="60px" />
             <div className="PuntosAcumulados ms-4">
               <p style={{ color: "020813" }}>Acumulados</p>
               <p>{UserData?.accumulated_points}</p>
@@ -148,7 +148,7 @@ export default function PerfilUsuario() {
         </div>
         <Form
           action=""
-          className=" mt-5 "
+          className="mt-5 "
           method=""
           style={{ width: "100%" }}
           onSubmit={UpdateProfile}
@@ -189,7 +189,7 @@ export default function PerfilUsuario() {
             />
             <label htmlFor="floatingInputCustom">Avatar</label>
           </Form.Floating>
-          <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-5">
+          <div className="mt-5 Botones d-flex justify-content-center w-100 me-5">
             <Button
               variant="success"
               type="submit"
@@ -220,11 +220,10 @@ export default function PerfilUsuario() {
 
   const RenderAdmin = () => (
     <>
-      <div className=" mt-4">
+      <div className="mt-4 ">
         <div className="TwoDivContent d-flex" style={{ width: "100%" }}>
           <div className="NombreDeUsuario d-flex" style={{ height: "50%" }}>
             <img
-              alt=""
               className="me-4"
               src={UserData?.avatar != "" ? UserData?.avatar : "/user.svg"}
               width="60px"
@@ -237,7 +236,7 @@ export default function PerfilUsuario() {
         </div>
         <Form
           action=""
-          className=" mt-5 "
+          className="mt-5 "
           method=""
           onSubmit={UpdateProfile}
           style={{ width: "100%" }}
@@ -289,7 +288,7 @@ export default function PerfilUsuario() {
             />
             <label htmlFor="floatingInputCustom">Avatar</label>
           </Form.Floating>
-          <div className="Botones d-flex  justify-content-center  mt-5 w-100 me-4">
+          <div className="mt-5 Botones d-flex justify-content-center w-100 me-4">
             <Button
               variant="success"
               type="submit"

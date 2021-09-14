@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
+import useUser from "../../../hooks/useUser";
 
 const Url = "api/v1/register/member";
 
 const Usuarios = () => {
+  const User = useUser();
   //   //   // Conexion
   const [post, setPost] = React.useState(null);
   //   // const router=useRouter()
@@ -59,7 +61,7 @@ const Usuarios = () => {
           email: emailValue.value,
           password: Password.value,
           avatar: avatarValue.value,
-          company: 1,
+          company: `${User?.[0]?.id}`,
           role: RoleEmpleado.value,
         },
         {
@@ -74,7 +76,7 @@ const Usuarios = () => {
         });
       setPost(response.data);
       console.log(response.data);
-      router.push("/dashboard");
+      // router.push("/dashboard");
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");
