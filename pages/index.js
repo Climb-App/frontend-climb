@@ -14,7 +14,9 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!User | User){
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 3000)
     }
   }, [User])
 
