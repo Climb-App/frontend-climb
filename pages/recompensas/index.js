@@ -75,17 +75,17 @@ export default function Recompensas() {
               </thead>
               <tbody>
     
-              {/* {
+              {
               badges? 
               badges.map(badge=>(
                   <tr key={badge.id}>
                     <td>{badge.name}</td>
                     <td>{badge.description}</td>
-                    <td>{}</td>
+                    <td>{`${badge.points_needed_min} - ${badge.points_needed_max}`}</td> 
                     <td></td>
                   </tr>
                 )) : null 
-              }  */}
+              } 
 
               </tbody>
             </Table>
