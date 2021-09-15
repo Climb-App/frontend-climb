@@ -1,28 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import MainLayoutComponent from "../../../../../../../components/MainLayout";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import UserMembers from "../../../../../../../hooks/useUsersMembers";
-// import { toast } from "react-toastify";
-// import axios from "axios";
-// import { useRouter } from "next/router";
-// import { BASE_URL } from "../../../services/api";
-// import { getToken } from "../../../services/operationsTokens";
-// import useUser from "../../../hooks/useUser";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { BASE_URL } from "../../../../../../../services/api";
+import { getToken } from "../../../../../../../services/operationsTokens";
 
 const Url = "api/v1/tasks/";
 const animatedComponents = makeAnimated();
 
 export default function CrearTasks() {
+  const router = useRouter();
+  const { id_goal } = router.query;
   const Users = UserMembers();
-  for (const x in Users) {
-    console.log(x);
+  const [UsuariosTarea, setUsuariosTarea] = useState(null);
+
+  const cancel = () => {
+    router.push("/tasks");
+  };
+  //Conexion Task Post
+  async function PostGoals(e) {
+    const form = e.target;
+    e.preventDefault();
+    //     //Set Values inputs
+    console.log(form.elements);
+    const {
+      nameValue,
+      descriptionValue,
+      Fecha,
+      PuntosAsignados,
+      EstadoTarea,
+      IntegrantesTarea,
+    } = form.elements;
+    console.log(
+      nameValue,
+      descriptionValue,
+      Fecha,
+      PuntosAsignados,
+      EstadoTarea
+    );
+    console.log(
+      nameValue.value,
+      descriptionValue.value,
+      Fecha.value,
+      PuntosAsignados.value,
+      EstadoTarea.value,
+      id_goal,
+      UsuariosTarea
+    );
+    //Connection
+    try {
+      const response = await axios.post(
+        `${BASE_URL}${Url}`,
+        {
+          name: nameValue.value,
+          description: descriptionValue.value,
+          deadline: Fecha.value,
+          points_value: PuntosAsignados.value,
+          status: EstadoTarea.value,
+          goal: id_goal,
+          user: UsuariosTarea,
+        },
+        {
+          headers: {
+            Authorization: getToken(),
+          },
+        }
+      );
+      if (response)
+        toast.success("Datos enviados", {
+          theme: "colored",
+        });
+
+      console.log(response.data);
+      //   router.push("/dashboard");
+      //Handling Errors
+    } catch (error) {
+      toast.error("Error al enviar los datos");
+      console.error(error);
+      if (error.response.status >= 402 && error.response.status <= 500) {
+        console.log("Error");
+      }
+    }
   }
+
   return (
     <MainLayoutComponent page="Workspace">
-      <Form action="" method="POST">
-        {/*onSubmit={PostBadges} */}
+      <Form action="" method="POST" onSubmit={PostGoals}>
         <h2>Nueva Tarea</h2>
         {/* Inputs */}
         <div className="Formulario mt-4 d-flex justify-content-between flex-wrap ">
@@ -47,9 +115,14 @@ export default function CrearTasks() {
               <label htmlFor="">
                 <p className="text-center">Estado de progreso </p>
               </label>
-              <Form.Select className="mb-3 input" id="RoleEmpleado" size="sm">
-                <option selected>Estado de tarea...</option>
-                <option value="To do">To Do</option>
+              <Form.Select
+                defaultValue={0}
+                className="mb-3 input"
+                id="EstadoTarea"
+                size="sm"
+              >
+                <option>Estado de tarea...</option>
+                <option value="To Do">To Do</option>
                 <option value="Done">Done</option>
                 <option value="Delay">Delay</option>
                 <option value="Refused">Refused</option>
@@ -65,9 +138,8 @@ export default function CrearTasks() {
                 <input
                   className="input"
                   type="date"
-                  id="start"
+                  id="Fecha"
                   name="trip-start"
-                  value="2021-07-22"
                   min="2021-01-01"
                   max="2025-12-31"
                 ></input>
@@ -76,20 +148,26 @@ export default function CrearTasks() {
           </div>
           <div className="Second Column ">
             <Form.Floating className="mb-3 input">
-              <Form.Control id="PuntosMaximos" type="text" placeholder="1000" />
+              <Form.Control
+                id="PuntosAsignados"
+                type="text"
+                placeholder="1000"
+              />
               <label htmlFor="floatingInputCustom">Puntos asignados</label>
             </Form.Floating>
 
             {/* Select de los Usuarios */}
             <label className="mb-2">Integrantes de esta Tarea</label>
             <Select
-              id="IntegrantesTarea"
+              instanceId="Usuarios"
+              onChange={(e) => setUsuariosTarea(e.value)}
               className="input "
               closeMenuOnSelect={false}
               components={animatedComponents}
-              defaultValue={{ value: "Cafe", label: "Cafesito" }}
-              isMulti
-              options={[{ value: "Cafe", label: "Cafesito" }]}
+              options={Users?.map((User) => ({
+                value: User?.id,
+                label: User?.email,
+              }))}
             />
           </div>
 
@@ -104,7 +182,7 @@ export default function CrearTasks() {
             <Button
               variant="danger"
               style={{ marginLeft: "50px" }}
-              //   onClick={cancel}
+              onClick={cancel}
             >
               Cancelar
             </Button>

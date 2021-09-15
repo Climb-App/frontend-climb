@@ -11,9 +11,8 @@ import { getToken } from "../../../../../services/operationsTokens";
 const Url = "api/v1/goals/";
 
 const CrearGoals = () => {
-
-  const router = useRouter()
-  const { id_workspace } = router.query
+  const router = useRouter();
+  const { id_workspace } = router.query;
 
   const cancel = () => {
     router.push("/recompensas");
@@ -33,7 +32,6 @@ const CrearGoals = () => {
     console.log(nameValue.value, descripcion.value, Fecha.value);
     //Connection
     try {
-      // console.log(`${Workspace?.[0]?.id}`);
       const response = await axios.post(
         `${BASE_URL}${Url}`,
         {
