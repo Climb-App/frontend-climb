@@ -8,18 +8,16 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
-import useUser from "../../../hooks/useUser";
-import useUserData from "../../../hooks/useUserData";
+
+import UserMembers from "../../../hooks/useUsersMembers";
 
 const Url = "api/v1/workspaces/";
 const animatedComponents = makeAnimated();
 
 export default function CreateWorkspace() {
   const router = useRouter();
-  const User = useUser();
-  const { UserData } = useUserData(User);
-  const [UsuariosWorkspace, setUsuariosWorkspace] = useState(null);
-  console.log(UserData);
+  const Users = UserMembers();
+  const [UsuariosMember, setUsuariosMember] = useState(null);
 
   const cancel = () => {
     router.push("/dashboard");
@@ -40,7 +38,7 @@ export default function CreateWorkspace() {
         {
           name: nameValue.value,
           description: descriptionValue.value,
-          user: [UserData.id],
+          user: UsuariosMember?.map((usuario) => usuario.value),
         },
         {
           headers: {
@@ -89,18 +87,18 @@ export default function CreateWorkspace() {
               />
             </Form.Group>
             {/* Select de los Usuarios */}
-            <label className="mb-2">Integrantes de esta Workspace</label>
+            <label className="mb-2">Usuarios asignados</label>
             <Select
               instanceId="Usuarios"
-              onChange={(e) => setUsuariosWorkspace(e.value)}
+              onChange={(e) => setUsuariosMember(e)}
               className="input "
+              isMulti
               closeMenuOnSelect={false}
               components={animatedComponents}
-              // options={UserData?.map((User) => ({
-              //   value: User?.id,
-              //   label: User?.email,
-              // }))}
-              options={[{ value: UserData?.id, label: UserData?.email }]}
+              options={Users?.map((User) => ({
+                value: User?.id,
+                label: User?.email,
+              }))}
             />
           </div>
 
