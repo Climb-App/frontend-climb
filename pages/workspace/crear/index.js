@@ -10,6 +10,7 @@ import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
 
 import UserMembers from "../../../hooks/useUsersMembers";
+import useUser from "../../../hooks/useUser";
 
 const Url = "api/v1/workspaces/";
 const animatedComponents = makeAnimated();
@@ -17,6 +18,7 @@ const animatedComponents = makeAnimated();
 export default function CreateWorkspace() {
   const router = useRouter();
   const Users = UserMembers();
+  const UserAdmin = useUser();
   const [UsuariosMember, setUsuariosMember] = useState(null);
 
   const cancel = () => {
@@ -32,13 +34,17 @@ export default function CreateWorkspace() {
     console.log(nameValue, descriptionValue);
     console.log(nameValue.value, descriptionValue.value);
     //Connection
+    const user = [
+      ...UsuariosMember?.map((usuario) => usuario.value),
+      UserAdmin[0].id,
+    ];
     try {
       const response = await axios.post(
         `${BASE_URL}${Url}`,
         {
           name: nameValue.value,
           description: descriptionValue.value,
-          user: UsuariosMember?.map((usuario) => usuario.value),
+          user,
         },
         {
           headers: {
