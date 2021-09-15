@@ -39,7 +39,7 @@ export default function Workspace() {
     <>
       <MainLayoutComponent page="Workspace">
         <div className="context-workspace">
-          <Title classStyle="headTitle">{data?data.name:null}</Title>
+          <Title classStyle="headTitle">{data ? data.name : null}</Title>
           <div className="header-workspace">
             <div>
               <h4 className="headSubtitle">Objetivos</h4>
@@ -51,50 +51,78 @@ export default function Workspace() {
               <button className="btn btn-info">Detalle</button>
             </div>
           </div>
-            <Card bsPrefix="card-workspace">
+          <Card bsPrefix="card-workspace">
             <Card.Body>
-            <Table className="table-workspace" size="sm">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Descripcion</th>
-                  <th>Fecha Limite</th>
-                  <th>Progreso</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-              {
-              data? 
-                data.goals.map(goal=>(
-                  <tr key={goal.id}>
-                    <td>{goal.name}</td>
-                    <td>{goal.description}</td>
-                    <td>{goal.deadline}</td>
-                    <td>Barra de Progreso</td>
-                    <td>
-                      <div className="buttonCrud">
-                      <Link href={`/workspace/${id_workspace}/goals/${goal.id}`}>
-                        <a><FontAwesomeIcon icon={faEye} style={{width:'30px', height: '30px', color: 'green'}}/></a>
-                      </Link>
-                      <Link href={`/workspace/${id_workspace}/goals/crear/?id=${goal.id}`}>
-                        <a><FontAwesomeIcon icon={faEdit} style={{width:'25px', height: '25px', color: 'blue'}}/></a>
-                      </Link>
-                      <Link href="/">
-                        <a><FontAwesomeIcon icon={faTrash} style={{width:'20px', height: '20px', color: 'red'}}/></a>
-                      </Link>
-                      </div>
-                    </td>
+              <Table className="table-workspace" size="sm">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha Limite</th>
+                    <th>Progreso</th>
+                    <th>Acciones</th>
                   </tr>
-                )) : null 
-              } 
-
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {data
+                    ? data.goals.map((goal) => (
+                        <tr key={goal.id}>
+                          <td>{goal.name}</td>
+                          <td>{goal.description}</td>
+                          <td>{goal.deadline}</td>
+                          <td>Barra de Progreso</td>
+                          <td>
+                            <div className="buttonCrud">
+                              <Link
+                                href={`/workspace/${id_workspace}/goals/${goal.id}`}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faEye}
+                                    style={{
+                                      width: "30px",
+                                      height: "30px",
+                                      color: "green",
+                                    }}
+                                  />
+                                </a>
+                              </Link>
+                              <Link
+                                href={`/workspace/${id_workspace}/goals/crear/?id=${goal.id}`}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faEdit}
+                                    style={{
+                                      width: "25px",
+                                      height: "25px",
+                                      color: "blue",
+                                    }}
+                                  />
+                                </a>
+                              </Link>
+                              <Link href="/">
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      width: "20px",
+                                      height: "20px",
+                                      color: "red",
+                                    }}
+                                  />
+                                </a>
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    : null}
+                </tbody>
+              </Table>
             </Card.Body>
-            </Card>
-            </div>
+          </Card>
+        </div>
       </MainLayoutComponent>
     </>
   );
