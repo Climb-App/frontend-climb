@@ -104,7 +104,7 @@ export default function CreateWorkspace() {
             />
           </div>
 
-          <div className="Botones d-flex  justify-content-end mt-3 w-100">
+          <div className="Botones d-flex  justify-content-end mt-5 w-100">
             <Button
               variant="success"
               type="submit"
