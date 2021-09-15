@@ -66,11 +66,11 @@ export default function CreateWorkspace() {
   return (
     <MainLayoutComponent page="Workspace">
       <Form action="" method="POST" onSubmit={PostWorkspace}>
-        <h2>Crear Workspace</h2>
+        <h2 className="headTitle">Crear Workspace</h2>
         {/* Inputs */}
         <div className="Formulario mt-4 d-flex justify-content-between flex-wrap ">
           <div className="First Column ">
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="nameValue"
                 type="text"
@@ -78,7 +78,10 @@ export default function CreateWorkspace() {
               />
               <label htmlFor="floatingInputCustom">Nombre de Workspace</label>
             </Form.Floating>
-            <Form.Group className="mb-3 input" controlId="descriptionValue">
+            <Form.Group
+              className="mb-3 input texto"
+              controlId="descriptionValue"
+            >
               <Form.Label>Descripcion de Workspace</Form.Label>
               <Form.Control
                 as="textarea"
@@ -87,11 +90,11 @@ export default function CreateWorkspace() {
               />
             </Form.Group>
             {/* Select de los Usuarios */}
-            <label className="mb-2">Usuarios asignados</label>
+            <label className="mb-2 texto">Usuarios asignados</label>
             <Select
               instanceId="Usuarios"
               onChange={(e) => setUsuariosMember(e)}
-              className="input "
+              className="input texto "
               isMulti
               closeMenuOnSelect={false}
               components={animatedComponents}
@@ -104,6 +107,7 @@ export default function CreateWorkspace() {
 
           <div className="Botones d-flex  justify-content-end mt-5 w-100">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -111,6 +115,7 @@ export default function CreateWorkspace() {
               Crear
             </Button>
             <Button
+              className="texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
               onClick={cancel}

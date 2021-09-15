@@ -79,11 +79,11 @@ const Insignias = () => {
   return (
     <MainLayoutComponent>
       <Form action="" method="POST" onSubmit={PostBadges}>
-        <h2>Nueva Insignia</h2>
+        <h2 className="headTitle title">Nueva Insignia</h2>
         {/* Inputs */}
-        <div className="Formulario d-flex justify-content-between flex-wrap ">
+        <div className="Formulario d-flex justify-content-between flex-wrap mt-5 ">
           <div className="First Column " style={{ width: "40%" }}>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="nameValue"
                 type="text"
@@ -91,7 +91,10 @@ const Insignias = () => {
               />
               <label htmlFor="floatingInputCustom">Nombre de Insignia</label>
             </Form.Floating>
-            <Form.Group className="mb-3 input" controlId="descriptionValue">
+            <Form.Group
+              className="mb-3 input texto"
+              controlId="descriptionValue"
+            >
               <Form.Label>Descripcion de Insignia</Form.Label>
               <Form.Control
                 as="textarea"
@@ -99,7 +102,7 @@ const Insignias = () => {
                 placeholder="Developer Jr en proceso de ser"
               />
             </Form.Group>
-            <Form.Group className="mb-3 input" controlId="UrlImage">
+            <Form.Group className="mb-3 input texto" controlId="UrlImage">
               <Form.Label>Url de Insignia</Form.Label>
               <Form.Control
                 as="textarea"
@@ -109,18 +112,19 @@ const Insignias = () => {
             </Form.Group>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control id="PuntosMaximos" type="text" placeholder="1000" />
               <label htmlFor="floatingInputCustom">Puntos maximos</label>
             </Form.Floating>
 
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control id="PuntosMinimos" type="text" placeholder="1500" />
               <label htmlFor="floatingInputCustom">Puntos minimos</label>
             </Form.Floating>
           </div>
           <div className="Botones d-flex  justify-content-center mt-3 w-100">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -128,6 +132,7 @@ const Insignias = () => {
               Crear
             </Button>
             <Button
+              className="texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
               onClick={cancel}

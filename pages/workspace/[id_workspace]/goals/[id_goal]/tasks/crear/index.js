@@ -91,11 +91,11 @@ export default function CrearTasks() {
   return (
     <MainLayoutComponent page="Workspace">
       <Form action="" method="POST" onSubmit={PostGoals}>
-        <h2>Nueva Tarea</h2>
+        <h2 className="headTitle">Nueva Tarea</h2>
         {/* Inputs */}
         <div className="Formulario mt-4 d-flex justify-content-between flex-wrap ">
           <div className="First Column ">
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="nameValue"
                 type="text"
@@ -103,7 +103,10 @@ export default function CrearTasks() {
               />
               <label htmlFor="floatingInputCustom">Nombre de Tarea</label>
             </Form.Floating>
-            <Form.Group className="mb-3 input" controlId="descriptionValue">
+            <Form.Group
+              className="mb-3 input texto"
+              controlId="descriptionValue"
+            >
               <Form.Label>Descripcion de Tarea</Form.Label>
               <Form.Control
                 as="textarea"
@@ -113,11 +116,11 @@ export default function CrearTasks() {
             </Form.Group>
             <div className="select justify justify-content-center mt-3 w-100">
               <label htmlFor="">
-                <p className="text-center">Estado de progreso </p>
+                <p className="text-center texto">Estado de progreso </p>
               </label>
               <Form.Select
                 defaultValue={0}
-                className="mb-3 input"
+                className="mb-3 input texto"
                 id="EstadoTarea"
                 size="sm"
               >
@@ -133,10 +136,10 @@ export default function CrearTasks() {
                   htmlFor="start"
                   style={{ width: "40%" }}
                 >
-                  <p>Fecha de Vencimiento: </p>
+                  <p className="texto">Fecha de Vencimiento: </p>
                 </label>
                 <input
-                  className="input"
+                  className="input texto"
                   type="date"
                   id="Fecha"
                   name="trip-start"
@@ -147,7 +150,7 @@ export default function CrearTasks() {
             </div>
           </div>
           <div className="Second Column ">
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="PuntosAsignados"
                 type="text"
@@ -157,11 +160,11 @@ export default function CrearTasks() {
             </Form.Floating>
 
             {/* Select de los Usuarios */}
-            <label className="mb-2">Integrantes de esta Tarea</label>
+            <label className="mb-2 texto">Integrantes de esta Tarea</label>
             <Select
               instanceId="Usuarios"
               onChange={(e) => setUsuariosTarea(e.value)}
-              className="input "
+              className="input texto "
               closeMenuOnSelect={false}
               components={animatedComponents}
               options={Users?.map((User) => ({
@@ -171,7 +174,7 @@ export default function CrearTasks() {
             />
           </div>
 
-          <div className="Botones d-flex  justify-content-end mt-3 w-100">
+          <div className="Botones d-flex  justify-content-end mt-3 w-100 texto">
             <Button
               variant="success"
               type="submit"

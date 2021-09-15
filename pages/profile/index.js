@@ -126,7 +126,7 @@ export default function PerfilUsuario() {
               height="60px"
             />
 
-            <h3>
+            <h3 className="textoTitulo">
               {UserData?.first_name} ,{UserData?.last_name} Developer Jr.
             </h3>
             {/* llenado dinamico */}
@@ -137,12 +137,16 @@ export default function PerfilUsuario() {
           >
             <img src="/medalla1.svg" width="60px" height="60px" />
             <div className="PuntosAcumulados ms-4">
-              <p style={{ color: "020813" }}>Acumulados</p>
-              <p>{UserData?.accumulated_points}</p>
+              <p className="textoTitulo" style={{ color: "020813" }}>
+                Acumulados
+              </p>
+              <p className="textoTitulo">{UserData?.accumulated_points}</p>
               {/* insertar puntos de usuario*/}
             </div>
             <div className="PuntosDisponibles ms-4">
-              <p style={{ color: "#003AA6" }}>{UserData?.available_points}</p>
+              <p className="textoTitulo" style={{ color: "#003AA6" }}>
+                {UserData?.available_points}
+              </p>
             </div>
           </div>
         </div>
@@ -156,41 +160,54 @@ export default function PerfilUsuario() {
           <Form.Floating className="mb-3 input">
             <Form.Control
               id="FirstnameValue"
+              className="texto"
               type="text"
               placeholder=""
               defaultValue={UserData?.first_name}
             />
-            <label htmlFor="floatingInputCustom">Nombre</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Nombre
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
               id="LastnameValue"
+              className="texto"
               type="text"
               placeholder=""
               defaultValue={UserData?.last_name}
             />
-            <label htmlFor="floatingInputCustom">Apellido</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Apellido
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
               id="emailValue"
+              className="texto"
               type="email"
               placeholder="Email"
               defaultValue={UserData?.email}
             />
-            <label htmlFor="floatingInputCustom">Email</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Email
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
               id="avatarValue"
+              className="texto"
               type="text"
               placeholder="avatar"
               defaultValue={UserData?.avatar}
             />
-            <label htmlFor="floatingInputCustom">Avatar</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Avatar
+            </label>
           </Form.Floating>
           <div className="mt-5 Botones d-flex justify-content-center w-100 me-5">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -198,7 +215,7 @@ export default function PerfilUsuario() {
               Editar Campos
             </Button>
             <Button
-              className="me-5"
+              className="me-5 texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
             >
@@ -206,7 +223,7 @@ export default function PerfilUsuario() {
             </Button>
             <Button
               variant="button"
-              className="btn btn-primary"
+              className="btn btn-primary texto"
               style={{ marginLeft: "50px" }}
               onClick={ResetPass}
             >
@@ -230,7 +247,7 @@ export default function PerfilUsuario() {
               height="60px"
             />
 
-            <h3>{UserData?.name}</h3>
+            <h3 className="textoTitulo">{UserData?.name}</h3>
             {/* llenado dinamico */}
           </div>
         </div>
@@ -245,51 +262,67 @@ export default function PerfilUsuario() {
           <Form.Floating className="mb-3 input">
             <Form.Control
               id="nameValue"
+              className="texto"
               type="text"
               placeholder="Nombre"
               defaultValue={UserData?.name}
             />
-            <label htmlFor="floatingInputCustom">Nombre</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Nombre
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
+              className="texto"
               id="RFCValue"
               type="text"
               placeholder="RFC"
               defaultValue={UserData?.rfc}
             />
-            <label htmlFor="floatingInputCustom">RFC</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              RFC
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
+              className="texto"
               id="addressValue"
               type="text"
               placeholder="Direccion"
               defaultValue={UserData?.address}
             />
-            <label htmlFor="floatingInputCustom">Address</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Address
+            </label>
           </Form.Floating>
 
           <Form.Floating className="mb-3 input">
             <Form.Control
+              className="texto"
               id="email"
               type="email"
               placeholder="Email"
               defaultValue={UserData?.email}
             />
-            <label htmlFor="floatingInputCustom">Email</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Email
+            </label>
           </Form.Floating>
           <Form.Floating className="mb-3 input">
             <Form.Control
+              className="texto"
               id="avatarValue"
               type="text"
               placeholder="avatar"
               defaultValue={UserData?.avatar}
             />
-            <label htmlFor="floatingInputCustom">Avatar</label>
+            <label className="texto" htmlFor="floatingInputCustom">
+              Avatar
+            </label>
           </Form.Floating>
           <div className="mt-5 Botones d-flex justify-content-center w-100 me-4">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -297,7 +330,7 @@ export default function PerfilUsuario() {
               Editar Campos
             </Button>
             <Button
-              className="me-5"
+              className="me-5 texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
             >
@@ -305,7 +338,7 @@ export default function PerfilUsuario() {
             </Button>
             <Button
               variant="button"
-              className="btn btn-primary"
+              className="btn btn-primary texto"
               style={{ marginLeft: "50px" }}
               onClick={ResetPass}
             >
