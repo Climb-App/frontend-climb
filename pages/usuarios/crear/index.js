@@ -6,13 +6,12 @@ import axios from "axios";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
 import useUser from "../../../hooks/useUser";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const Url = "api/v1/register/member";
 
 const Usuarios = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   const User = useUser();
   //   //   // Conexion
   const [post, setPost] = React.useState(null);
@@ -90,30 +89,34 @@ const Usuarios = () => {
     }
   }
 
-  const cancel=()=>{
-    router.push('/usuarios/')
-  }
+  const cancel = () => {
+    router.push("/usuarios/");
+  };
 
   return (
     <MainLayoutComponent page="Usuarios">
       <Form action="" method="POST" onSubmit={PostUser}>
-        <h2>Nuevo Usuario</h2>
+        <h2 className="headTitle">Nuevo Usuario</h2>
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap mt-4 ">
           <div className="First Column " style={{ width: "40%" }}>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control id="nameValue" type="text" placeholder="Pablito" />
-              <label htmlFor="floatingInputCustom">Nombre</label>
+              <label className="texto" htmlFor="floatingInputCustom">
+                Nombre
+              </label>
             </Form.Floating>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="emailValue"
                 type="email"
                 placeholder="nombre@ejemplo.com"
               />
-              <label htmlFor="floatingInputCustom">Email address</label>
+              <label className="texto" htmlFor="floatingInputCustom">
+                Email address
+              </label>
             </Form.Floating>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="Password"
                 type="password"
@@ -123,7 +126,7 @@ const Usuarios = () => {
             </Form.Floating>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="LastNameValue"
                 type="text"
@@ -132,15 +135,7 @@ const Usuarios = () => {
               <label htmlFor="floatingInputCustom">Apellido</label>
             </Form.Floating>
 
-            <Form.Floating className="mb-3 input">
-              <Form.Control
-                id="ConfirmPassword"
-                type="password"
-                placeholder="****"
-              />
-              <label htmlFor="floatingPasswordCustom"> Confirm Password</label>
-            </Form.Floating>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="avatarValue"
                 type="text"
@@ -149,9 +144,21 @@ const Usuarios = () => {
               />
               <label htmlFor="floatingInputCustom">Avatar</label>
             </Form.Floating>
+            <Form.Floating className="mb-3 input texto">
+              <Form.Control
+                id="ConfirmPassword"
+                type="password"
+                placeholder="****"
+              />
+              <label htmlFor="floatingPasswordCustom"> Confirm Password</label>
+            </Form.Floating>
           </div>
           <div className="select justify justify-content-center mt-3 w-100">
-            <Form.Select className="mb-3 input" id="RoleEmpleado" size="sm">
+            <Form.Select
+              className="mb-3 input texto"
+              id="RoleEmpleado"
+              size="sm"
+            >
               <option selected>Elige el role que tendra el usuario...</option>
               <option value="2">Lider</option>
               <option value="3">Miembro</option>
@@ -159,6 +166,7 @@ const Usuarios = () => {
           </div>
           <div className="Botones d-flex  justify-content-center mr-4 mt-3 w-100">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -166,7 +174,7 @@ const Usuarios = () => {
               Crear
             </Button>
             <Button
-              className=""
+              className="texto"
               variant="danger"
               onClick={cancel}
               style={{ marginLeft: "50px" }}

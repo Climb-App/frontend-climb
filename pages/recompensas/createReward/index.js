@@ -66,20 +66,27 @@ const Rewards = () => {
   return (
     <MainLayoutComponent page="Recompensas">
       <Form action="" method="POST" onSubmit={PostRewards}>
-        <h2>Nueva Recompensa</h2>
+        <h2 className="headTitle">Nueva Recompensa</h2>
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap mt-5 ">
           <div className="First Column " style={{ width: "40%" }}>
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto ">
               <Form.Control
                 id="nameValue"
                 type="text"
                 placeholder="Viaje Todo pagado"
               />
-              <label htmlFor="floatingInputCustom">Nombre de Recompensa</label>
+              <label className="texto" htmlFor="floatingInputCustom">
+                Nombre de Recompensa
+              </label>
             </Form.Floating>
-            <Form.Group className="mb-3 input " controlId="descriptionValue">
-              <Form.Label>Descripcion de Recompensa</Form.Label>
+            <Form.Group
+              className="mb-3 input texto "
+              controlId="descriptionValue"
+            >
+              <Form.Label className="texto">
+                Descripcion de Recompensa
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -88,13 +95,15 @@ const Rewards = () => {
             </Form.Group>
           </div>
           <div className="Second Column " style={{ width: "40%" }}>
-            <Form.Floating className=" input">
+            <Form.Floating className=" input texto">
               <Form.Control id="PointsValue" type="text" placeholder="1000" />
-              <label htmlFor="floatingInputCustom">Puntos necesitados</label>
+              <label className="texto" htmlFor="floatingInputCustom">
+                Puntos necesitados
+              </label>
             </Form.Floating>
             <br />
             {/* Imagen Reward */}
-            <Form.Group className=" input " controlId="UrlImage">
+            <Form.Group className=" input  texto" controlId="UrlImage">
               <Form.Label>Url Image</Form.Label>
               <Form.Control
                 as="textarea"
@@ -105,6 +114,7 @@ const Rewards = () => {
           </div>
           <div className="Botones d-flex  justify-content-center mt-5 w-100">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -112,6 +122,7 @@ const Rewards = () => {
               Crear
             </Button>
             <Button
+              className="texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
               onClick={cancel}

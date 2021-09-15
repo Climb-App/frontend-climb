@@ -11,9 +11,8 @@ import { getToken } from "../../../../../services/operationsTokens";
 const Url = "api/v1/goals/";
 
 const CrearGoals = () => {
-
-  const router = useRouter()
-  const { id_workspace } = router.query
+  const router = useRouter();
+  const { id_workspace } = router.query;
 
   const cancel = () => {
     router.push("/recompensas");
@@ -33,7 +32,6 @@ const CrearGoals = () => {
     console.log(nameValue.value, descripcion.value, Fecha.value);
     //Connection
     try {
-      // console.log(`${Workspace?.[0]?.id}`);
       const response = await axios.post(
         `${BASE_URL}${Url}`,
         {
@@ -67,14 +65,14 @@ const CrearGoals = () => {
   return (
     <MainLayoutComponent page="Workspace">
       <Form action="" method="POST" onSubmit={PostGoals}>
-        <h2>Crear Objetivo</h2>
+        <h2 className="headTitle">Crear Objetivo</h2>
         {/* Inputs */}
-        <div className="Formulario d-flex justify-content-between flex-wrap ">
+        <div className="Formulario d-flex justify-content-between flex-wrap mt-5 ">
           <div
             className="First Column "
             style={{ width: "40%", display: "contents" }}
           >
-            <Form.Floating className="mb-3 input">
+            <Form.Floating className="mb-3 input texto">
               <Form.Control
                 id="nameValue"
                 type="text"
@@ -82,7 +80,10 @@ const CrearGoals = () => {
               />
               <label htmlFor="floatingInputCustom">Nombre de Objetivo</label>
             </Form.Floating>
-            <Form.Group className="mb-3 mt-3 input" controlId="descripcion">
+            <Form.Group
+              className="mb-3 mt-3 input texto"
+              controlId="descripcion"
+            >
               <Form.Label>Descripcion</Form.Label>
               <Form.Control
                 as="textarea"
@@ -97,10 +98,10 @@ const CrearGoals = () => {
               htmlFor="start"
               style={{ width: "80%" }}
             >
-              <h3>Fecha de Vencimiento: </h3>
+              <h3 className="texto">Fecha de Vencimiento: </h3>
             </label>
             <input
-              className="input"
+              className="input texto"
               type="date"
               id="Fecha"
               name="trip-start"
@@ -110,6 +111,7 @@ const CrearGoals = () => {
           </div>
           <div className="Botones d-flex  justify-content-center mt-3 w-100">
             <Button
+              className="texto"
               variant="success"
               type="submit"
               style={{ marginRight: "50px" }}
@@ -117,6 +119,7 @@ const CrearGoals = () => {
               Crear
             </Button>
             <Button
+              className="texto"
               variant="danger"
               style={{ marginLeft: "50px" }}
               onClick={cancel}
