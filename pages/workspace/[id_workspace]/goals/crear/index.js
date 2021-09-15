@@ -109,7 +109,7 @@ const CrearGoals = () => {
               max="2025-12-31"
             ></input>
           </div>
-          <div className="Botones d-flex  justify-content-center mt-3 w-100">
+          <div className="Botones d-flex  justify-content-end mt-3 w-100">
             <Button
               className="texto"
               variant="success"

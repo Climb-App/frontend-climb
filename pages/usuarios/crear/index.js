@@ -153,7 +153,7 @@ const Usuarios = () => {
               <label htmlFor="floatingPasswordCustom"> Confirm Password</label>
             </Form.Floating>
           </div>
-          <div className="select justify justify-content-center mt-3 w-100">
+          <div className="select justify justify-content-end mt-3 w-100">
             <Form.Select
               className="mb-3 input texto"
               id="RoleEmpleado"
@@ -164,7 +164,7 @@ const Usuarios = () => {
               <option value="3">Miembro</option>
             </Form.Select>
           </div>
-          <div className="Botones d-flex  justify-content-center mr-4 mt-3 w-100">
+          <div className="Botones d-flex  justify-content-end mr-4 mt-3 w-100">
             <Button
               className="texto"
               variant="success"
