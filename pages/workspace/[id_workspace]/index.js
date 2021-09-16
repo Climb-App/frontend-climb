@@ -26,6 +26,85 @@ export default function Workspace() {
     }
   }, [User, data]);
 
+  const RenderMember = ({ user }) => {
+    const {
+      accumulated_points,
+      available_points,
+      avatar,
+      company,
+      email,
+      first_name,
+      id,
+      last_name,
+      role,
+    } = user;
+    if (role != 3) {
+      return null;
+    }
+    return (
+      <>
+        <div className="IntegranteX d-flex flex-column align-items-center">
+          {console.log(user)}
+          <img
+            className=" mb-2 rounded-circle"
+            src={avatar != "" ? avatar : "/user.svg"}
+            width="60px"
+            height="60px"
+          />
+          <label className="texto">{email}</label>
+          <label className="texto">
+            {user.role === 1
+              ? "Administrador"
+              : user.role === 2
+              ? "Lider"
+              : user.role == 3
+              ? "Miembro"
+              : null}
+          </label>
+        </div>
+      </>
+    );
+  };
+
+  const RenderLider = ({ user }) => {
+    const {
+      accumulated_points,
+      available_points,
+      avatar,
+      company,
+      email,
+      first_name,
+      id,
+      last_name,
+      role,
+    } = user;
+    if (role != 2) {
+      return null;
+    }
+    return (
+      <>
+        <div className="Lider d-flex flex-column align-items-center">
+          <img
+            className=" mb-2 rounded-circle"
+            src={avatar != "" ? avatar : "/user.svg"}
+            width="60px"
+            height="60px"
+          />
+          <label className="texto">{email}</label>
+          <label className="texto">
+            {user.role === 1
+              ? "Administrador"
+              : user.role === 2
+              ? "Lider"
+              : user.role == 3
+              ? "Miembro"
+              : null}
+          </label>
+        </div>
+      </>
+    );
+  };
+
   if (loading) {
     return <Loading />;
   } else {
@@ -129,56 +208,19 @@ export default function Workspace() {
                     Crear
                   </Button>
                 </div>
-
-                <Card.Body>
-                  <div className="Lider d-flex flex-column align-items-center">
-                    <img
-                      className=" mb-2 rounded-circle"
-                      src="/user.svg"
-                      // {
-                      //   UserData?.avatar != ""
-                      //     ? UserData?.avatar
-                      //     : "/user.svg"
-                      // }
-                      width="60px"
-                      height="60px"
-                    />
-                    <label className="texto">Aqui va el nombre</label>
-                    <label className="texto">Aqui va el role</label>
+                <div className="DivPadreLiderEquipo">
+                  <div className="SeparadorPadres d-flex justify-content-around flex-wrap ">
+                    {data?.user.map((user) => (
+                      <RenderLider user={user}></RenderLider>
+                    ))}
                   </div>
-                  <div className="DivPadreIntegrantesEquipo">
-                    <div className="SeparadorIntegrantes d-flex justify-content-between ">
-                      <div className="IntegranteX d-flex flex-column align-items-center">
-                        <img
-                          className=" mb-2 rounded-circle"
-                          src="/user.svg"
-                          // {
-                          //   UserData?.avatar != ""
-                          //     ? UserData?.avatar
-                          //     : "/user.svg"
-                          // }
-                          width="60px"
-                          height="60px"
-                        />
-                        <label className="texto">Aqui va el nombre</label>
-                        <label className="texto">Aqui va el role</label>
-                      </div>
-
-                      <div className=" IntegranteX d-flex flex-column align-items-center">
-                        <img
-                          className=" mb-2 rounded-circle"
-                          src="/user.svg"
-                          // {
-                          //   UserData?.avatar != ""
-                          //     ? UserData?.avatar
-                          //     : "/user.svg"
-                          // }
-                          width="60px"
-                          height="60px"
-                        />
-                        <label className="texto">Aqui va el nombre</label>
-                        <label className="texto">Aqui va el role</label>
-                      </div>
+                </div>
+                <Card.Body>
+                  <div className="DivPadreIntegrantesEquipo mt-5">
+                    <div className="SeparadorIntegrantes d-flex justify-content-around flex-wrap ">
+                      {data?.user.map((user) => (
+                        <RenderMember user={user}></RenderMember>
+                      ))}
                     </div>
                   </div>
                 </Card.Body>
