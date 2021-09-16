@@ -43,7 +43,7 @@ export default function Users() {
               </div>
             </div>
             <Card bsPrefix="card-workspace">
-              <Card.Body>
+              <Card.Body className="text-center">
                 <Table className="table-workspace" size="sm">
                   <thead>
                     <tr>
