@@ -5,14 +5,14 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../services/api";
 
-const UserMembers = () => {
+const UserMembers = (id_workspace) => {
   const [UserMember, setUserMember] = useState(); // Se inicializa vacio para ocupar el componente loading
   const router = useRouter();
 
   useEffect(() => {
     async function getUserMember() {
       try {
-        const response = await axios.get(`${BASE_URL}api/v1/users/`, {
+        const response = await axios.get(`${BASE_URL}api/v1/workspaces/${id_workspace}/`, {
           headers: {
             Authorization: getToken(),
           },
@@ -30,7 +30,7 @@ const UserMembers = () => {
       }
     }
     getUserMember();
-  }, []);
+  }, [id_workspace]);
 
   return UserMember;
 };

@@ -73,9 +73,15 @@ const GoalDetail = () => {
           <div className="ContextGoals">
             <div>
               <div>
-                <ProgressBar animated bsPrefix="progress" variant="success" now={now} label={`${now}%`} />
+                <ProgressBar
+                  animated
+                  bsPrefix="progress"
+                  variant="success"
+                  now={now}
+                  label={`${now}%`}
+                />
               </div>
-              <Card>
+              <Card className="card-headerGoal">
                 <Card.Body>
                   <Table className="table-goals" size="sm">
                     <thead>
@@ -101,10 +107,14 @@ const GoalDetail = () => {
                   <h3 className="headSubtitle">Tareas</h3>
                 </div>
                 <div>
-                  <Link href={`/workspace/${id_workspace}/goals/${id_goal}/tasks/crear`}><a className="btn btn-primary">Crear Tarea</a></Link>
+                  <Link
+                    href={`/workspace/${id_workspace}/goals/${id_goal}/tasks/crear`}
+                  >
+                    <a className="btn btn-primary">Crear Tarea</a>
+                  </Link>
                 </div>
               </div>
-              <Card>
+              <Card className="card-goal">
                 <Card.Body>
                   <Table className="table-goals" size="sm">
                     <thead>
@@ -128,7 +138,33 @@ const GoalDetail = () => {
                                 <td>{task.deadline}</td>
                                 <td>{task.user}</td>
                                 <td>{task.points_value}</td>
-                                <td>{task.status}</td>
+                                <td>
+                                  <div
+                                    className={
+                                      task.status == "To Do"
+                                        ? "green"
+                                        : task.status == "Delay"
+                                        ? "orange"
+                                        : task.status == "Refused"
+                                        ? "red"
+                                        : task.status == "Done"
+                                        ? "blue"
+                                        : null
+                                    }
+                                  >
+                                    {
+                                        task.status == "To Do"
+                                        ? "En Proceso"
+                                        : task.status == "Delay"
+                                        ? "Retrasada"
+                                        : task.status == "Refused"
+                                        ? "Rechazada"
+                                        : task.status == "Done"
+                                        ? "Terminada"
+                                        : null
+                                    }
+                                  </div>
+                                </td>
                                 <td>
                                   <div className="buttonCrud">
                                     <Link

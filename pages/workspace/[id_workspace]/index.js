@@ -21,6 +21,7 @@ export default function Workspace() {
 
   const [loading, setLoading] = useState(true);
   const User = useUser();
+  // console.log(User[0]?.role)
 
   useEffect(() => {
     if (!User | User | data){
@@ -46,10 +47,14 @@ export default function Workspace() {
               <h4 className="headSubtitle">Objetivos</h4>
             </div>
             <div>
-              <Link href={`/workspace/${id_workspace}/goals/crear`}>
-                <a className="btn btn-primary me-3">Crear Objetivo</a>
-              </Link>
-              <button className="btn btn-info">Detalle</button>
+              {(User[0]?.role === 1 | User[0]?.role ===2) ? (
+                <>
+                  <Link href={`/workspace/${id_workspace}/goals/crear`}>
+                    <a className="btn btn-primary me-3">Crear Objetivo</a>
+                  </Link>
+                  <button className="btn btn-info">Detalle</button>
+                </>
+              ) : null}
             </div>
           </div>
           <Card bsPrefix="card-workspace">
@@ -72,7 +77,12 @@ export default function Workspace() {
                           <td>{goal.description}</td>
                           <td>{goal.deadline}</td>
                           <td>
-                            <ProgressBar animated variant="success" now={now} label={`${now}%`} />
+                            <ProgressBar
+                              animated
+                              variant="success"
+                              now={now}
+                              label={`${now}%`}
+                            />
                           </td>
                           <td>
                             <div className="buttonCrud">
