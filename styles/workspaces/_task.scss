@@ -1,0 +1,27 @@
+.header-father{
+    display: flex;
+    justify-content: space-between;
+    text-align: center
+}
+
+.title-font{
+    font-size:25px;
+    color: $blue-900;
+}
+
+.subtitle-font{
+    font-size:20px;
+    color: $green-800;
+    margin-bottom: 30px;
+}
+
+.footer-button{
+    display: flex;
+    justify-content: start;
+
+    button{
+        margin-right: 15px;
+    }
+
+}
+

@@ -1,4 +1,37 @@
 .ContextGoals{
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.table-goals {
+    border-radius: 1em;
+
+    thead {
+        color: #ffffff;
+        background-color: #003AA6;
+        border-radius: 20px 0px 0px 0px;
+    }
+
+    th{
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
+}
+
+.header-task{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.tableRadius tr:last-child td:first-child{
+    border-radius: 0 0 0 20px;
+  }
+
+.progress{
+    margin: 20px 0;
 }

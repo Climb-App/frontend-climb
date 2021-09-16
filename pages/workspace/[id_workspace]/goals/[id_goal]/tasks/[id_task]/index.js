@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Card, Table } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import MainLayoutComponent from '../../../../../../../components/MainLayout/index';
 import { BASE_URL } from "../../../../../../../services/api";
 import { getToken } from "../../../../../../../services/operationsTokens";
@@ -67,30 +67,46 @@ const TaskDetail = () => {
               </div>
               <Card>
                 <Card.Body>
-                  <div className="">
+                  <div className="header-father">
                     <div>
-                      <h3>Valor en Puntos</h3>
-                      <p>{taskDetail.points_value}</p>
+                      <Title classStyle="title-font">Valor en Puntos</Title>
+                      <Title classStyle="subtitle-font">{taskDetail.points_value}</Title>
                     </div>
                     <div>
-                      <h3>Fecha de Vencimiento</h3>
-                      <p>{taskDetail.deadline}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <label htmlFor="description">Descripcion</label>
-                      <input type="text" id="description" name="description" value={taskDetail.description} disabled />
-                    </div>
-                    <div>
-                    <label htmlFor="message">Mensaje</label>
-                      <input type="text" id="message" name="message" value={taskDetail.message}/>
+                      <Title classStyle="title-font">Fecha de Vencimiento</Title>
+                      <Title classStyle="subtitle-font">{taskDetail.deadline}</Title>
                     </div>
                   </div>
                   <div>
-                    <button>Enviar a Revision</button>
-                    <button>Aprobar a Revision</button>
-                    <button>Rechazar</button>
+                    <Form.Group
+                      className="mb-3 input texto"
+                      controlId="descriptionValue"
+                    >
+                      <Form.Label>Descripcion de la Tarea</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        placeholder="..."
+                        value={taskDetail.description}
+                        disabled
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      className="mb-3 input texto"
+                      controlId="messageValue"
+                    >
+                      <Form.Label>Mensaje</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        placeholder="Terminaste la tarea?, enviala a tu lider de equipo para aprobacion, recuerda detallar tus acciones, de eso dependera que obtengas los puntos de la tarea... Exito!"
+                      />
+                    </Form.Group>
+                  </div>
+                  <div className="footer-button">
+                    <button className="btn btn-primary">Enviar a Revision</button>
+                    <button className="btn btn-success">Aprobar Revision</button>
+                    <button className="btn btn-danger">Rechazar</button>
                   </div>
                 </Card.Body>
               </Card>

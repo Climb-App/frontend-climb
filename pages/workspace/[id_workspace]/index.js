@@ -3,7 +3,7 @@ import MainLayoutComponent from "../../../components/MainLayout/index";
 import Title from "../../../components/commons/title";
 import { useRouter } from "next/router";
 import useWorkspacesDetail from "../../../hooks/useWorkspaceDetail";
-import { Card, Table } from "react-bootstrap";
+import { Card, Table, ProgressBar } from "react-bootstrap";
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,8 @@ import Loading from '../../../components/commons/loading'
 
 
 export default function Workspace() {
-  
+
+  const now = 80;
   const router = useRouter();
   const { id_workspace }= router.query
 
@@ -70,7 +71,9 @@ export default function Workspace() {
                           <td>{goal.name}</td>
                           <td>{goal.description}</td>
                           <td>{goal.deadline}</td>
-                          <td>Barra de Progreso</td>
+                          <td>
+                            <ProgressBar animated variant="success" now={now} label={`${now}%`} />
+                          </td>
                           <td>
                             <div className="buttonCrud">
                               <Link

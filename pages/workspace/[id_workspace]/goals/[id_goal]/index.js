@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Card, Table } from "react-bootstrap";
+import { Card, Table, ProgressBar } from "react-bootstrap";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +14,8 @@ import Title from "../../../../../components/commons/title";
 import useUser from "../../../../../hooks/useUser";
 
 const GoalDetail = () => {
+
+  const now = 90;
   const [loading, setLoading] = useState(true);
   const [goalDetail, setGoalDetail] = useState(null);
 
@@ -21,7 +23,7 @@ const GoalDetail = () => {
   const { id_workspace, id_goal } = router.query;
   const User = useUser();
   // console.log(goalDetail[0].tasks_goal[0].name)
-  console.log(goalDetail);
+  // console.log(goalDetail);
 
   useEffect(() => {
     const getGoalDetail = async () => {
@@ -50,19 +52,19 @@ const GoalDetail = () => {
   console.log(goalDetail);
 
   useEffect(() => {
-    if (!User | User) {
+    if (goalDetail!=null) {
       setTimeout(() => {
         setLoading(false);
       }, 1500);
     }
-  }, [User]);
+  }, [goalDetail]);
 
   if (loading) {
     return <Loading />;
   } else {
     return (
       <MainLayoutComponent page="Workspace">
-        <div className="context-workspace">
+        <div className="ContextGoals">
           <div>
             <Title classStyle="headTitle">
               {goalDetail ? goalDetail[0]?.name : null}
@@ -71,11 +73,11 @@ const GoalDetail = () => {
           <div className="ContextGoals">
             <div>
               <div>
-                <h3>Barra de Progreso...</h3>
+                <ProgressBar animated bsPrefix="progress" variant="success" now={now} label={`${now}%`} />
               </div>
               <Card>
                 <Card.Body>
-                  <Table className="table-workspace" size="sm">
+                  <Table className="table-goals" size="sm">
                     <thead>
                       <tr>
                         <th>Descripcion</th>
@@ -94,17 +96,17 @@ const GoalDetail = () => {
                 </Card.Body>
               </Card>
 
-              <div className="header-workspace">
+              <div className="header-task">
                 <div>
                   <h3 className="headSubtitle">Tareas</h3>
                 </div>
                 <div>
-                  <button className="btn btn-primary">Crear Tarea</button>
+                  <Link href={`/workspace/${id_workspace}/goals/${id_goal}/tasks/crear`}><a className="btn btn-primary">Crear Tarea</a></Link>
                 </div>
               </div>
               <Card>
                 <Card.Body>
-                  <Table className="table-workspace" size="sm">
+                  <Table className="table-goals" size="sm">
                     <thead>
                       <tr>
                         <th>Nombre</th>
@@ -125,8 +127,8 @@ const GoalDetail = () => {
                                 <td>{task.description}</td>
                                 <td>{task.deadline}</td>
                                 <td>{task.user}</td>
+                                <td>{task.points_value}</td>
                                 <td>{task.status}</td>
-                                <td>Barra de Progreso</td>
                                 <td>
                                   <div className="buttonCrud">
                                     <Link
