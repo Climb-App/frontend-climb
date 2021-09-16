@@ -42,8 +42,8 @@ export default function Users() {
                 </Link>
               </div>
             </div>
-            <Card bsPrefix="card-workspace">
-              <Card.Body className="text-center">
+            <Card bsPrefix="card-workspace ">
+              <Card.Body className="text-center ">
                 <Table className="table-workspace" size="sm">
                   <thead>
                     <tr>

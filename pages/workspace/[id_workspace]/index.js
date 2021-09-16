@@ -111,7 +111,7 @@ export default function Workspace() {
     return (
       <>
         <MainLayoutComponent page="Workspace">
-          <div className="context-workspace">
+          <div className="context-workspace ">
             <Title classStyle="headTitle">{data ? data.name : null}</Title>
             <div className="header-workspace">
               <div>
@@ -119,14 +119,14 @@ export default function Workspace() {
               </div>
               <div>
                 <Link href={`/workspace/${id_workspace}/goals/crear`}>
-                  <a className="btn btn-primary me-3">Crear Objetivo</a>
+                  <a className="btn btn-primary me-3 texto">Crear Objetivo</a>
                 </Link>
-                <button className="btn btn-info">Detalle</button>
+                <button className="btn btn-info texto">Detalle</button>
               </div>
             </div>
             <Card bsPrefix="card-workspace">
               <Card.Body>
-                <Table className="table-workspace" size="sm">
+                <Table className="table-workspace text-center texto " size="sm">
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -145,7 +145,7 @@ export default function Workspace() {
                             <td>{goal.deadline}</td>
                             <td>Barra de Progreso</td>
                             <td>
-                              <div className="buttonCrud">
+                              <div className="buttonCrud ">
                                 <Link
                                   href={`/workspace/${id_workspace}/goals/${goal.id}`}
                                 >
