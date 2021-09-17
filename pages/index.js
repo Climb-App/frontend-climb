@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Title from "../components/commons/title";
+import React, { useState } from "react";
 import Navbar from "../components/commons/navbar";
 import Link from "next/link";
 import Loading from '../components/commons/loading.js'
-import useUser from "../hooks/useUser";
+
+
 
 export default function LandingPage() {
 
   const [loading, setLoading] = useState(true);
-  const User = useUser()
 
-  useEffect(() => {
-    if (!User | User){
-      setTimeout(() => {
-        setLoading(false)
-      }, 1500)
-    }
-  }, [User])
+  setTimeout(() => {
+    setLoading(false)
+  }, 1500)
 
   if(loading){
     return (

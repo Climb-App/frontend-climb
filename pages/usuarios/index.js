@@ -8,20 +8,45 @@ import Link from "next/link";
 import useUser from "../../hooks/useUser";
 import Loading from "../../components/commons/loading";
 import UseMembers from "../../hooks/useMembers";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { BASE_URL } from "../../services/api";
+import { getToken } from "../../services/operationsTokens";
 
 export default function Users() {
 
+  const [usersCollection, setUsersCollection ] = useState([]);
   const [loading, setLoading] = useState(true);
-  const User = useUser();
+  const [user, setUser] = useState(null)
+
+  // const User = useUser();
   const Users = UseMembers();
+  // console.log( usersCollection.sort( function( a, b ) {
+  //   return a.accumulated_points - b.accumulated_points
+  // }))
 
   useEffect(() => {
-    if (!User | User) {
+    async function getUser(){
+      console.log( "async")
+      await axios.get(`${BASE_URL}api/v1/user/`, {
+        headers: {
+          Authorization: getToken(),
+        },
+      }).then( response => {
+        setUser( response.data );
+        console.log( response.data )
+      }).catch(error => {
+        console.log( error )
+        router.push("/")
+      })
+    }
+
+    if (user) {
       setTimeout(() => {
         setLoading(false);
       }, 1500);
     }
-  }, [User]);
+  }, [user]);
 
   if (loading) {
     return <Loading />;
@@ -45,6 +70,8 @@ export default function Users() {
                 <Table className="table-workspace" size="sm">
                   <thead>
                     <tr>
+                      <th>Ranking</th>
+                      <th>Puntos</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Email</th>
@@ -56,12 +83,41 @@ export default function Users() {
                     {Users
                       ? Users.map((users) => (
                           <tr key={users.id}>
+                            <td>{users.accumulated_points}</td>
+                            <td>{users.accumulated_points}</td>
                             <td>{users.first_name}</td>
                             <td>{users.last_name}</td>
                             <td>{users.email}</td>
                             <td>{users.role == 2 ? "Lider" : "Miembro"}</td>
                             <td>
-                              
+                            <div className="buttonCrud ">
+                                <Link
+                                  href={`/usuarios/crear/?id=${users.id}`}
+                                >
+                                  <a>
+                                    <FontAwesomeIcon
+                                      icon={faEdit}
+                                      style={{
+                                        width: "25px",
+                                        height: "25px",
+                                        color: "blue",
+                                      }}
+                                    />
+                                  </a>
+                                </Link>
+                                <Link href="/">
+                                  <a>
+                                    <FontAwesomeIcon
+                                      icon={faTrash}
+                                      style={{
+                                        width: "20px",
+                                        height: "20px",
+                                        color: "red",
+                                      }}
+                                    />
+                                  </a>
+                                </Link>
+                              </div>
                             </td>
                           </tr>
                         ))
