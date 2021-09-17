@@ -10,14 +10,44 @@ import { Card, Table } from "react-bootstrap";
 import useUser from "../../hooks/useUser";
 import Loading from "../../components/commons/loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { BASE_URL } from "../../services/api";
+import { getToken } from "../../services/operationsTokens";
 
 export default function Recompensas() {
   const rewards = useRewards();
   const badges = useBadges();
-
   const [loading, setLoading] = useState(true);
   const User = useUser();
+
+  async function deletedReward(id){
+    console.log( "Recompensa eliminado")
+    await axios.delete(`${BASE_URL}api/v1/reward/${id}/`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    }).then( response => {
+      console.log( response.data );
+    }).catch(error => {
+      console.log( error )
+    })
+  }
+
+  async function deletedBadge(id){
+    console.log( "Recompensa eliminado")
+    await axios.delete(`${BASE_URL}api/v1/badges/${id}/`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    }).then( response => {
+      console.log( response.data );
+    }).catch(error => {
+      console.log( error )
+    })
+  }
+
+
   const RenderMember = () => (
     <>
       <div className="context-recompensas">
@@ -77,6 +107,7 @@ export default function Recompensas() {
                         <td>{badge.name}</td>
                         <td>{badge.description}</td>
                         <td>{`${badge.points_needed_min} - ${badge.points_needed_max}`}</td>
+                        <td></td>
                       </tr>
                     ))
                   : null}
@@ -87,6 +118,8 @@ export default function Recompensas() {
       </div>
     </>
   );
+
+
 
   const RenderAdmin = () => (
     <>
@@ -135,18 +168,21 @@ export default function Recompensas() {
                                 />
                               </a>
                             </Link>
-                            <Link href="/">
-                              <a>
-                                <FontAwesomeIcon
-                                  icon={faTrash}
-                                  style={{
-                                    width: "20px",
-                                    height: "20px",
-                                    color: "red",
-                                  }}
-                                />
-                              </a>
-                            </Link>
+                            <button 
+                              className="button-delete"
+                              onClick={() => deletedReward(reward.id)}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      width: "20px",
+                                      height: "20px",
+                                      color: "red",
+                                    }}
+                                  />
+                                </a>
+                              </button>
                           </div>
                         </td>
                       </tr>
@@ -201,18 +237,21 @@ export default function Recompensas() {
                                 />
                               </a>
                             </Link>
-                            <Link href="/">
-                              <a>
-                                <FontAwesomeIcon
-                                  icon={faTrash}
-                                  style={{
-                                    width: "20px",
-                                    height: "20px",
-                                    color: "red",
-                                  }}
-                                />
-                              </a>
-                            </Link>
+                            <button 
+                              className="button-delete"
+                              onClick={() => deletedBadge(badge.id)}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      width: "20px",
+                                      height: "20px",
+                                      color: "red",
+                                    }}
+                                  />
+                                </a>
+                              </button>
                           </div>
                         </td>
                       </tr>

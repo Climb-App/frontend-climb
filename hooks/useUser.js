@@ -11,16 +11,16 @@ const useUser = () => {
 
 
   useEffect(() => {
-    console.log( "petición")
+    // console.log( "petición")
     async function getUser(){
-      console.log( "async")
+      // console.log( "async")
       await axios.get(`${BASE_URL}api/v1/user/`, {
         headers: {
           Authorization: getToken(),
         },
       }).then( response => {
         setUser( response.data );
-        console.log( response.data )
+        // console.log( response.data )
       }).catch(error => {
         console.log( error )
         router.push("/")

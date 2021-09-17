@@ -5,9 +5,7 @@ import MainLayoutComponent from "../../components/MainLayout/index";
 import { Card, Table } from "react-bootstrap";
 import Title from "../../components/commons/title";
 import Link from "next/link";
-import useUser from "../../hooks/useUser";
 import Loading from "../../components/commons/loading";
-import UseMembers from "../../hooks/useMembers";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../../services/api";
@@ -17,36 +15,73 @@ export default function Users() {
 
   const [usersCollection, setUsersCollection ] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState([])
+  const router = useRouter();
+  let count = 0;
 
-  // const User = useUser();
-  const Users = UseMembers();
-  // console.log( usersCollection.sort( function( a, b ) {
-  //   return a.accumulated_points - b.accumulated_points
-  // }))
+    async function deleted(id){
+      console.log( "Usuario eliminado")
+      await axios.delete(`${BASE_URL}api/v1/user/member/${id}`, {
+        headers: {
+          Authorization: getToken(),
+        },
+      }).then( response => {
+        console.log( response.data );
+      }).catch(error => {
+        console.log( error )
+        router.push("/usuarios/")
+      })
+    }
+    
 
   useEffect(() => {
+
     async function getUser(){
-      console.log( "async")
+      console.log( "Verificacion de Usuario Logueado")
       await axios.get(`${BASE_URL}api/v1/user/`, {
         headers: {
           Authorization: getToken(),
         },
       }).then( response => {
         setUser( response.data );
-        console.log( response.data )
       }).catch(error => {
         console.log( error )
         router.push("/")
       })
     }
+    getUser()
+    
+  }, [router]);
 
-    if (user) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1500);
+
+  useEffect(() => {
+
+    async function getUsers(){
+      console.log( "Peticion de Usuarios")
+      await axios.get(`${BASE_URL}api/v1/users/`, {
+        headers: {
+          Authorization: getToken(),
+        },
+      }).then( response => {
+        setUsersCollection( response.data );
+        // console.log( response.data )
+      }).catch(error => {
+        console.log( error )
+      })
     }
-  }, [user]);
+    getUsers()
+  }, [])
+
+  // console.log(usersCollection)
+  console.log( usersCollection.sort( function( a, b ) {
+    return a.accumulated_points + b.accumulated_points
+  }))
+
+  if (user) {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }
 
   if (loading) {
     return <Loading />;
@@ -65,7 +100,7 @@ export default function Users() {
                 </Link>
               </div>
             </div>
-            <Card bsPrefix="card-workspace ">
+            <Card bsPrefix="card-users">
               <Card.Body className="text-center ">
                 <Table className="table-workspace" size="sm">
                   <thead>
@@ -80,10 +115,12 @@ export default function Users() {
                     </tr>
                   </thead>
                   <tbody>
-                    {Users
-                      ? Users.map((users) => (
+                    {usersCollection
+                      ? usersCollection.sort( function( a, b ) {
+                        return a.accumulated_points + b.accumulated_points
+                      }).map((users) => (
                           <tr key={users.id}>
-                            <td>{users.accumulated_points}</td>
+                            <td>{count += 1}</td>
                             <td>{users.accumulated_points}</td>
                             <td>{users.first_name}</td>
                             <td>{users.last_name}</td>
@@ -91,32 +128,21 @@ export default function Users() {
                             <td>{users.role == 2 ? "Lider" : "Miembro"}</td>
                             <td>
                             <div className="buttonCrud ">
-                                <Link
-                                  href={`/usuarios/crear/?id=${users.id}`}
-                                >
-                                  <a>
-                                    <FontAwesomeIcon
-                                      icon={faEdit}
-                                      style={{
-                                        width: "25px",
-                                        height: "25px",
-                                        color: "blue",
-                                      }}
-                                    />
-                                  </a>
-                                </Link>
-                                <Link href="/">
-                                  <a>
-                                    <FontAwesomeIcon
-                                      icon={faTrash}
-                                      style={{
-                                        width: "20px",
-                                        height: "20px",
-                                        color: "red",
-                                      }}
-                                    />
-                                  </a>
-                                </Link>
+                              <button 
+                              className="button-delete"
+                              onClick={() => deleted(users.id)}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      width: "20px",
+                                      height: "20px",
+                                      color: "red",
+                                    }}
+                                  />
+                                </a>
+                              </button>
                               </div>
                             </td>
                           </tr>
