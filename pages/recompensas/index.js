@@ -50,7 +50,7 @@ export default function Recompensas() {
 
   const RenderMember = () => (
     <>
-      <div className="context-recompensas">
+      <div className="context-recompensas texto ">
         <div className="header-recompensas">
           <div>
             <Title classStyle="headTitle">Recompensas</Title>
@@ -123,7 +123,7 @@ export default function Recompensas() {
 
   const RenderAdmin = () => (
     <>
-      <div className="context-recompensas">
+      <div className="context-recompensas texto">
         <div className="header-recompensas">
           <div>
             <Title classStyle="headTitle">Recompensas</Title>
@@ -136,7 +136,7 @@ export default function Recompensas() {
         </div>
         <Card>
           <Card.Body>
-            <Table className="table-workspace" size="sm">
+            <Table className="table-workspace " size="sm">
               <thead>
                 <tr>
                   <th>Nombre</th>
