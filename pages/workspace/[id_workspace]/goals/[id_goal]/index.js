@@ -14,7 +14,6 @@ import Title from "../../../../../components/commons/title";
 import useUser from "../../../../../hooks/useUser";
 
 const GoalDetail = () => {
-
   const now = 90;
   const [loading, setLoading] = useState(true);
   const [goalDetail, setGoalDetail] = useState(null);
@@ -52,7 +51,7 @@ const GoalDetail = () => {
   console.log(goalDetail);
 
   useEffect(() => {
-    if (goalDetail!=null) {
+    if (goalDetail != null) {
       setTimeout(() => {
         setLoading(false);
       }, 1500);
@@ -83,7 +82,7 @@ const GoalDetail = () => {
               </div>
               <Card className="card-headerGoal">
                 <Card.Body>
-                  <Table className="table-goals" size="sm">
+                  <Table className="table-goals texto" size="sm">
                     <thead>
                       <tr>
                         <th>Descripcion</th>
@@ -110,13 +109,13 @@ const GoalDetail = () => {
                   <Link
                     href={`/workspace/${id_workspace}/goals/${id_goal}/tasks/crear`}
                   >
-                    <a className="btn btn-primary">Crear Tarea</a>
+                    <a className="btn btn-primary texto">Crear Tarea</a>
                   </Link>
                 </div>
               </div>
               <Card className="card-goal">
                 <Card.Body>
-                  <Table className="table-goals" size="sm">
+                  <Table className="table-goals texto" size="sm">
                     <thead>
                       <tr>
                         <th>Nombre</th>
@@ -152,21 +151,19 @@ const GoalDetail = () => {
                                         : null
                                     }
                                   >
-                                    {
-                                        task.status == "To Do"
-                                        ? "En Proceso"
-                                        : task.status == "Delay"
-                                        ? "Retrasada"
-                                        : task.status == "Refused"
-                                        ? "Rechazada"
-                                        : task.status == "Done"
-                                        ? "Terminada"
-                                        : null
-                                    }
+                                    {task.status == "To Do"
+                                      ? "En Proceso"
+                                      : task.status == "Delay"
+                                      ? "Retrasada"
+                                      : task.status == "Refused"
+                                      ? "Rechazada"
+                                      : task.status == "Done"
+                                      ? "Terminada"
+                                      : null}
                                   </div>
                                 </td>
                                 <td>
-                                  <div className="buttonCrud">
+                                  <div className="buttonCrud ">
                                     <Link
                                       href={`/workspace/${id_workspace}/goals/${goal.id}/tasks/${task.id}`}
                                     >

@@ -30,7 +30,6 @@ export default function Workspace() {
     }
   }, [User, data]);
 
-
   const RenderMember = ({ user }) => {
     const {
       accumulated_points,
@@ -110,14 +109,13 @@ export default function Workspace() {
     );
   };
 
-
   if (loading) {
     return <Loading />;
   } else {
     return (
       <>
         <MainLayoutComponent page="Workspace">
-          <div className="context-workspace">
+          <div className="context-workspace texto ">
             <Title classStyle="headTitle">{data ? data.name : null}</Title>
             <div className="header-workspace">
               <div>

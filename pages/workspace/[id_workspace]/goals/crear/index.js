@@ -64,7 +64,7 @@ const CrearGoals = () => {
   }
   return (
     <MainLayoutComponent page="Workspace">
-      <Form action="" method="POST" onSubmit={PostGoals}>
+      <Form className="texto" action="" method="POST" onSubmit={PostGoals}>
         <h2 className="headTitle">Crear Objetivo</h2>
         {/* Inputs */}
         <div className="Formulario d-flex justify-content-between flex-wrap mt-5 ">
