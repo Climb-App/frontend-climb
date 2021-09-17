@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import MainLayoutComponent from "../../../../../../../components/MainLayout";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import UserMembers from "../../../../../../../hooks/useUsersMembers";
+import UseUserMembers from "../../../../../../../hooks/UseUserMembers";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -17,7 +17,8 @@ export default function CrearTasks() {
   const router = useRouter();
   const { id_workspace, id_goal } = router.query;
   console.log(id_workspace)
-  const Users = UserMembers(id_workspace);
+  const Users = UseUserMembers(id_workspace);
+
   const [UsuariosTarea, setUsuariosTarea] = useState(null);
 
   const cancel = () => {

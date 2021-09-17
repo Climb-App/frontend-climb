@@ -7,12 +7,12 @@ import Title from "../../components/commons/title";
 import Link from "next/link";
 import useUser from "../../hooks/useUser";
 import Loading from "../../components/commons/loading";
-import UserMembers from "../../hooks/useUsersMembers";
+import UseMembers from "../../hooks/useMembers";
 
 export default function Users() {
   const [loading, setLoading] = useState(true);
   const User = useUser();
-  const Users = UserMembers();
+  const Users = UseMembers();
 
   useEffect(() => {
     if (!User | User) {

@@ -14,6 +14,7 @@ export default function Workspace() {
   const now = 80;
   const router = useRouter();
   const { id_workspace } = router.query;
+  // console.log(id_workspace)
   // const UsersWorkspace = useWorkspaceUser(id_workspace);
   const data = useWorkspacesDetail(id_workspace);
 
@@ -28,6 +29,7 @@ export default function Workspace() {
       }, 1500);
     }
   }, [User, data]);
+
 
   const RenderMember = ({ user }) => {
     const {
@@ -49,6 +51,7 @@ export default function Workspace() {
         <div className="IntegranteX d-flex flex-column align-items-center">
           {console.log(user)}
           <img
+            alt=""
             className=" mb-2 rounded-circle"
             src={avatar != "" ? avatar : "/user.svg"}
             width="60px"
@@ -107,6 +110,7 @@ export default function Workspace() {
     );
   };
 
+
   if (loading) {
     return <Loading />;
   } else {
@@ -120,7 +124,7 @@ export default function Workspace() {
                 <h4 className="headSubtitle">Objetivos</h4>
               </div>
               <div>
-                {(User[0]?.role === 1) | (User[0]?.role === 2) ? (
+                {(User?.[0]?.role === 1) | (User?.[0]?.role === 2) ? (
                   <>
                     <Link href={`/workspace/${id_workspace}/goals/crear`}>
                       <a className="btn btn-primary me-3">Crear Objetivo</a>
@@ -149,7 +153,15 @@ export default function Workspace() {
                             <td>{goal.name}</td>
                             <td>{goal.description}</td>
                             <td>{goal.deadline}</td>
-                            <td>Barra de Progreso</td>
+                            <td>
+                              <ProgressBar
+                                animated
+                                bsPrefix="progress"
+                                variant="success"
+                                now={now}
+                                label={`${now}%`}
+                              />
+                            </td>
                             <td>
                               <div className="buttonCrud ">
                                 <Link
@@ -200,38 +212,33 @@ export default function Workspace() {
                   </tbody>
                 </Table>
               </Card.Body>
-              <Card border="light">
-                <div className="TituloCard d-flex justify-content-between">
-                  <label className="headSubtitle text-center">
-                    Equipo de Trabajo
-                  </label>
-                  <Button
-                    className="texto"
-                    variant="success"
-                    type="submit"
-                    style={{ marginRight: "50px" }}
-                  >
-                    Crear
-                  </Button>
-                </div>
+            </Card>
+
+            {/* Carlos */}
+            <Card className="card-usersWorkspace" border="light">
+              <div className="TituloCard d-flex justify-content-between">
+                <label className="headSubtitle text-center">
+                  Equipo de Trabajo
+                </label>
+              </div>
+              <Card.Body className="card-bodyUsers">
                 <div className="DivPadreLiderEquipo">
-                  <div className="SeparadorPadres d-flex justify-content-around flex-wrap ">
+                  <div className="SeparadorPadres ">
                     {data?.user.map((user) => (
-                      <RenderLider user={user}></RenderLider>
+                      <RenderLider key={user.id} user={user}></RenderLider>
                     ))}
                   </div>
                 </div>
-                <Card.Body>
-                  <div className="DivPadreIntegrantesEquipo mt-5">
-                    <div className="SeparadorIntegrantes d-flex justify-content-around flex-wrap ">
-                      {data?.user.map((user) => (
-                        <RenderMember user={user}></RenderMember>
-                      ))}
-                    </div>
+                <div className="DivPadreIntegrantesEquipo ms-5">
+                  <div className="SeparadorIntegrantes  ">
+                    {data?.user.map((user) => (
+                      <RenderMember key={user.id} user={user}></RenderMember>
+                    ))}
                   </div>
-                </Card.Body>
-              </Card>
+                </div>
+              </Card.Body>
             </Card>
+            {/* Carlos */}
           </div>
         </MainLayoutComponent>
       </>
