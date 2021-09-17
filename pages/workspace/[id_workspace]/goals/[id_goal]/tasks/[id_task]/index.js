@@ -64,7 +64,6 @@ const TaskDetail = () => {
         }
       }
 
-
       async function approved(){
         try{
           const respTask = await axios.patch(`${BASE_URL}api/v1/tasks/${id_task}/`, 
