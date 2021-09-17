@@ -77,7 +77,7 @@ export default function Lateral() {
           <a>Recompensas</a>
         </Link>
       </div>
-      <div className="lateral">
+      {/* <div className="lateral">
         <img
           className="icon"
           src="/assets/Productivity.svg"
@@ -92,7 +92,7 @@ export default function Lateral() {
         <Link href="/motivacion">
           <a>Motivacion</a>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
