@@ -27,7 +27,7 @@ const useUserData = (user) => {
         }
       );
 
-      toast.success(`Informacion del Usuario: ${response.data.name} `);
+      // toast.success(`Informacion del Usuario: ${response.data.name} `);
       console.log(response.data);
       return response.data;
     } catch (error) {

@@ -16,9 +16,9 @@ const animatedComponents = makeAnimated();
 export default function CrearTasks() {
   const router = useRouter();
   const { id_workspace, id_goal } = router.query;
-  console.log(id_workspace)
+  console.log(id_workspace);
+  console.log(id_goal);
   const Users = UseUserMembers(id_workspace);
-
   const [UsuariosTarea, setUsuariosTarea] = useState(null);
 
   const cancel = () => {
@@ -79,7 +79,8 @@ export default function CrearTasks() {
         });
 
       console.log(response.data);
-      //   router.push("/dashboard");
+      router.push(`/workspace/${id_workspace}/goals/${id_goal}/`);
+
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");
@@ -90,7 +91,7 @@ export default function CrearTasks() {
     }
   }
 
-  console.log(Users?.user)
+  console.log(Users?.user);
   return (
     <MainLayoutComponent page="Workspace">
       <Form action="" method="POST" onSubmit={PostGoals}>
@@ -170,11 +171,14 @@ export default function CrearTasks() {
               className="input texto "
               closeMenuOnSelect={false}
               components={animatedComponents}
-              options={
-                Users?.user.map((User) => (User.role!=1?{
-                value: User?.id,
-                label: User?.email,
-              }:{}))}
+              options={Users?.user.map((User) =>
+                User.role != 1
+                  ? {
+                      value: User?.id,
+                      label: User?.email,
+                    }
+                  : {}
+              )}
             />
           </div>
 

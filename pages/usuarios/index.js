@@ -14,13 +14,8 @@ import { BASE_URL } from "../../services/api";
 import { getToken } from "../../services/operationsTokens";
 
 export default function Users() {
-<<<<<<< HEAD
-=======
-
-  const [usersCollection, setUsersCollection ] = useState([]);
->>>>>>> f6dd51d86d9a7d4fb7f2a3a72ae62c10d5f97615
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   // const User = useUser();
   const Users = UseMembers();
@@ -29,19 +24,22 @@ export default function Users() {
   // }))
 
   useEffect(() => {
-    async function getUser(){
-      console.log( "async")
-      await axios.get(`${BASE_URL}api/v1/user/`, {
-        headers: {
-          Authorization: getToken(),
-        },
-      }).then( response => {
-        setUser( response.data );
-        console.log( response.data )
-      }).catch(error => {
-        console.log( error )
-        router.push("/")
-      })
+    async function getUser() {
+      console.log("async");
+      await axios
+        .get(`${BASE_URL}api/v1/user/`, {
+          headers: {
+            Authorization: getToken(),
+          },
+        })
+        .then((response) => {
+          setUser(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          router.push("/");
+        });
     }
 
     if (user) {
@@ -92,14 +90,9 @@ export default function Users() {
                             <td>{users.last_name}</td>
                             <td>{users.email}</td>
                             <td>{users.role == 2 ? "Lider" : "Miembro"}</td>
-<<<<<<< HEAD
-                            <td></td>
-=======
                             <td>
-                            <div className="buttonCrud ">
-                                <Link
-                                  href={`/usuarios/crear/?id=${users.id}`}
-                                >
+                              <div className="buttonCrud ">
+                                <Link href={`/usuarios/crear/?id=${users.id}`}>
                                   <a>
                                     <FontAwesomeIcon
                                       icon={faEdit}
@@ -125,7 +118,6 @@ export default function Users() {
                                 </Link>
                               </div>
                             </td>
->>>>>>> f6dd51d86d9a7d4fb7f2a3a72ae62c10d5f97615
                           </tr>
                         ))
                       : null}

@@ -52,7 +52,7 @@ const CrearGoals = () => {
         });
       setPost(response.data);
       console.log(response.data);
-      //   router.push("/dashboard");
+      router.push(`/workspace/${id_workspace}/`);
       //Handling Errors
     } catch (error) {
       toast.error("Error al enviar los datos");

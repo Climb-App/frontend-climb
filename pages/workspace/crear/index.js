@@ -8,16 +8,15 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BASE_URL } from "../../../services/api";
 import { getToken } from "../../../services/operationsTokens";
-
-import UserMembers from "../../../hooks/useUsersMembers";
 import useUser from "../../../hooks/useUser";
+import UseMembers from "../../../hooks/useMembers";
 
 const Url = "api/v1/workspaces/";
 const animatedComponents = makeAnimated();
 
 export default function CreateWorkspace() {
   const router = useRouter();
-  const Users = UserMembers();
+  const Users = UseMembers();
   const UserAdmin = useUser();
   const [UsuariosMember, setUsuariosMember] = useState(null);
 
@@ -56,7 +55,7 @@ export default function CreateWorkspace() {
         toast.success("Datos enviados", {
           theme: "colored",
         });
-
+      router.push("/dashboard/");
       console.log(response.data);
       //   router.push("/dashboard");
       //Handling Errors
