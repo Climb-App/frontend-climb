@@ -24,7 +24,10 @@ const useUserLanding = () => {
           // toast.error("Error Cliente o Servidor ");
           console.log(error);
         }
-        if (error.response.status == 401) toast.error("Unauthorized");
+        if (error.response.status == 401) {
+          console.log(error)
+        }
+        // toast.error("Unauthorized");
       }
     }
     getUser();

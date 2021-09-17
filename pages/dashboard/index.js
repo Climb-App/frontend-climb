@@ -96,12 +96,15 @@ export default function Dashboard() {
     },
   };
 
+
   useEffect(() => {
-    if (!User | User){
+
+    if (User){
       setTimeout(() => {
         setLoading(false)
       }, 1000)
     }
+
   }, [User])
 
   if(loading){
