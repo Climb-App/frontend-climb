@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import MainLayoutComponent from "../../components/MainLayout/index";
-import useUsersMembers from "../../hooks/useUsersMembers";
 import { Card, Table } from "react-bootstrap";
 import Title from "../../components/commons/title";
 import Link from "next/link";
@@ -11,8 +10,6 @@ import Loading from "../../components/commons/loading";
 import UserMembers from "../../hooks/useUsersMembers";
 
 export default function Users() {
-  const users = useUsersMembers();
-
   const [loading, setLoading] = useState(true);
   const User = useUser();
   const Users = UserMembers();
