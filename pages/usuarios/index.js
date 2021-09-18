@@ -12,6 +12,7 @@ import { BASE_URL } from "../../services/api";
 import { getToken } from "../../services/operationsTokens";
 
 export default function Users() {
+  const [usersCollection, setUsersCollection] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([])
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function Users() {
         router.push("/usuarios/")
       })
     }
-    
+  
 
   useEffect(() => {
 
@@ -70,10 +71,6 @@ export default function Users() {
     getUsers()
   }, [])
 
-  // console.log(usersCollection)
-  console.log( usersCollection.sort( function( a, b ) {
-    return a.accumulated_points + b.accumulated_points
-  }))
 
   if (user) {
     setTimeout(() => {

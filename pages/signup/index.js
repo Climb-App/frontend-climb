@@ -7,11 +7,12 @@ import Aside from "../../components/commons/aside";
 import Links from "../../components/commons/links";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { BASE_URL } from "../../services/api";
+import { getToken } from "../../services/operationsTokens";
 import { toast } from "react-toastify";
 
 export default function SignUp() {
   const { post, setPost } = useState(null);
-  const baseUrlConnect = "http://127.0.0.1:8000/api/v1/register/admin/";
   const router = useRouter();
 
   const usuario = {
@@ -28,23 +29,25 @@ export default function SignUp() {
     console.log(usuario);
   }
 
-  async function register() {
-    try {
-      const response = await axios.post(baseUrlConnect, usuario);
-      if (response)
-        toast.success("Datos enviados", {
-          theme: "colored",
-        });
-      console.log(response.data);
-      router.push("/login/");
-    } catch (error) {
-      toast.error("Error al enviar los Datos");
-      console.error(error);
-      if (error.response.status >= 402 && error.response.status <= 500) {
-        console.log("Error");
-      }
+    async function register(){
+      console.log( "Verificacion de Usuario Logueado")
+      await axios.post(
+        `${BASE_URL}api/v1/register/`,
+      usuario,
+      {
+        headers: {
+          Authorization: getToken(),
+        },
+      }).then( response => {
+        setPost( response.data );
+        router.push("/login/")
+        console.log(post)
+      }).catch(error => {
+        console.log( error )
+        router.push("/")
+      })
     }
-  }
+
 
   function cancel() {
     router.push("/");

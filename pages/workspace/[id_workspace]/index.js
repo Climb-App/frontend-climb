@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import useUser from "../../../hooks/useUser";
 import Loading from "../../../components/commons/loading";
+import { BASE_URL } from "../../../services/api";
+import { getToken } from "../../../services/operationsTokens";
+import axios from "axios";
 
 export default function Workspace() {
   const now = 80;
@@ -21,6 +24,21 @@ export default function Workspace() {
   const [loading, setLoading] = useState(true);
   const User = useUser();
   // console.log(User[0]?.role)
+
+  async function deletedGoal(id){
+    console.log( "Objetivo eliminado")
+    await axios.delete(`${BASE_URL}api/v1/goals/${id}/`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    }).then( response => {
+      console.log( response.data );
+    }).catch(error => {
+      console.log( error )
+      router.push(`/workspaces/${id_workspace}`)
+    })
+  }
+
 
   useEffect(() => {
     if (!User | User | data) {
@@ -190,18 +208,21 @@ export default function Workspace() {
                                     />
                                   </a>
                                 </Link>
-                                <Link href="/">
-                                  <a>
-                                    <FontAwesomeIcon
-                                      icon={faTrash}
-                                      style={{
-                                        width: "20px",
-                                        height: "20px",
-                                        color: "red",
-                                      }}
-                                    />
-                                  </a>
-                                </Link>
+                                <button 
+                              className="button-delete"
+                              onClick={() => deletedGoal(goal.id)}
+                              >
+                                <a>
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      width: "20px",
+                                      height: "20px",
+                                      color: "red",
+                                    }}
+                                  />
+                                </a>
+                              </button>
                               </div>
                             </td>
                           </tr>

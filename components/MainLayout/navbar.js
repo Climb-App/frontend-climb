@@ -20,12 +20,12 @@ export default function Navbar({ page, title }) {
 
   return (
     <div className="container-fluid">
-      <div className="row">
+      <div className="d-flex">
         <div className="box-logo">
           <img src="/logo.png" alt="logo" width="50px" height="60px" />
         </div>
         <nav className="heading shadow">
-          <div className="head">
+          <div className="head ms-3">
             <img
               className="icon me-2"
               src={`/assets/${page}-black.svg`}
